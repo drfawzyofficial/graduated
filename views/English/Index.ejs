@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Owl Default CSS -->
+    <link rel="stylesheet" href="/assets/css/owl.default.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <!-- Owl Magnific CSS -->
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/hover.css">
+    <!-- Boxicons CSS -->
+    <link rel="stylesheet" href="/assets/css/boxicons.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <!-- Image Light Box CSS -->
+    <link rel="stylesheet" href="/assets/css/imagelightbox.min.css">
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="/assets/css/meanmenu.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <!-- Odometer CSS-->
+    <link rel="stylesheet" href="/assets/css/odometer.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+
+    <title>Ostazy Company</title>
+
+    <link rel="icon" type="image/png" href="/assets/Images/Logo/logo.png">
+</head>
+
+
+
+<body id="body">
+
+    <!-- Start Navbar -->
+    <header id="headerContent"
+        class="container-fluid headerContent appear-header <%= (page === 'Tatx'? 'pageTatx pageConst': 'bg-white o_shadow') %>">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/Images/Logo/logo.png" title="Ostazy always with you" width="40" height="40"
+                        class="d-inline-block align-top" alt=" Osstazy always with you">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link" id="aboutLink" style="cursor: pointer;">About</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Faq'? 'spe-active': '') %>">
+                            <a class="nav-link" id="featuresLink" style="cursor: pointer;">Features</a>
+                        </li>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Contact'? 'spe-active': '') %>">
+                            <a class="nav-link" id="servicesLink" style="cursor: pointer;">Services</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Contact'? 'spe-active': '') %>">
+                            <a class="nav-link " id="faqLink" style="cursor: pointer;">FAQ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="Dropdown-word">More </span>
+                                <span class="Dropdown-icon"><i class="fas fa-caret-down"></i></span>
+                            </a>
+                            <div class="dropdown-menu animated slideInUp" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item nav-link" data-toggle="modal" data-target="#terms"
+                                    style="cursor: pointer"><span class="hvr-forward">Terms</span></a>
+                                <a class="dropdown-item nav-link" data-toggle="modal" data-target="#privacy"
+                                    style="cursor: pointer"><span class="hvr-forward">Privacy</span></a>
+                                <a class="dropdown-item nav-link" data-toggle="modal" data-target="#contact"
+                                    style="cursor: pointer"><span class="hvr-forward">Contact</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item mt-2 mt-lg-0 mr-lg-2">
+                            <a type="button" class="nav-link" data-toggle="modal" data-target="#send"
+                                style="cursor: pointer">Singup</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0 mr-lg-2">
+                            <a type="button" class="nav-link" data-toggle="modal" data-target="#login"
+                                style="cursor: pointer">Login</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <form method="POST" action="/ar">
+                                <button type="submit" class="nav-link ">العربية <i class="fas fa-globe"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Navbar -->
+
+    <!-- Start Carousel Area -->
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active">
+                <div class="indicatorContent text-center text-white">
+                    <div class="forIcon" style="font-size: 25px">
+                        <i class="fa fa-bicycle"></i>
+                    </div>
+                    <div class="forTopic">
+                        <span class="desc">Ostazy</span>
+                    </div>
+                </div>
+            </li>
+            <li data-target="#carousel" data-slide-to="1">
+                <div class="indicatorContent text-center text-white">
+                    <div class="forIcon" style="font-size: 25px">
+                        <i class="fa fa-bicycle"></i>
+                    </div>
+                    <div class="forTopic">
+                        <span class="desc">Quality</span>
+                    </div>
+                </div>
+            </li>
+            <li data-target="#carousel" data-slide-to="2">
+                <div class="indicatorContent text-center text-white">
+                    <div class="forIcon" style="font-size: 25px">
+                        <i class="fa fa-bicycle"></i>
+                    </div>
+                    <div class="forTopic">
+                        <span class="desc">Delivery</span>
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="overlay"></div>
+                <img class="d-block w-100" src="/assets/Images/Delivery/2.jpg" alt="First slide">
+                <div class="carousel-caption">
+                    <h5 class="text-white">Ostazy is always with you</h5>
+                    <p class="text-light">Ostazy is always with you is a topic that will attract you and with this meaning
+                        you will not feel you are alone. Ostazy is always with you is a topic that will attract you and
+                        with this meaning you will not feel you are alone</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="overlay"></div>
+                <img class="d-block w-100" src="/assets/Images/Delivery/3.jpg" alt="Second slide">
+                <div class="carousel-caption">
+                    <h5 class="text-white">Quality</h5>
+                    <p class="text-light">Ostazy has a good quality in making apps and it makes apps in a high quality.
+                        The app is excellent because Ostazy follows steps in Planning, Desinging, Implementation and
+                        Coding Ostazy has a good quality in making apps and it makes apps in a high quality. The app is
+                        excellent because Ostazy follows steps in Planning, Desinging, Implementation and Coding </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="overlay"></div>
+                <img class="d-block w-100" src="/assets/Images/Delivery/4.jpg" alt="Third slide">
+                <div class="carousel-caption">
+                    <h5 class="text-white">Delivery App</h5>
+                    <p class="text-light">Ostazy has a professional delivery app. You can order anything you want from the
+                        shop and we will reach the shop to bring the needs immediately. Tatx has a professional delivery
+                        app. You can order anything you want from the shop and we will reach the shop to bring the needs
+                        immediately </p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- End Carousel Area -->
+
+    <!-- Start Intro for Ostazy Area -->
+    <section class="tatx-intro container-fluid py-5" id="About">
+        <div class="container py-5">
+            <div class="row">
+                <div class="order-2 col-md-6 col-12 mt-5 mt-md-0 wow fadeInLeft">
+                    <div class="half-img hvr-bob">
+                        <img alt="vector" src="/assets/img/Partner/client/vector-art-3.png">
+                    </div>
+                </div>
+                <div class="order-1 order-md-3 col-md-6 col-12 wow fadeInRight">
+                    <div class="heading-area">
+                        <span class="sub-title text-muted hvr-forward animated pulse infinite">Ostazy always with
+                            you</span>
+                        <h2 class="title text-muted hvr-forward">We have done greate services</h2>
+                        <p class="para text-muted hvr-forward">Ostazy is an IT Company that aims to provide services that
+                            help people in all fields and it makes the community easy</p>
+                    </div>
+                    <ul class="counter-list list-unstyled">
+                        <li class="counter-item hvr-pulse-shrink">
+                            <i aria-hidden="true" class="fas fa-users text-muted"></i>
+                            <h6 class="counter-number text-muted"><span class="count">500</span>+</h6>
+                            <p class="sub-title text-muted">Happy Clients</p>
+                        </li>
+                        <li class="counter-item hvr-pulse-shrink">
+                            <i aria-hidden="true" class="fas fa-list-alt text-muted"></i>
+                            <h6 class="counter-number text-muted"><span class="count">1074</span>+</h6>
+                            <p class="sub-title text-muted">Lines Of Code</p>
+                        </li>
+                        <li class="counter-item hvr-pulse-shrink">
+                            <i aria-hidden="true" class="fas fa-award text-muted"></i>
+                            <h6 class="counter-number text-muted"><span class="count">600</span>+</h6>
+                            <p class="sub-title text-muted">Project Completed</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Intro for Ostazy Area -->
+
+    <!-- Start Features Area -->
+    <section id="Features" class="features-section container-fluid py-5">
+        <div class="container">
+            <div class="row wow fadeInLeft">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2 class="hvr-forward">Creative Features</h2>
+                        <p class="hvr-forward">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incidiunt labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, incidunt aliquam
+                            accusantium temporibus in magni assumenda cupiditate saepe ullam. Doloribus et incidunt,
+                            vero mollitia debitis ratione tenetur. Quo, animi aut?</p>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row wow fadeInUp mt-4">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="features-content text-center hvr-grow-shadow">
+                        <div class="icon">
+                            <i class="flaticon-clock"></i>
+                        </div>
+                        <h3>Professionalism</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-3 mt-md-0">
+                    <div class="features-content text-center hvr-grow-shadow">
+                        <div class="icon">
+                            <i class="flaticon-blueprint"></i>
+                        </div>
+                        <h3>Experience</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 mt-3 mt-lg-0 col-sm-12 col-12">
+                    <div class="features-content text-center hvr-grow-shadow">
+                        <div class="icon left-icon">
+                            <i class="flaticon-security"></i>
+                        </div>
+                        <h3>Integrated team</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 mt-3 mt-lg-0 col-sm-12 col-12">
+                    <div class="features-content text-center hvr-grow-shadow">
+                        <div class="icon">
+                            <i class="flaticon-update"></i>
+                        </div>
+                        <h3>Smart solutions</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+
+    <!-- Start Services Area -->
+    <section class="services-section bg-color py-5" id="Services">
+        <div class="container">
+            <div class="row wow fadeInLeft">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="hvr-forward">Ostazy Services</h2>
+                        <p class="hvr-forward">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incidiunt labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 wow fadeInUp"">
+                    <div class=" col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="single-services">
+                    <div class="icon">
+                        <i class="flaticon-cellphone"></i>
+                    </div>
+                    <h3>Web Programming</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore facilisis.</p>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 mt-3 mt-lg-0 col-sm-12 col-12">
+                <div class="single-services">
+                    <div class="icon">
+                        <i class="flaticon-shopping-cart"></i>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore facilisis.</p>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 mt-3 mt-lg-0 col-sm-12 col-12">
+                <div class="single-services">
+                    <div class="icon">
+                        <i class="flaticon-optimize"></i>
+                    </div>
+                    <h3>Video Working</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore facilisis.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="default-shape">
+            <div class="shape-1">
+                <img src="assets/img/shape/4.png" alt="image">
+            </div>
+
+            <div class="shape-2 rotateme">
+                <img src="assets/img/shape/5.svg" alt="image">
+            </div>
+
+            <div class="shape-3">
+                <img src="assets/img/shape/6.svg" alt="image">
+            </div>
+
+            <div class="shape-4">
+                <img src="assets/img/shape/7.png" alt="image">
+            </div>
+
+            <div class="shape-5">
+                <img src="assets/img/shape/8.png" alt="image">
+            </div>
+        </div>
+
+        <div class="services-shape">
+            <img src="assets/img/cloud.png" alt="image">
+        </div>
+    </section>
+    <!-- End Services Area -->
+
+    <!-- Start FAQ Area -->
+    <section class="faq-section container-fluid py-5" id="FAQ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Frequently <span>Asked</span> Questions</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidiunt
+                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3 align-items-center">
+                <div class="col-lg-6 wow fadeInLeft">
+                    <div class="faq-accordion">
+                        <ul class="accordion">
+                            <li class="accordion-item">
+                                <a class="accordion-title active" href="javascript:void(0)">
+                                    <i class="bx bx-chevron-down"></i>
+                                    What access do I have on the free plan?
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </li>
+
+                            <li class="accordion-item">
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="bx bx-chevron-down"></i>
+                                    What access do I have on a free trial?
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </li>
+
+                            <li class="accordion-item">
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="bx bx-chevron-down"></i>
+                                    Does the price go up as my team gets larger?
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </li>
+
+                            <li class="accordion-item">
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="bx bx-chevron-down"></i>
+                                    How can I cancel my subscription?
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </li>
+
+                            <li class="accordion-item">
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="bx bx-chevron-down"></i>
+                                    Can I pay via an Invoice?
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight">
+                    <div class="faq-image">
+                        <img src="/assets/Images/istockphoto-1152863036-1024x1024.jpg" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End FAQ Area -->
+
+
+    <!-- Start terms/privacy Area -->
+    <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Terms Content</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="ul-privacy">
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="privacy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Privacy Content</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="ul-privacy">
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                        <li class="li-privacy">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
+                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
+                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login to Ostazy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <%- include('../partials/Basic/errors.ejs') -%>
+                    <form action="/user/login" method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="far fa-envelope-open"></i></span>
+                            </div>
+                            <input type="email" name="email" class="form-control" id="email"
+                                aria-describedby="emailHelp" placeholder="Enter your email">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password" id="password" class="form-control"
+                                aria-describedby="emailHelp" placeholder="Enter your Password">
+                        </div>
+
+
+                        <div class="form-group">
+                            <p class="text-center">By signing up you accept our <a
+                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlot"> terms of use</a>
+                            </p>
+                        </div>
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" class=" btn btn-block mybtn btn-success tx-tfm">Login <i
+                                    class="fas fa-sign-in-alt"></i></button>
+                        </div>
+                        <div class="col-md-12 mb-3 mt-3">
+                            <p class="text-center">
+                                <a href="/login/auth/facebook" class="w-100 btn btn-primary facebook"> <span>Login
+                                        with Facebook</span> <i class="fab fa-facebook-f"></i> </a>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-center">Don't have account? <a
+                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlos">Signup here</a></p>
+                            <p class="text-center mb-0">Forgot your password? <a href="/user/forgotPassword"
+                                    id="forgotPassword">Visit</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create new Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <%- include('../partials/Basic/errors.ejs') -%>
+                    <form id="signupForm" action="/user/signup" method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
+                            </div>
+                            <input type="text" name="fullname" id="email" class="form-control"
+                                placeholder="Enter the fullname">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="far fa-envelope-open"></i></span>
+                            </div>
+                            <input type="text" name="email" id="email" class="form-control"
+                                placeholder="Enter the email">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password" id="password" class="form-control"
+                                placeholder="Enter the password">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                                placeholder="Confirm the password">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input type="text" name="phone" id="phone" class="form-control"
+                                placeholder="Enter the phone number">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-danger" data-toggle="popover"
+                                    data-placement="top" title="Important Notification"
+                                    data-content="Be sure that the phone number is correct and valid">Notify</button>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"> <i class="far fa-compass"></i></span>
+                            </div>
+                            <select id="location" name="location" class="custom-select">
+                                <option value="Alexandria">Alexandria</option>
+                                <option value="Aswan">Aswan</option>
+                                <option value="Asyut">Asyut</option>
+                                <option value="Beheira">Beheira</option>
+                                <option value="Beni Suef">Beni Suef</option>
+                                <option value="Cairo">Cairo</option>
+                                <option value="Dakahlia">Dakahlia</option>
+                                <option value="Damietta">Damietta</option>
+                                <option value="Faiyum">Faiyum</option>
+                                <option value="Gharbia">Gharbia</option>
+                                <option value="Giza">Giza</option>
+                                <option value="Ismailia">Ismailia</option>
+                                <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                                <option value="Luxor">Luxor</option>
+                                <option value="Matruh">Matruh</option>
+                                <option value="Minya">Minya</option>
+                                <option value="Monufia">Monufia</option>
+                                <option value="New Valley">New Valley</option>
+                                <option value="North Sinai">North Sinai</option>
+                                <option value="Port Said">Port Said</option>
+                                <option value="Qalyubia">Qalyubia</option>
+                                <option value="Qena">Qena</option>
+                                <option value="Red Sea">Red Sea</option>
+                                <option value="Sharqia">Sharqia</option>
+                                <option value="Sohag">Sohag</option>
+                                <option value="South Sinai">South Sinai</option>
+                                <option value="Suez">Suez</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect02">Location</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"> <i
+                                        class="fas fa-mars-stroke"></i></span>
+                            </div>
+                            <select class="custom-select" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Unknown">Unknown</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect02">Gender</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"> <i class="fas fa-dice-d20"></i></span>
+                            </div>
+                            <select class="custom-select" name="role">
+                                <option value="User">User</option>
+                                <option value="Instructor">Instructor</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect02">Role</label>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit " class="btn btn-primary "> Signup <i
+                                    class="fas fa-user-plus"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create new Contact <i class="fas fa-reply"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contactUs" id="contactUs">
+                        <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores officiis voluptates repellendus praesentium numquam iusto eveniet quas.</p>
+                        <div class="form-here" id="form-here">
+                            <form class="contactForm" id="contactForm">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="far fa-envelope-open"></i></span>
+                                    </div>
+                                    <input required placeholder="Enter your email" type="email"
+                                        class="form-control" id="emailContact" />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-exclamation-triangle"></i></span>
+                                    </div>
+                                    <select class="custom-select text-muted" id="problemContact">
+                                        <option value="Website">Website</option>
+                                        <option value="student">User</option>
+                                        <option value="teacher">Instructor</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="inputGroupSelect02">Problem</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="far fa-comment"></i></span>
+                                    </div>
+                                    <textarea required ype="text" class="form-control" id="messageContact" placeholder="Enter your message" maxlength="255"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Submit <i
+                                            class="fas fa-reply"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End terms/privacy Area -->
+
+    <!-- Start Footer -->
+    <%- include('../partials/English/Footer') -%>
+    <!-- End Footer -->
+
+    <!-- Start Go Top Section -->
+    <div class="go-top">
+        <i class="bx bx-chevron-up"></i>
+        <i class="bx bx-chevron-up"></i>
+    </div>
+    <!-- End Go Top Section -->
+
+    <!-- Notification -->
+    <div class="notification bg-white text-white shadow-lg p-3" id="notification"></div>
+    <!-- Notification -->
+
+    <!-- Jquery Slim JS -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <!-- jquery-3.5.1 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- Popper JS -->
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Wow JS -->
+    <script src="/assets/js/wow.min.js"></script>
+    <!-- Axios JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        $(() => {
+            if (("<%= success %>") != '') {
+                $("#notification").html(`
+             <div class="cancelNotification text-white">x</div>
+        <audio autoplay class="d-none">
+            <source src="/assets/sounds/notification.mp3" type="audio/mpeg">
+         </audio>
+        <h4>Notification</h4>
+        <p class="mb-0" style="font-size: 14px"><%= success %></p>
+             `).show(100).delay(5000).hide(100);
+            }
+            if (("<%= error %>").split(" ").slice(0, 1).join("") === "Login") {
+                $("#login").modal("show");
+                $("#notification").html(`
+             <div class="cancelNotification text-white"">x</div>
+        <audio autoplay class="d-none">
+            <source src="
+            /assets/sounds/notification.mp3" type="audio/mpeg">
+         </audio>
+        <h4>Notification</h4>
+        <p class="mb-0" style="font-size: 14px">${ ("<%= error %>").split(' ').slice(1).join(' ')}</p>
+             `).show(100).delay(5000).hide(100);
+            }
+            if (("<%= error %>").split(" ").slice(0, 1).join("") === "Signup") {
+                $("#login").modal("show");
+                $(".notification").html(`
+             <div class="cancelNotification text-white">x</div>
+        <audio autoplay class="d-none">
+            <source src="
+            /assets/sounds/notification.mp3" type="audio/mpeg">
+         </audio>
+        <h4>Notification</h4>
+        <p class="mb-0" style="font-size: 14px">${ ("<%= error %>").split(' ').slice(1).join(' ')}</p>
+             `).show(100).delay(5000).hide(100);
+            }
+        })
+    </script>
+
+</body>
+
+</html>

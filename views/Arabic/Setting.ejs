@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- Main CSS -->
+    <link href="/assets/css/main.css" rel="stylesheet" />
+
+     <!-- Shortcut Icon -->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/logo.png" />
+
+     <!-- Typeahead CSS-->
+    <link rel="stylesheet" href="/assets/css/typeahead.css">
+
+     <!-- Typeahead CSS-->
+    <link href="/assets/css/lightbox.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/amsify.suggestags.css" />
+    <title>
+        <%= user.fullname %>
+    </title>
+</head>
+
+
+<body style="position: relative">
+
+    <!-- Navigation Bar Content -->
+    <%- include('../partials/English/Header') -%>
+     <!-- Navigation Bar Content -->
+
+    <div class="container py-3" style="margin-top: 110px">
+        <%- include('../partials/Basic/flashMessages.ejs') -%>
+        <%- include('../partials/Basic/errors.ejs') -%>
+        <% if(user.accountVerified === false) { %>
+        <div class="message alert alert-danger">
+
+            <p class="d-inline">Your Email: <strong><%= user.email %></strong> <span>is not verified,</span> <span>We
+                    have sent a message
+                    to your email</span></p>
+            <form class="resend d-inline" id="resend" method="post" action="/verify">
+                <button type="submit" class="btn btn-danger btn-sm">Resend</button>
+            </form>
+
+        </div>
+        <% } %>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="topContentForSettings" id="topContentForSettings">
+                    <h3>Settings Room</h3>
+                    <p class="aHeading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime officiis itaque animi soluta aperiam rem rerum inventore? At illo sint similique eum rerum necessitatibus, ipsa sapiente ducimus illum, aperiam corrupti?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <div class="nav flex-column nav-pills shadow-lg" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: #FFF; border-radius: 15px; padding: 20px">
+                    <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                    <a class="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#v-pills-edit" role="tab" aria-controls="v-pills-edit" aria-selected="false">Information</a>
+                    <% if(user.fromStatus !== "facebook") { %>
+                        <a class="nav-link" id="v-pills-changePassword-tab" data-toggle="pill" href="#v-pills-changePassword" role="tab" aria-controls="v-pills-changePassword" aria-selected="false">Password</a>
+                    <% } %>
+                    <% if(user.mainRole === "Instructor") { %>
+                        <a class="nav-link" id="v-pills-role-tab" data-toggle="pill" href="#v-pills-role" role="tab" aria-controls="v-pills-role" aria-selected="false"><span>
+                            Role</span> <i class="fas fa-dice-d20"></i></a>
+                    <% } %>
+                    <a class="nav-link" id="v-pills-removeAccount-tab" data-toggle="pill" href="#v-pills-removeAccount" role="tab" aria-controls="v-pills-removeAccount" aria-selected="false"><span>
+                        Account</span> <i class="far fa-trash-alt"></i></a>
+                  </div>
+            </div>
+            <div class="col-md-9 col-12 mt-3 mt-md-0">
+                <div class="tab-content shadow">
+                    <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>User Profile for <span><%= user.fullname %></span> <i class="far fa-user"></i>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <h5>About</h5>
+                                    <div>
+                                        <%- user.bio %>
+                                    </div>
+                                    <h5>Phone number</h5>
+                                    <p>
+                                        <%= user.phone %>
+                                    </p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <% if(user.role === "Instructor") { %>
+                                    <h6>Instructor Dashboard</h6>
+                                    <p>Your can visit your special dashboard to make course and publish it</p>
+                                    <a class="btn btn-info btn-sm" href="/user/profile/dashboard">Dashboard</a>
+                                    <% } else { %>
+                                    <div class="here">
+                                        <h6>Recent Tags</h6>
+                                        <% user.tags.forEach((tag) => { %>
+                                        <a href="javascript:void()" style="cursor:default;"
+                                            class="tag tag-default tag-pill"><%= tag %></a>
+                                        <% })  %>
+                                    </div>
+                                    <div class="myDiv mt-2"><span class="tag tag-primary"><i class="far fa-compass"></i>
+                                            <%= user.location %></span>
+                                        <span class="tag tag-success"><i class="fas fa-mars-stroke"></i>
+                                            <%= user.gender %></span>
+                                        <span class="tag tag-danger"><i class="fab fa-facebook-f"></i>
+                                            <%= user.username %></span></div>
+                                    <% } %>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>
+                                        <span>Edit Profile Info</span>
+                                        <span><i class="far fa-edit"></i></span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="container-fluid" role="form" method="POST" id="form" action="/settings/editProfile">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        <input placeholder="Enter your fullname correctly" class="form-control"
+                                            name="fullname" type="text" value="<%= user.fullname %>">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                                        </div>
+                                        <input placeholder="Enter your email correctly" class="form-control"
+                                            name="email" type="email" value="<%= user.email %>">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-pen-nib"></i></span>
+                                        </div>
+                                        <textarea style="height: 100px; resize: none" placeholder="Enter your bio"
+                                            id="txtArea" name="bio" class="form-control"><%- user.bio %></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-compass"></i></span>
+                                        </div>
+
+
+                                        <select name="location" class="custom-select">
+                                            <option value="Alexandria"
+                                                <%= user.location === 'Alexandria'? 'selected': '' %>>Alexandria
+                                            </option>
+                                            <option value="Aswan" <%= user.location === 'Aswan'? 'selected': '' %>>Aswan
+                                            </option>
+                                            <option value="Asyut" <%= user.location === 'Asyut'? 'selected': '' %>>Asyut
+                                            </option>
+                                            <option value="Beheira" <%= user.location === 'Beheira'? 'selected': '' %>>
+                                                Beheira</option>
+                                            <option value="Beni Suef"
+                                                <%= user.location === 'Beni Suef'? 'selected': '' %>>Beni Suef</option>
+                                            <option value="Cairo" <%= user.location === 'Cairo'? 'selected': '' %>>Cairo
+                                            </option>
+                                            <option value="Dakahlia"
+                                                <%= user.location === 'Dakahlia'? 'selected': '' %>>Dakahlia</option>
+                                            <option value="Damietta"
+                                                <%= user.location === 'Damietta'? 'selected': '' %>>Damietta</option>
+                                            <option value="Faiyum" <%= user.location === 'Faiyum'? 'selected': '' %>>
+                                                Faiyum</option>
+                                            <option value="Gharbia" <%= user.location === 'Gharbia'? 'selected': '' %>>
+                                                Gharbia</option>
+                                            <option value="Giza" <%= user.location === 'Giza'? 'selected': '' %>>Giza
+                                            </option>
+                                            <option value="Ismailia"
+                                                <%= user.location === 'Ismailia'? 'selected': '' %>>Ismailia</option>
+                                            <option value="Kafr El Sheikh"
+                                                <%= user.location === 'Kafr El Sheikh'? 'selected': '' %>>Kafr El Sheikh
+                                            </option>
+                                            <option value="Luxor" <%= user.location === 'Luxor'? 'selected': '' %>>Luxor
+                                            </option>
+                                            <option value="Matruh" <%= user.location === 'Matruh'? 'selected': '' %>>
+                                                Matruh</option>
+                                            <option value="Minya" <%= user.location === 'Minya'? 'selected': '' %>>Minya
+                                            </option>
+                                            <option value="Monufia" <%= user.location === 'Monufia'? 'selected': '' %>>
+                                                Monufia</option>
+                                            <option value="New Valley"
+                                                <%= user.location === 'New Valley'? 'selected': '' %>>New Valley
+                                            </option>
+                                            <option value="North Sinai"
+                                                <%= user.location === 'North Sinai'? 'selected': '' %>>North Sinai
+                                            </option>
+                                            <option value="Port Said"
+                                                <%= user.location === 'Port Said'? 'selected': '' %>>Port Said</option>
+                                            <option value="Qalyubia"
+                                                <%= user.location === 'Qalyubia'? 'selected': '' %>>Qalyubia</option>
+                                            <option value="Qena" <%= user.location === 'Qena'? 'selected': '' %>>Qena
+                                            </option>
+                                            <option value="Red Sea" <%= user.location === 'Red Sea'? 'selected': '' %>>
+                                                Red Sea</option>
+                                            <option value="Sharqia" <%= user.location === 'Sharqia'? 'selected': '' %>>
+                                                Sharqia</option>
+                                            <option value="Sohag" <%= user.location === 'Sohag'? 'selected': '' %>>Sohag
+                                            </option>
+                                            <option value="South Sinai"
+                                                <%= user.location === 'South Sinai'? 'selected': '' %>>South Sinai
+                                            </option>
+                                            <option value="Suez" <%= user.location === 'Suez'? 'selected': '' %>>Suez
+                                            </option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-mars-stroke"></i></span>
+                                        </div>
+
+
+                                        <select class="custom-select" name="gender">
+                                            <option value="Male" <%= user.gender === 'Male'? 'selected': '' %>>Male
+                                            </option>
+                                            <option value="Female" <%= user.gender === 'Female'? 'selected': '' %>>
+                                                Female
+                                            </option>
+                                            <option value="Unknown" <%= user.gender === 'Unknown'? 'selected': '' %>>
+                                                Unknown
+                                            </option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input placeholder="Enter your phonenumber correctly" class="form-control"
+                                            name="phone" type="text" value="<%= user.phone %>">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fab fa-facebook-f"></i></span>
+                                        </div>
+                                        <input placeholder="Enter your facebook username" class="form-control"
+                                            type="text" name="username" value="<%= user.username%>">
+                                    </div>
+                                </div>
+                            </div>
+                            <% if(user.role === "User") {  %>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                                        </div>
+                                        <input class="form-control" type="text" name="tags" value="<%= user.tags %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span>Save Changes</span>
+                                        <span><i class="far fa-edit"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <% if(user.fromStatus !== "facebook") { %>
+                    <div class="tab-pane fade" id="v-pills-changePassword" role="tabpanel" aria-labelledby="v-pills-changePassword-tab">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>Change your old password <i class="fas fa-key"></i></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="container-fluid" role="form" method="POST" id="form" action="/settings/changePassword">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input required placeholder="Enter your old password" class="form-control"
+                                            name="oldPassword" type="password">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input required placeholder="Enter your new password" class="form-control"
+                                            name="newPassword" type="password">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input required placeholder="Confirm your new password" class="form-control"
+                                            name="confirmPassword" type="password">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Change Password <i
+                                            class="fas fa-key"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <% } %>
+                    <% if(user.mainRole === "Instructor") { %>
+                    <div class="tab-pane fade" id="changeRole">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>Change your Role <i class="fas fa-dice-d20"></i></h4>
+                                    <p>After changing your Role to User, You will be able visit the pages that are
+                                        related to User and book the course you want. Don't be affraid, You will be able
+                                        to change your Role to Instructor again in the time you like.</p>
+                                    <div class="d-flex">
+                                        <form class="changeRoleToUser" id="changeRoleToUser" method="POST"
+                                            action="/settings/changeRoleToUser">
+                                            <button type="submit" class="btn btn-lg btn-success">Change Role to User <i
+                                                    class="far fa-user"></i> </button>
+                                        </form>
+                                        <form class="changeRoleToInstructor ml-2" id="changeRoleToInstructor"
+                                            method="POST" action="/settings/changeRoleToInstructor">
+                                            <button type="submit" class="btn btn-lg btn-primary">Change Role to
+                                                Instructor <i class="fas fa-chalkboard-teacher"></i></button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <div class="tab-pane fade" id="v-pills-removeAccount" role="tabpanel" aria-labelledby="v-pills-removeAccount-tab">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>Remove your account <i class="far fa-trash-alt"></i></h4>
+                                    <p class="aHeading">After clicking on the Remove Account button, we won't ask you "Are your sure to
+                                        delete your account?" and your account will be deleted immediately and you
+                                        cannot retrieve it again.</p>
+                                    <form class="form" role="form" method="POST" id="form"
+                                        action="/settings/removeAccount">
+                                        <button type="submit" class="btn btn-danger"><span>Remove Account</span> <i
+                                                class="far fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    
+            
+    </div>
+
+
+    <% if(user.role === "User") { %>
+    <div class="flashContent" id="flashContent" style="position: fixed; left: 15px; bottom: 15px; z-index: 999"></div>
+    <% } %>
+
+
+    <% if(user.role === "User") { %>
+
+    <button id="messageToUserButton" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#messageToUser" style="display: none;">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="messageToUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Important Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>We have set default tags for you. You must know that we select twenty random courses based on
+                        your tags, so You can change the default tags from the Edit Info</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <%# FontAwesome Included as JS %>
+    <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
+
+
+    <%# Bootstrap4 Package Included as JS %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "
+        crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 "
+        crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js "
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM "
+        crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <%# Typeahead to use Search Engine %>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="../assets/js/searchEngine.js"></script>
+
+    <%# For Uploading File and making the videoJS take the full width of its parent %>
+    <script>
+        $(() => {
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            $(".video-js").css("width", "100%")
+        })
+    </script>
+
+    <%# Lightbox for the profile image %>
+    <script src="../assets/js/lightbox.js"></script>
+
+    <%# VideoJS as Javascript %>
+    <script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+
+    <%# SlickJS to make carousel %>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(() => {
+            $('.course').slick({
+                infinite: false,
+                dots: false,
+                speed: 1000,
+                slidesToShow: 5,
+                slidesToScroll: 2
+            });
+        })
+    </script>
+
+    <% if(user.role === "User") { %>
+    <%# These Scripts are shown only to the User %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        $(() => {
+            var socket = io()
+            socket.emit("join", "<%= user.id %>");
+            socket.on("courseData", data => {
+                $("#flashContent").html(`
+                    <div class="flashMessage" class="alert alert-danger alert-dismissible fade show" role="alert" role="alert" style="width: 275px; font-size: 14px;">
+                        <audio autoplay class="d-none">
+                            <source src="../assets/sounds/notification.mp3" type="audio/mpeg">
+                         </audio>
+                        <strong>Important Notification!</strong><br> ${data.coursename} Course is created now. You can visit the course link on <a target="_blank" href="/course/${data.courseID}">Visit</a> </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                 </div>
+                `);
+            })
+
+        })
+    </script>
+    <script>
+        $(() => {
+            const visited = localStorage.getItem('visited');
+            if (!visited) {
+                $("#messageToUserButton").click();
+                localStorage.setItem('visited', true);
+            }
+        })
+    </script>
+    <% } %>
+</body>
+
+</html>

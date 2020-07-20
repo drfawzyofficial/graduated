@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logo.png" />
+    <link rel="stylesheet" href="../assets/css/typeahead.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link href="../assets/css/lightbox.css" rel="stylesheet" />
+    <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css  " />
+    <link rel="stylesheet" type="text/css" href="../assets/css/amsify.suggestags.css" />
+    <title>
+        <%= user.fullname %>
+    </title>
+</head>
+
+<style>
+    .navbar-light .navbar-nav .nav-link {
+    color: rgba(0,0,0,.5);
+    font-size: 30px;
+    transition: 0.1s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  background-color: #EAEEF3;
+  border-radius: 15px;
+  box-shadow: 0 0 3px rgb(236, 236, 236);
+}
+
+@media (min-width: 992px) {
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+}
+.recentUpdate-content {
+    border-radius: 15px;
+    background-color: yellow;
+}
+</style>
+
+
+<body style="position: relative">
+
+    <%- include('../partials/English/Header') -%>
+
+    <div class="container" style="margin-top: 110px">
+        <%- include('../partials/Basic/flashMessages.ejs') -%>
+        <%- include('../partials/Basic/errors.ejs') -%>
+        <% if(user.accountVerified === false) { %>
+        <div class="message alert alert-danger">
+
+            <p class="d-inline">Your Email: <strong><%= user.email %></strong> <span>is not verified,</span> <span>We
+                    have sent a message
+                    to your email</span></p>
+            <form class="resend d-inline" id="resend" method="post" action="/user/profile">
+                <button type="submit" class="btn btn-danger btn-sm">Resend</button>
+            </form>
+
+        </div>
+        <% } %>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 text-center" data-position="right" data-step="1"
+                data-intro="This is your profile pic, fullname, role, bio and facebook social link. You can uplaod your pic from this place.">
+                <div class="content bg-white shadow-lg p-3 br-15" style="color: #2f2f2f">
+                    <a href="/assets/uploads/<%= user.avatar %>" data-lightbox="personalImage"
+                        data-title="This photo is related to <%= user.fullname %>">
+                        <img class="shadow" title="<%= user.fullname %>" src="../assets/uploads/<%= user.avatar %>"
+                            style="height: 125px; width:125px; border-radius: 50%; border: 1px solid black"
+                            alt="avatar" />
+                    </a>
+                    <div class="fullname">
+                        <p class="mt-2 mb-0">
+                            <%= user.fullname %> <span class="badge badge-info"><%= user.role %></span>
+                        </p>
+                        <div class="about mt-2 mb-0" style="font-size: 15px; line-height: 1.7">
+                            <%- user.bio %>
+                        </div>
+                        <p class="about mt-2 mb-0" style="font-size: 15px; line-height: 1.7">
+                            I'm found on <a href="https://www.facebook.com/<%= user.username %>" target="_blank"
+                                class="btn btn-outline-primary btn-sm">Facebook <i class="fab fa-facebook-f"></i></a>
+                        </p>
+                    </div>
+                    <form class="mt-3" action="/profile/upload" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="avatar" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label text-left" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-6 mt-md-0 mt-3">
+                <div class="tab-content shadow">
+                    <div class="tab-pane fade show active">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>User Profile for <span><%= user.fullname %></span> <i class="far fa-user"></i>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <h6>About</h6>
+                                    <div>
+                                        <%- user.bio %>
+                                    </div>
+                                    <h6>Phone number</h6>
+                                    <p class=bad>
+                                        <%= user.phone %>
+                                    </p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <% if(user.role === "Instructor") { %>
+                                    <h6>Instructor Dashboard</h6>
+                                    <p>Your can visit your special dashboard to make course and publish it</p>
+                                    <a class="btn btn-info btn-sm" href="/dashboard">Dashboard</a>
+                                    <% } else { %>
+                                    <div class="here">
+                                        <h6>Recent Tags</h6>
+                                        <% user.tags.forEach((tag) => { %>
+                                        <a href="javascript:void()" style="cursor:default;"
+                                            class="tag tag-default tag-pill"><%= tag %></a>
+                                        <% })  %>
+                                    </div>
+                                    <div class="myDiv mt-2"><span class="tag tag-primary"><i class="far fa-compass"></i>
+                                            <%= user.location %></span>
+                                        <span class="tag tag-success"><i class="fas fa-mars-stroke"></i>
+                                            <%= user.gender %></span>
+                                        <span class="tag tag-danger"><i class="fab fa-facebook-f"></i>
+                                            <%= user.username %></span></div>
+                                    <% } %>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!--/row-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>Recent Updates</h3>
+            </div>
+            <div class="col-12">
+                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
+                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
+                    <div class="update-content ml-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
+                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
+                    <div class="update-content ml-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
+                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
+                    <div class="update-content ml-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <% if(user.role === "User") { %>
+    <div class="flashContent" id="flashContent" style="position: fixed; left: 15px; bottom: 15px; z-index: 999"></div>
+    <% } %>
+
+
+    <% if(user.role === "User") { %>
+
+    <button id="messageToUserButton" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#messageToUser" style="display: none;">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="messageToUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Important Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>We have set default tags for you. You must know that we select twenty random courses based on
+                        your tags, so You can change the default tags from the Edit Info</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <%# FontAwesome Included as JS %>
+    <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
+
+
+    <%# Bootstrap4 Package Included as JS %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "
+        crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 "
+        crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js "
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM "
+        crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <%# Typeahead to use Search Engine %>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="../assets/js/searchEngine.js"></script>
+
+    <%# For Uploading File and making the videoJS take the full width of its parent %>
+    <script>
+        $(() => {
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            $(".video-js").css("width", "100%")
+        })
+    </script>
+
+    <%# Lightbox for the profile image %>
+    <script src="../assets/js/lightbox.js"></script>
+
+    <%# VideoJS as Javascript %>
+    <script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+
+    <%# SlickJS to make carousel %>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(() => {
+            $('.course').slick({
+                infinite: false,
+                dots: false,
+                speed: 1000,
+                slidesToShow: 5,
+                slidesToScroll: 2
+            });
+        })
+    </script>
+
+    <%# IntroJS to learn you how to use the website %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+
+    <% if(user.role === "User") { %>
+    <%# These Scripts are shown only to the User %>
+    <script src="https://www.atfawry.com/ECommercePlugin/scripts/FawryPay.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        $(() => {
+            var socket = io()
+            socket.emit("join", "<%= user.id %>");
+            socket.on("courseData", data => {
+                $("#flashContent").html(`
+                    <div class="flashMessage" class="alert alert-danger alert-dismissible fade show" role="alert" role="alert" style="width: 275px; font-size: 14px;">
+                        <audio autoplay class="d-none">
+                            <source src="../assets/sounds/notification.mp3" type="audio/mpeg">
+                         </audio>
+                        <strong>Important Notification!</strong><br> ${data.coursename} Course is created now. You can visit the course link on <a target="_blank" href="/course/${data.courseID}">Visit</a> </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                 </div>
+                `);
+            })
+
+        })
+    </script>
+    <script src="../assets/js/jquery.amsify.suggestags.js"></script>
+    <script>
+        $(() => {
+            $('input[name="tags"]').amsifySuggestags({
+                suggestions: ["Photoshop", "Adobe Illustrator", "Drawing", "Digital Painting", "InDesign", "Marketing Strategy", "Facebook Marketing", "Google Analytics", "Email Marketing", "Business Strategy", "Cisco CCNA", "CompTIA A+", "AWS Certified Cloud Practitioner", "CompTIA Security+", "CompTIA Network+", "SQL", "MySQL", "Data Modeling", "Data Analysis", "Big Data", "PLC", "Electronics", "Arduino", "Cell Phone Repair", "Microcontroller", "HTML and CSS", "JavaScript and jQuery", "Bootstrap4", "Pug and SASS", "VueJS", "PHP and Laravel", "NodeJS and ExpressJS", "Python and DJango", "ASP.Net backend", "C# backend", "JavaScript", "Java", "Python", "React", "C++", "Finance", "Entrepreneurship", "Communications", "Management", "Sales", "Linux", "Windows Server", "Linux Administration", "Shell Scripting", "Active Directory"],
+                whiteList: true,
+                tagLimit: 5
+            });
+        })
+    </script>
+    <script>
+        $(() => {
+            const visited = localStorage.getItem('visited');
+            if (!visited) {
+                $("#messageToUserButton").click();
+                localStorage.setItem('visited', true);
+            }
+        })
+    </script>
+    <% } %>
+</body>
+
+</html>

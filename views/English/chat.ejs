@@ -1,0 +1,293 @@
+<!--
+    style {
+        /* Chat Content */
+
+.chat-history {
+  padding: 20px;
+  border-color: #e1e8ed;
+}
+
+.chat-history .message_data li {
+  list-style: none;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.chat-history .message_data li.left .user_pix {
+  left: 0;
+}
+
+.chat-history .message_data li .user_pix {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 35px;
+  opacity: 0.6
+}
+
+.chat-history .message_data li .message {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  font-size: 15px;
+  padding: 18px 20px;
+  line-height: 26px;
+  position: relative;
+}
+
+.chat-history .message_data li .message:after {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 5px;
+}
+
+
+.chat-history .message_data li .data_time {
+  color: #77797c;
+  position: absolute;
+  bottom: -25px;
+}
+
+.chat-history .message_data li.left .message {
+  background: #3C89DA;
+  color: #f7f7f7;
+  float: left;
+  border-radius: 10px 10px 10px 0;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.chat-history .message_data li.left .message:after {
+  bottom: 0;
+  left: -10px;
+  border-right-color: #3C89DA;
+  border-bottom-color: #3C89DA;
+}
+
+.chat-history .message_data li.left .data_time {
+  left: 50px;
+}
+
+.chat-history .message_data li.right .user_pix {
+  right: 0;
+}
+
+.chat-history .message_data li.right .message {
+  background: #2f3338;
+  color: #bbbec2;
+  float: right;
+  border-radius: 10px 10px 0 10px;
+  margin-right: 50px;
+}
+
+.chat-history .message_data li.right .message:after {
+  bottom: 0;
+  right: -10px;
+  border-left-color: #2f3338;
+  border-bottom-color: #2f3338;
+  margin-left: 0;
+}
+
+.chat-history .message_data li.right .data_time {
+  right: 50px;
+}
+
+/* Chat Content */
+
+    }
+-->
+
+<!-- Chat Content -->
+<div class="chatContent d-flex h-100 w-100" id="chatContent">
+    <div class="leftContent h-100 d-flex align-items-center p-3" style="width: 250px; background-color: #f1f4f6">
+        <div class="profile text-center w-100">
+            <div class="image">
+                <img class="Client" title="Client" src="/assets/Images/Avatar/User.png" style="height: 80px; width: 80px"/>
+            </div>
+            <div class="name mt-1">
+                <h3><%= user.fullname %></h3>
+                <p style="font-size: 13px">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error at saepe in tempore velit architecto</p>
+            </div>
+        </div>
+    </div>
+    <div class="rightContent h-100 bg-white" style="width: calc(100% - 250px);">
+        <div class="chat-history" style="height: calc(100% - 110px); overflow-y: auto">
+            <ul class="message_data"></ul>
+        </div>
+        <div class="typing pl-3" style="height: 30px;"></div>
+        <div class="chat-message clearfix">
+            <div class="input-group mb-0">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-comment-dots"></i></span>
+                </div>
+                <textarea id="inputMessage" type="text" class="form-control inputMessage" placeholder="Enter Message here..." style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chat Content -->
+
+<!-- Include Socket here -->
+<script src="/assets/js/Socket.js"></script>
+<!-- Socket Logic for Chat -->
+<script>
+    $(() => {
+        var socket = io('tatx.com');
+        var typing = false;
+        var timeout = undefined;
+
+        socket.emit('joinAdmin', { roomID: "<%= user.roomID %>" });
+
+
+        fetch('/fetchMessages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ roomID: "<%= user.roomID %>" }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                $.each(data, (index, data) => {
+                    $(".message_data").append(`
+                        ${ (data.isAdmin) ? `
+                            <li class="left clearfix">
+                                <img class="user_pix" src="/assets/Images/Avatar/Admin.png"  alt="avatar">
+                                <div class="message">
+                                    <span>${ data.message }</span>
+                                </div>
+                                <span class="data_time">${ moment(data.createdAt).fromNow()} </span>
+                            </li>
+                        ` : `
+                                <li class="right clearfix">
+                                <img class="user_pix" src="/assets/Images/Avatar/User.png"  alt="avatar">
+                                <div class="message">
+                                    <span>${ data.message }</span>
+                                </div>
+                                <span class="data_time">${ moment(data.createdAt).fromNow()} </span>
+                            </li>
+                        ` }
+                    `)
+                })
+                $(".chat-history").animate({ scrollTop: 20000000000 }, "slow");
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+        socket.on('disconnect', () => {
+            $('.inputMessage').prop('disabled', true);
+            $('.inputMessage').prop('placeholder', "Connection Lost! Reconnecting...");
+        });
+
+        socket.on('reconnect', function () {
+            setTimeout(() => {
+                $('.inputMessage').prop('disabled', false);
+                $('.inputMessage').prop('placeholder', "Type your message..");
+            }, 4000);
+        });
+
+        socket.on('reconnect_failed', function () {
+            $('.inputMessage').prop('placeholder', "No active connection. Please refresh page...");
+        });
+
+        
+        $('.inputMessage').keypress(function (event) {
+            if (event.which !== 13) {
+                if (typing === false && $('.inputMessage').is(":focus")) {
+                    typing = true;
+                    socket.emit("typing", {
+                        isTyping: true,
+                        roomID: "<%= user.roomID %>",
+                        person: "Admin"
+                    });
+                } else {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(timeoutFunction, 2000);
+                }
+            } else {
+                sendMessage();
+                clearTimeout(timeout);
+                timeoutFunction();
+            }
+        })
+
+
+        function sendMessage() {
+            if ($('.inputMessage').val().trim().length > 0) {
+                socket.emit('chatMessage', {
+                    isAdmin: true,
+                    roomID: "<%= user.roomID %>",
+                    message: $('.inputMessage').val(),
+                    createdAt: new Date()
+                });
+                $('.inputMessage').val('')
+            }
+        }
+
+        function timeoutFunction() {
+            typing = false;
+            socket.emit("typing", {
+                isTyping: false,
+                roomID: "<%= user.roomID %>",
+                person: "Admin"
+            });
+        }
+
+        socket.on('typing', (data) => {
+            if (data.isTyping && data.person === 'Client')
+                $(".typing").append("Client is typing...");
+            else
+                $(".typing").text('');
+        });
+
+        socket.on('leaving', (data) => {
+            if(data.leavingFrom === "User")  {
+                $(".messages").append(`
+                <div class="adminLeft mt-2 animated bounceIn text-center">
+                    <p style="font-size: 12px">${ data.msg }</p>
+                </div>
+            `);
+		}
+	    });
+
+        socket.on('chatMessage', function (data) {
+            if (data.isAdmin) {
+                sender = "left"
+                img = "Admin.png"
+            }
+                
+            else {
+                sender = "right"
+                img = "User.png"
+            }
+                
+
+            $(".message_data").append(`
+                    <li class="${ sender } clearfix">
+                    <img class="user_pix" src="/assets/Images/Avatar/${ img }"  alt="avatar">
+                    <div class="message">
+                        <span>${ data.message}</span>
+                    </div>
+                    <span class="data_time">${ moment(data.createdAt).fromNow()} </span>
+                    </li>
+                `)
+            $(".chat-history").animate({ scrollTop: 20000000 }, "slow");
+        });
+    })
+</script>
