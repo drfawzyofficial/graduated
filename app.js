@@ -84,31 +84,21 @@ const Index = require('./routes/Index')
 app.use('/', Index)
 /*@ here we include homeRouter @*/
 
-/*@ here we include aboutRouter @*/
-const About = require('./routes/About')
-app.use('/about', About)
-/*@ here we include aboutRouter @*/
-
 /*@ here we include contactRouter @*/
 const Contact = require('./routes/Contact')
 app.use('/contact', Contact)
 /*@ here we include contactRouter @*/
 
-/*@ here we include terms @*/
-const Terms = require('./routes/Terms')
-app.use('/terms', Terms)
-/*@ here we include terms @*/
+/*@ here we include contactRouter @*/
+const Seso = require('./routes/Seso')
+app.use('/seso', Seso)
+/*@ here we include contactRouter @*/
 
-/*@ here we include privacy @*/
-const Privacy = require('./routes/Privacy')
-app.use('/privacy', Privacy)
-/*@ here we include privacy @*/
 
 /*@ here we include userRouter @*/
 const User = require('./routes/User')
 app.use('/user', User)
 /*@ here we include userRouter @*/
-
 
 /*@ here we include profileRouter @*/
 const Profile = require('./routes/Profile')
@@ -116,14 +106,19 @@ app.use(`/Profile`, Profile)
 /*@ here we include profileRouter @*/
 
 /*@ here we include courseRouter @*/
+const Explore = require('./routes/Explore')
+app.use('/explore', Explore)
+/*@ here we include courseRouter @*/
+
+/*@ here we include courseRouter @*/
+const Courses = require('./routes/Courses')
+app.use('/courses', Courses)
+/*@ here we include courseRouter @*/
+
+/*@ here we include courseRouter @*/
 const Course = require('./routes/Course')
 app.use('/course', Course)
 /*@ here we include courseRouter @*/
-
-/*@ here we include faqRouter @*/
-const Faq = require('./routes/Faq')
-app.use('/faq', Faq)
-/*@ here we include faqRouter @*/
 
 /*@ here we include roleRouter @*/
 const Setting = require('./routes/Setting')
@@ -131,8 +126,8 @@ app.use('/settings', Setting)
 /*@ here we include courseRouter @*/
 
 /*@ here we include coursesRouter @*/
-const Courses = require('./routes/Courses')
-app.use('/courses', Courses)
+// const Courses = require('./routes/Courses')
+// app.use('/courses', Courses)
 /*@ here we include coursesRouter @*/
 
 /*@ here we include roleRouter @*/
@@ -151,45 +146,45 @@ app.use(`/fetchData`, chatRouterA)
 /*@ here we include chatRouter @*/
 
 /*@ Handle Error-404 @*/
-// app.get('*', (req, res, next) => {
-//     res.render('English/Error')
-//     next()
-// })
+app.get('*', (req, res, next) => {
+    res.redirect('/');
+    next()
+})
 /*@ Handle Error-404 @*/
 
 //setup event listener
 // const User = require('./models/user')
 // const Course = require('./models/Course')
-const Chat = require('./models/chat')
-const UsersService = require('./UsersService')
-const userService = new UsersService()
-io.on('connection', socket => {
-    socket.on('join', data => {
-      userService.addUser({ socketID: socket.id, userID: data })
-      console.log('After Connected')
-      console.log(userService.getAllUsers())
-    })
-    socket.on('disconnect', () => {
-      userService.removeUser(socket.id)
-      console.log('After Disconnected')
-      console.log(userService.getAllUsers())
-    })
-    socket.on('sendMessage', async data => {
-      if(data.message.trim().length === 0) {
-        socket.emit('emptyMessage', 'Message cannot be empty')
-      } else {
-      let user = await User.findById({ _id: data.senderID })
-      io.sockets.emit('received', { user: user, message: data.message })
-      new Chat({ 
-        message: data.message, 
-        courseID: data.courseID, 
-        senderID: data.senderID 
-      }).save((err, result) => {
-        if(err) console.log(err.message)
-        else console.log(`${result} has been saved to mongoDB successfully`)
-      })
-    }
-    })
+// const Chat = require('./models/chat')
+// const UsersService = require('./UsersService')
+// const userService = new UsersService()
+// io.on('connection', socket => {
+//     socket.on('join', data => {
+//       userService.addUser({ socketID: socket.id, userID: data })
+//       console.log('After Connected')
+//       console.log(userService.getAllUsers())
+//     })
+//     socket.on('disconnect', () => {
+//       userService.removeUser(socket.id)
+//       console.log('After Disconnected')
+//       console.log(userService.getAllUsers())
+//     })
+//     socket.on('sendMessage', async data => {
+//       if(data.message.trim().length === 0) {
+//         socket.emit('emptyMessage', 'Message cannot be empty')
+//       } else {
+//       let user = await User.findById({ _id: data.senderID })
+//       io.sockets.emit('received', { user: user, message: data.message })
+//       new Chat({ 
+//         message: data.message, 
+//         courseID: data.courseID, 
+//         senderID: data.senderID 
+//       }).save((err, result) => {
+//         if(err) console.log(err.message)
+//         else console.log(`${result} has been saved to mongoDB successfully`)
+//       })
+//     }
+//     })
 
 
    
@@ -211,8 +206,9 @@ io.on('connection', socket => {
   //     socket.broadcast.emit('received', { message: msg })
   //   })
   // })
-})
-http.listen(3000, () => {
+// })
+const port = process.env.PORT || 3000;
+http.listen(port, () => {
     console.log('Running on Port: 3000')
 })
 

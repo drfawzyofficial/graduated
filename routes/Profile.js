@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const User = require('../models/user');
+const User = require('../models/User');
 const Course = require('../models/Course');
-const Review = require('../models/Review');
+// const Review = require('../models/Review');
 const { check, validationResult } = require('express-validator');
 const { ensureAuthenticated } = require('../config/auth');
 const multer = require('multer');
@@ -18,18 +18,18 @@ router.get('/search', function (req, res) {
     })
 });
 router.get('/', ensureAuthenticated, async (req, res, next) => {
-    const users = await User.aggregate([ { $match: { _id: {$ne: mongoose.Types.ObjectId(req.user.id)}, role: "User" } }, { $sample: { size:  20 } } ])
+    const users = await User.aggregate([ { $match: { _id: {$ne: mongoose.Types.ObjectId(req.user.id)}, role: "User" } }, { $sample: { size:  20 } } ]);
     const instructors = await User.aggregate([ { $match: { _id: {$ne: mongoose.Types.ObjectId(req.user.id) }, role: "Instructor" } }, { $sample: { size:  20 } } ])
-    const coursesForShow = await Course.aggregate([ { $match: { coursename: { $in: req.user.tags } } }, { $sample: { size:  20 } } ])
-    const courses = await Course.find({ }).populate("instructorID");
-    let arrOfCourses = [];
-    for (let i = 0; i < courses.length; i = i + 2) {
-        arrOfCourses.push(courses.slice(i, i + 2));
-    }
+    const courses = await Course.aggregate([  { $sample: { size:  20 } } ]);
+    // const courses = await Course.find({ }).populate("instructorID");
+    // let arrOfCourses = [];
+    // for (let i = 0; i < courses.length; i = i + 2) {
+    //     arrOfCourses.push(courses.slice(i, i + 2));
+    // }
     if(req.cookies.lang === "ar") {
-        res.render('Arabic/Profile', { page: 'Logout', errors: req.flash('errors'), courseDocs: arrOfCourses, moment: moment,   users: users, instructors: instructors, coursesForShow: coursesForShow, courses: courses })
+        res.render('Arabic/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses });
     } else {
-        res.render('English/Profile',{ page: 'Logout', errors: req.flash('errors'), courseDocs: arrOfCourses, moment: moment,   users: users, instructors: instructors, coursesForShow: coursesForShow, courses: courses })
+        res.render('English/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses });
     }
 });
 router.get('/reviews/:instructorID', async (req, res, next) => {
@@ -44,10 +44,6 @@ router.get('/reviews/:instructorID', async (req, res, next) => {
         req.flash("error", "Something wrong happened");
         res.redirect("/user/profile");
     }
-})
-router.get('/profile/reviews/:instructorID/process', async(req, res, next) => {
-    const reviews = await Review.find({ instructorID: req.params.instructorID }).populate("userID").limit(5).skip((Number(req.query.pageNo) - 1) * 5).lean().exec()
-    res.json(reviews);
 })
 router.post("/profile/changeRoleToUser", (req, res, next) => {
     if(req.user.role === "Instructor") {
@@ -124,7 +120,7 @@ router.post("/profile", (req, res, next) => {
 
 
 
-router.post('/profile', (req, res, next) => {
+router.post('/emailVerification', (req, res, next) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -133,14 +129,14 @@ router.post('/profile', (req, res, next) => {
         }
     });
     let mailOptions = {
-        from: 'Teacherou',
-        to: `${req.user.email}`,
+        from: 'Ostazy',
+        to: `${ req.user.email }`,
         subject: 'Email Verification',
         html: `
-         <h3> How are you ${req.user.fullname}? We hope that you are good </h3>
+         <h3> How are you ${ req.user.fullname }? We hope that you are good </h3>
             <p>
             <span> To verify your email follow this link:  </span>
-            <a href="http://localhost:3000/user/verify/${req.user.id}/${req.user.email}/${req.user.accountToken}" target="_blank"> Verify now </a>
+            <a href="http://localhost:3000/profile/verifyEmail/${ req.user.id }" target="_blank"> Verify now </a>
            </p>
         `
     };
@@ -152,30 +148,27 @@ router.post('/profile', (req, res, next) => {
             console.log('Email sent: ' + info.response);
         }
     });
-    res.redirect('/user/profile');
+    req.flash('success', 'A Message has been sent to your email');
+    res.redirect('/profile');
     next();
 });
-router.get('/verify/:id/:email/:token', (req, res, next) => {
+router.get('/verifyEmail/:id', (req, res, next) => {
     if (req.isAuthenticated() === false) {
-        req.flash("error", "Login first to verify your email");
-        res.redirect('/user/login');
+        req.flash("error", "Home Login first to verify your email");
+        res.redirect('/');
     } else {
-        User.findOne({ _id: req.user.id, email: req.params.email, accountToken: req.params.token }, (err, user) => {
-            if (err) console.log(err.message);
-            if (user) {
-                    User.findByIdAndUpdate({ _id: req.params.id }, { accountVerified: true }, (err, Doc) => {
-                        if (err) console.log(err.message);
-                        else {
-                            req.flash('success', `Your Email ${Doc.email} has been verified successfully`);
-                            res.redirect('/user/profile');
-                        }
-                    });
-            }
-            else {
-                req.flash('error', `Something wrong happened`);
-                res.redirect('/user/profile');
-            }
-        });
+        if(req.user.id === req.params.id) {
+            User.findByIdAndUpdate({ _id: req.user.id }, { accountVerified: true }, (err, Doc) => {
+                if (err) console.log(err.message);
+                else {
+                    req.flash('success', `Your Email ${Doc.email} has been verified successfully`);
+                    res.redirect('/profile');
+                }
+            });
+        } else {
+             req.flash('error', `Something wrong happened`);
+             res.redirect('/profile');
+        }
     }
 });
 
@@ -221,20 +214,13 @@ router.post('/upload', (req, res) => {
     })
 });
 
-// const accountSid = 'AC3d1467106bdf2bd55f9a95213ca712ef';
-// const authToken = 'aaad400171ebbed53c70167ff2d77845';
-// const client = require('twilio')(accountSid, authToken);
-
-
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
     User.findByIdAndUpdate({ _id: req.user.id }, { accountActive: false })
         .then((Doc) => console.log('Updated'))
         .catch((err) => console.log(err.message))
     req.logOut();
-    req.flash('success', 'You are log out now');
+    req.flash('success', 'Home You are log out now');
     res.redirect('/');
 });
 
 module.exports = router;
-
-// https://dev.to/rexeze/how-to-build-a-real-time-chat-app-with-nodejs-socketio-and-mongodb-2kho

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<title>Instructor Dashboard</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+     <!-- Typeahead CSS -->
+     <link rel="stylesheet" href="/assets/css/typeahead.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	 <!-- Gijgo CSS-->
+	 <link rel="stylesheet" href="/assets/css/gijgo.min.css" />
+	 <!-- qlSnow CSS-->
+	 <link href="/assets/css/qlSnow.css" rel="stylesheet">
+
+	 <!-- mathquill CSS-->
+	 <link href="/assets/css/mathquill.css" rel="stylesheet">
+
+	 <!-- Katex CSS-->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/katex.min.css"
+	 integrity="sha384-8QOKbPtTFvh/lMY0qPVbXj9hDh+v8US0pD//FcoYFst2lCIf0BmT58+Heqj0IGyx" crossorigin="anonymous">
+ 
+	 <!-- mathquill4quill CSS-->
+	 <link href="/assets/css/mathquill4quill.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/ready.css">
+	<link rel="stylesheet" href="/assets/css/demo.css">
+</head>
+<style>
+	.cancelNotificationSuccess, .cancelNotificationError  {
+  background-color: rgba(0, 0, 0, 0.5); position: absolute; top: 5px; right: 5px; height: 25px; width: 25px; ; text-align: center; line-height: 25px; border-radius: 50%; cursor: pointer;
+}
+.notificationSuccess, .notificationError  {
+  position: absolute; bottom: 25px; left: 25px; bottom: 25px; border-radius: 15px; position: fixed; width: 275px; z-index: 5000; background-color: rgb(76, 175, 76); display: none;
+}
+
+.notificationSuccess {
+  background-color: rgb(44, 150, 68);
+}
+.notificationError {
+  background-color: #c24949;
+}
+</style>
+
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<div class="logo-header">
+				<a href="/seso" class="logo">
+					Instructor Dashboard
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+			</div>
+			<nav class="navbar navbar-header navbar-expand-lg">
+				<div class="container-fluid">
+
+                    <form class="navbar-left navbar-form nav-search mr-md-3">
+                        <div class="Typeahead">
+                            <div class="u-posRelative">
+                                <input class="Typeahead-hint" type="text" tabindex="-1" readonly>
+                                <input class="defaultTI border" id="demo-input" type="text" name="q"
+                                    placeholder="Search about Course...">
+                                <img class="Typeahead-spinner" src="/assets/images/System/Inside/spinner.gif">
+                                <span class="moveIcon"><i class="fas fa-search"></i></span>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </form>
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="/assets/uploads/<%= user.avatar %>" alt="user-img" width="36" class="img-circle"><span ><%= user.fullname %></span></span> </a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<div class="user-box">
+										<div class="u-img"><img src="/assets/uploads/<%= user.avatar %>"  alt="user"></div>
+										<div class="u-text">
+											<h4><%= user.fullname %></h4>
+											<p class="text-muted"><%= user.email %></p><a href="/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+										</div>
+									</li>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/profile"><i class="ti-user"></i> Profile</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/settings"><i class="ti-settings"></i> Account Setting</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/profile/logout"><i class="fa fa-power-off"></i> Logout</a>
+								</ul>
+								<!-- /.dropdown-user -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="sidebar">
+				<div class="scrollbar-inner sidebar-wrapper">
+					<div class="user">
+						<div class="photo">
+							<img src="/assets/uploads/<%= user.avatar %>">
+						</div>
+						<div class="info">
+							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									<%= user.fullname %>
+									<span class="user-level">Instructor</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+								<ul class="nav">
+									<li>
+										<a href="/profile">
+											<span class="link-collapse">My Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="/settings">
+											<span class="link-collapse">Settings</span>
+										</a>
+                                    </li>
+                                    <li>
+										<a href="/competitors">
+											<span class="link-collapse">Competitors</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav">
+						<li class="nav-item <%= content === "dashboard"? 'active' : ''%>">
+							<a href="/seso">
+								<i class="la la-dashboard"></i>
+								<p>Dashboard</p>
+								<span class="badge badge-count">5</span>
+							</a>
+						</li>
+						<li class="nav-item <%= content === "publish"? 'active' : ''%>">
+							<a href="/seso/publish">
+								<i class="la la-table"></i>
+								<p>Publish Course</p>
+								<span class="badge badge-count">14</span>
+							</a>
+						</li>
+						<li class="nav-item <%= content === "control"? 'active' : ''%>">
+							<a href="/seso/control">
+								<i class="la la-keyboard-o"></i>
+								<p>Control Course</p>
+								<span class="badge badge-count">50</span>
+							</a>
+						</li>
+						<li class="nav-item <%= content === "requests"? 'active' : ''%>">
+							<a href="/seso/requests">
+								<i class="la la-th"></i>
+								<p>All Requests</p>
+								<span class="badge badge-count">6</span>
+							</a>
+						</li>
+						<li class="nav-item <%= content === "chat"? 'active' : ''%>">
+							<a href="/seso/chat">
+								<i class="la la-bell"></i>
+								<p>Chatting</p>
+								<span class="badge badge-success">3</span>
+							</a>
+						</li>
+						<li class="nav-item <%= content === "balance"? 'active' : ''%>">
+							<a href="/seso/balance">
+								<i class="la la-font"></i>
+								<p>Balance</p>
+								<span class="badge badge-danger">25</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="/profile/logout">
+								<i class="la la-fonticons"></i>
+								<p>Logout</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<% if(content === "dashboard") { %>
+                <%- include('../partials/English/Dashboard/dashboard') -%>
+            <% } else if(content === "publish") { %>
+                <%- include('../partials/English/Dashboard/publish') -%>
+            <% } else if(content === "control") { %>
+                <%- include('../partials/English/Dashboard/control') -%>
+            <% } else if(content === "requests") { %>
+                <%- include('../partials/English/Dashboard/requests') -%>
+            <% } else if(content === "chat") { %>
+                <%- include('../partials/English/Dashboard/chat') -%>
+            <% } else if(content === "balance") { %>
+                <%- include('../partials/English/Dashboard/balance') -%>
+            <% } %>
+		</div>  
+	</div>
+	<!-- Notification -->
+    <div class="notificationSuccess text-white shadow-lg p-3"></div>
+    <div class="notificationError text-white shadow-lg p-3"></div>
+    <!-- Notification -->
+</body>
+<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="/assets/js/core/popper.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="/assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/assets/js/ready.min.js"></script>
+<script src="/assets/js/demo.js"></script>
+ <%# Typeahead to use Search Engine %>
+ <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+ <script src="/assets/js/searchEngine.js"></script>
+ <script src="/assets/js/gijgo.min.js"></script>
+    <script>
+        $(() => {
+            $('#coursestart').datetimepicker({ footer: true, modal: true });
+            $('#courseend').datetimepicker({ footer: true, modal: true });
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        })
+    </script>
+ <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+ <script src="/assets/js/mathquill.min.js"></script>
+ <script src="/assets/js/mathquill4quill.min.js"></script>
+ <script>
+	 $(() => {
+		 // Include SizeStyle
+		 const SizeStyle = Quill.import('attributors/style/size');
+		 Quill.register(SizeStyle, true);
+
+		 // Include ColorClass
+		 const ColorClass = Quill.import('attributors/class/color');
+		 Quill.register(ColorClass, true)
+
+		 var quill = new Quill('#editor', {
+			 modules: {
+				 formula: true,
+				 toolbar: '#toolbar-container'
+			 },
+			 placeholder: 'Write the Course Content...',
+			 theme: 'snow'
+		 });
+		 const enableMathQuillFormulaAuthoring = mathquill4quill();
+		 enableMathQuillFormulaAuthoring(quill, {
+			 operators: [["\\pm", "\\pm"], ["\\sqrt{x}", "\\sqrt"], ["\\sqrt[n]{x}", "\\nthroot"], ["\\frac{x}{y}", "\\frac"],
+			 ["\\sum^{s}_{x}{d}", "\\sum"], ["\\prod^{s}_{x}{d}", "\\prod"], ["\\coprod^{s}_{x}{d}", "\\coprod"],
+			 ["\\int^{s}_{x}{d}", "\\int"], ["\\binom{n}{k}", "\\binom"]]
+
+		 });
+	 })
+ </script>
+ <script src="/assets/js/dashboard.js"></script>
+ <script>
+	 $(() => {
+		function myFunction(course) {
+        alert('there are lots of things now');
+        console.log(course);
+    }
+	 })
+ </script>
+
+</html>

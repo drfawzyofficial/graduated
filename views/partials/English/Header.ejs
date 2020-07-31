@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="/profile" data-toggle="tooltip" data-placement="bottom"
             title="Online Course Booking">
-            <img src="/assets/images/logo.png" alt="Online Course Booking" title="Online Course Booking"
+            <img src="/assets/images/System/Logo/logo.png" alt="Online Course Booking" title="Online Course Booking"
                 style="height: 50px; width: 50px; border-radius: 50%">
             <span class="website-name">Ostazy</span>
         </a>
@@ -17,13 +17,31 @@
                         <input class="Typeahead-hint" type="text" tabindex="-1" readonly>
                         <input class="defaultTI border" id="demo-input" type="text" name="q"
                             placeholder="Search about Course...">
-                        <img class="Typeahead-spinner" src="/assets/images/spinner.gif">
+                        <img class="Typeahead-spinner" src="/assets/images/System/Inside/spinner.gif">
                         <span class="moveIcon"><i class="fas fa-search"></i></span>
                     </div>
                     <div class="Typeahead-menu"></div>
                 </div>
             </form>
             <ul class="navbar-nav ml-auto">
+                <% if(user.role === "Instructor") { %>
+                    <li class="nav-item"> 
+                   <a class="nav-link <%= (page === "Dashboard")? 'speLink' : '' %>" href="/dashboard" 
+                       title="Instructor Dashboard">
+                       <span class="sr-only">(Dashboard)</span> <i class="fas fa-tachometer-alt"></i>
+                   </a>
+               </li>
+               <%  } %>
+               <% if(user.role === "Instructor") { %>
+                <li class="nav-item"> 
+               <a class="nav-link <%= (page === "Competitors")? 'speLink' : '' %>" href="/competitors" 
+                   title="Competitors">
+                   <span class="sr-only">(Competitors)</span> <i class="fab fa-accusoft"></i>
+               </a>
+                </li>
+               <%  } %>
+
+               <% if(user.role === "User") { %>
                 <li class="nav-item">
                     <a class="nav-link <%= (page === "Explore")? 'speLink' : '' %>" href="/explore" title="Explore Items">
                         <span class="sr-only">(Explore)</span> <i class="fab fa-wpexplorer"></i>
@@ -34,12 +52,19 @@
                         <span class="sr-only">(Courses)</span> <i class="fas fa-book"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+               <%  } %>
+               
+               
+                
+                <% if(user.role === "User") { %>
+                     <li class="nav-item"> 
                     <a class="nav-link <%= (page === "bookedCourses")? 'speLink' : '' %>" href="/bookedcourses" data-toggle="tooltip" data-placement="bottom"
                         title="Booked Courses">
                         <span class="sr-only">(bookedCourses)</span> <i class="fas fa-cart-plus"></i>
                     </a>
                 </li>
+                <%  } %> 
+                
                 <li class="nav-item">
                     <a class="nav-link <%= (page === 'Settings')? 'speLink' : '' %>" href="/settings" title="Settings">
                         <span class="sr-only">(Settings)</span> <i class="fas fa-cogs"></i>

@@ -48,11 +48,12 @@ $(document).ready(function () {
                 suggestion: (data) => {
                     return `
 
-                    <a target="_blank" href="/course/${data._id}" style="text-decoration: none">
+                    <a target="_blank" href="/course/${ data._id }" style="text-decoration: none">
                         <div class="ProfileCard u-cf">
-                            <img class="ProfileCard-avatar" src="../assets/centerphotos/${data.centerphoto}">
+                            <img class="ProfileCard-avatar" src="/assets/centerphotos/${ data.centerphoto}">
                             <div class="ProfileCard-details">
-                                <div class="ProfileCard-realName">${data.coursename}</div>
+                                <div class="ProfileCard-realName">${ data.coursename }</div>
+                                <div class="course-content">${ data.coursename } Course is now avialable with Price ${ data.courseprice } and number of limited users is ${ data.users.length } at ${ data.centerlocation }</div>
                             </div>
                         </div>
                     </a>

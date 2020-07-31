@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const User = require('../models/user');
+const User = require('../models/User');
 const Course = require('../models/Course');
 const { ensureAuthenticated } = require('../config/auth');
 const { check, validationResult } = require('express-validator');
@@ -13,6 +13,7 @@ const userService = new UsersService()
 
 // Get Request to Dashboard
 router.get('/', ensureAuthenticated, async (req, res, next) => {
+    
     if(req.cookies.lang === "ar") {
         if (req.isAuthenticated() && req.user.role === "User") res.redirect("Arabic/profile");
         else {
@@ -20,7 +21,10 @@ router.get('/', ensureAuthenticated, async (req, res, next) => {
             res.render("Arabic/Dashboard", { errors: req.flash("errors"), courseDocs: courseDocs, moment: moment });
         }
     } else {
-        if (req.isAuthenticated() && req.user.role === "User") res.redirect("English/profile");
+        if (req.user.role === "User") {
+            req.flash('error', 'You are not allowed to visit this page');
+            res.redirect('/profile');
+        }
     else {
         let courseDocs = await Course.find({ instructorID: req.user.id }).populate("instructorID").populate("users");
         res.render("English/Dashboard", { errors: req.flash("errors"), courseDocs: courseDocs, moment: moment });

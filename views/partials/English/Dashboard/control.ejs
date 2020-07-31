@@ -1,0 +1,115 @@
+<div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+           <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Control Courses</h4>
+                <p>Here, You can control the courses in a complete shape. You can visit the course link to view the course in details, view the content of the course, edit the course and remove the course.</p>
+            <strong class="badge badge-danger" style="font-size: 20px">You cannot remove or edit the course if one student has enrolled to the course</strong>
+            </div>
+            
+           </div>
+            <div class="row">
+                <% courses.forEach((course) => { %>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"><%= course.coursename %> Course Controlling</h4>
+                            <p class="card-category"><%= course.coursename %> Course is now avialable with Price
+                                <%= course.courseprice %> and number of limited users is <%= course.courselimited %> at
+                                <%= course.centerlocation %> <%=  course.users.length%></p>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge badge-count"><%= course.users.length %>/<%- course.courselimited %>
+                                users</span>
+                            <span class="badge badge-default"><%= course.courseprice %> price</span>
+                            <span class="badge badge-primary"><%= moment(course.coursestart).format("MMM Do YY");    %>
+                                Start Date</span>
+                            <span class="badge badge-info"><%= moment(course.courseend).format("MMM Do YY");    %> End
+                                Date</span>
+
+                            <span class="badge badge-warning"><%= course.centerlocation %> location</span>
+                            <span class="badge badge-danger"><%= course.centerplace %> Address</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="demo">
+
+                                <a type="button" class="btn btn-primary" href="/course/<%= course._id %>"
+                                    target="_blank">
+                                    Course Link
+                                </a>
+
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#coursecontent<%= course._id %>">
+                                    Course Content
+                                </button>
+                            
+
+
+
+
+
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#editcourse<%= course._id %>" <%= course.users.length > 0? 'disabled' : '' %>>
+                                Edit Course
+                            </button>
+                            <button type="button" class="removeCourse btn btn-danger" data-courseid="<%= course._id %>" <%= course.users.length > 0? 'disabled' : '' %>>Remove Course</button>
+                            
+                            <div class="modal fade" id="coursecontent<%= course._id %>" tabindex="-1" role="dialog"
+                                aria-labelledby="coursecontent" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle"><%= course.coursename %>
+                                                Content</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <%- course.coursebio %>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="editcourse<%= course._id %>" tabindex="-1" role="dialog"
+                                aria-labelledby="coursecontent" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle"><%= course.coursename %>
+                                                edit</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <%- course.coursebio %>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                           
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+
+            </div>
+        </div>
+    </div>
+</div>

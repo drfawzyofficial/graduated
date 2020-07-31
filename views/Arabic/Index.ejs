@@ -2,57 +2,38 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags(utf-8) & (viewport) -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- Owl Default CSS -->
-    <link rel="stylesheet" href="/assets/css/owl.default.min.css">
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-    <!-- Owl Magnific CSS -->
-    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/animate.css"/>
     <!-- Hover CSS -->
-    <link rel="stylesheet" href="/assets/css/hover.css">
-    <!-- Boxicons CSS -->
-    <link rel="stylesheet" href="/assets/css/boxicons.min.css">
-    <!-- Flaticon CSS -->
-    <link rel="stylesheet" href="/assets/css/flaticon.css">
-    <!-- Image Light Box CSS -->
-    <link rel="stylesheet" href="/assets/css/imagelightbox.min.css">
-    <!-- Meanmenu CSS -->
-    <link rel="stylesheet" href="/assets/css/meanmenu.css">
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="/assets/css/nice-select.css">
-    <!-- Odometer CSS-->
-    <link rel="stylesheet" href="/assets/css/odometer.css">
+    <link rel="stylesheet" href="/assets/css/hover.css"/>
     <!-- Style CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/Index.css"/>
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="/assets/css/responsive.css">
-    <!-- RTL CSS -->
-    <link rel="stylesheet" href="/assets/css/rtl.css">
-
-    <title>Ostazy Company</title>
-
-    <link rel="icon" type="image/png" href="/assets/Images/Logo/logo.png">
+    <link rel="stylesheet" href="/assets/css/responsive.css"/>
+     <!-- RTL CSS -->
+     <link rel="stylesheet" href="/assets/css/rtl.css"/>
+    <!-- Ostazy Title -->
+    <title>Ostazy</title>
+    <link rel="icon" type="image/png" href="/assets/images/System/Logo/logo.png"/>
 </head>
 
 
-<body id="body">
+
+<body class="body" id="body">
 
     <!-- Start Navbar -->
     <header id="headerContent"
-        class="container-fluid headerContent appear-header <%= (page === 'Tatx'? 'pageTatx pageConst': 'bg-white o_shadow') %>">
+        class="container-fluid headerContent appear-header <%= (page === 'Ostazy'? 'pageTatx pageConst': 'bg-white o_shadow') %>">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
-                    <img src="/assets/Images/Logo/logo.png" title="Ostazy always with you" width="40" height="40"
-                        class="d-inline-block align-top" alt=" Osstazy always with you">
+                    <img src="/assets/images/System/Logo/logo.png" title="Ostazy always with you" width="40" height="40"
+                        class="d-inline-block align-top" alt=" Osstazy always with you"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -62,20 +43,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mt-2 mt-lg-0">
-                            <a class="nav-link " href="/">الرئيسية</a>
+                            <a class="nav-link" href="/">الرئيسية</a>
                         </li>
                         <li class="nav-item mt-2 mt-lg-0">
-                            <a class="nav-link " href="#about">عنا</a>
+                            <a class="nav-link" id="aboutLink" style="cursor: pointer;">عنا</a>
                         </li>
-                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Faq'? 'spe-active': '') %>">
-                            <a class="nav-link " href="#features">المميزات</a>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link" id="featuresLink" style="cursor: pointer;">المميزات</a>
                         </li>
                         </li>
-                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Contact'? 'spe-active': '') %>">
-                            <a class="nav-link " href="#services">الخدمات</a>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link" id="servicesLink" style="cursor: pointer;">الخدمات</a>
                         </li>
-                        <li class="nav-item mt-2 mt-lg-0  <%= (page === 'Contact'? 'spe-active': '') %>">
-                            <a class="nav-link " href="#FAQ">الأسئلة </a>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link " id="faqLink" style="cursor: pointer;">أسئلة متكررة</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -85,11 +66,11 @@
                             </a>
                             <div class="dropdown-menu animated slideInUp" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item nav-link" data-toggle="modal" data-target="#terms"
-                                    style="cursor: pointer"><span class="hvr-forward">الشروط</span></a>
+                                    style="cursor: pointer"><span class="hvr-backward">الشروط</span></a>
                                 <a class="dropdown-item nav-link" data-toggle="modal" data-target="#privacy"
-                                    style="cursor: pointer"><span class="hvr-forward">الخصوصية</span></a>
+                                    style="cursor: pointer"><span class="hvr-backward">الخصوصية</span></a>
                                 <a class="dropdown-item nav-link" data-toggle="modal" data-target="#contact"
-                                    style="cursor: pointer"><span class="hvr-forward">التواصل</span></a>
+                                    style="cursor: pointer"><span class="hvr-backward">تواصل</span></a>
                             </div>
                         </li>
                     </ul>
@@ -100,11 +81,11 @@
                         </li>
                         <li class="nav-item mt-2 mt-lg-0 ml-lg-2">
                             <a type="button" class="nav-link" data-toggle="modal" data-target="#login"
-                                style="cursor: pointer">تسجيل الدخول</a>
+                                style="cursor: pointer">الدخول</a>
                         </li>
                         <li class="nav-item mt-2 mt-lg-0">
                             <form method="POST" action="/">
-                                <button type="submit" class="nav-link ">English <i class="fas fa-globe"></i></button>
+                                <button type="submit" class="nav-link">English <i class="fas fa-globe"></i></button>
                             </form>
                         </li>
                     </ul>
@@ -118,32 +99,32 @@
     <div id="carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active">
-                <div class="indicatorContent text-center text-white">
+                <div class="indicatorContent text-center text-white" style="cursor: pointer;">
                     <div class="forIcon" style="font-size: 25px">
-                        <i class="fa fa-bicycle"></i>
+                        <i class="fab fa-centos"></i>
                     </div>
                     <div class="forTopic">
-                        <span class="desc">Ostazy</span>
+                        <span class="desc">أستاذي</span>
                     </div>
                 </div>
             </li>
             <li data-target="#carousel" data-slide-to="1">
-                <div class="indicatorContent text-center text-white">
+                <div class="indicatorContent text-center text-white" style="cursor: pointer;">
                     <div class="forIcon" style="font-size: 25px">
-                        <i class="fa fa-bicycle"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <div class="forTopic">
-                        <span class="desc">Quality</span>
+                        <span class="desc">المحاضر</span>
                     </div>
                 </div>
             </li>
             <li data-target="#carousel" data-slide-to="2">
-                <div class="indicatorContent text-center text-white">
+                <div class="indicatorContent text-center text-white" style="cursor: pointer;">
                     <div class="forIcon" style="font-size: 25px">
-                        <i class="fa fa-bicycle"></i>
+                        <i class="far fa-user"></i>
                     </div>
                     <div class="forTopic">
-                        <span class="desc">Delivery</span>
+                        <span class="desc">المستخدم</span>
                     </div>
                 </div>
             </li>
@@ -151,34 +132,26 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="overlay"></div>
-                <img class="d-block w-100" src="/assets/Images/Delivery/2.jpg" alt="First slide">
+                <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/System.jpeg" alt="First slide">
                 <div class="carousel-caption">
-                    <h5 class="text-white">Ostazy is always with you</h5>
-                    <p class="text-light">Ostazy is always with you is a topic that will attract you and with this meaning
-                        you will not feel you are alone. Ostazy is always with you is a topic that will attract you and
-                        with this meaning you will not feel you are alone</p>
+                    <h5 class="text-white">استاذي دائما مع المستخدمين والمحاضرين</h5>
+                    <p class="text-light">الهدف من هذا المشروع هو جعل التواصل بين المستخدمين والمحاضرين أسهل بحيث يساعد نظامنا المستخدم على حجز الكورس المناسب في المركز. سيعرض المشروع جميع الكورسات للمستخدم المتعلقة باهتماماته ويمكن للمستخدم استكشاف هذه الكورسات وغيرها من الكورسات إذا أراد. طريقة الدفع المقدمة للمستخدم هي PayPal ، بعد حجز الكورس و الدفع من قبل المستخدم سيقوم النظام بإخطار المحاضر. في النهاية ، لدينا لوحة تحكم خاصة لمعرفة ما يحدث في نظامنا بسرعة.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="overlay"></div>
-                <img class="d-block w-100" src="/assets/Images/Delivery/3.jpg" alt="Second slide">
+                <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/Lecturer.png" alt="Second slide">
                 <div class="carousel-caption">
-                    <h5 class="text-white">Quality</h5>
-                    <p class="text-light">Ostazy has a good quality in making apps and it makes apps in a high quality.
-                        The app is excellent because Ostazy follows steps in Planning, Desinging, Implementation and
-                        Coding Ostazy has a good quality in making apps and it makes apps in a high quality. The app is
-                        excellent because Ostazy follows steps in Planning, Desinging, Implementation and Coding </p>
+                    <h5 class="text-white">يحصل المحاضر على اهتمام كبير من قبل استاذي </h5>
+                    <p class="text-light">يعتبر المحاضر مستخدمًا ولكن الاختلاف بينهما هو الصلاحيات بحيث يمتلك المعلم لوحة تحكم خاصة لعرض الإحصائيات المتعلقة بكورساته والدردشة مع المستخدمين حول الكورس. الهدف المهم للمحاضر هو ان نظامنا يوفر نموذجًا ضخمًا لجعل المحاضر قادر على  تقديم تفاصيل عن الكورس مثل الاسم والسعر و العدد المحدود من المستخدمين والمواعيد ومحتوى الكورس والفيديو عن الكورس وصورة عن المركز. بعد نشر الكورس على سبيل المثال ، JavaScript ، سيبلغ نظامنا جميع المستخدمين الذين لديهم #tag (JavaScript) أن JS Course قد تم نشره عن طريق ارسال الاشعارات للمستخدمين بأكثر من طريقة. </p>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="overlay"></div>
-                <img class="d-block w-100" src="/assets/Images/Delivery/4.jpg" alt="Third slide">
+                <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/User.jpg" alt="Third slide">
                 <div class="carousel-caption">
-                    <h5 class="text-white">Delivery App</h5>
-                    <p class="text-light">Ostazy has a professional delivery app. You can order anything you want from the
-                        shop and we will reach the shop to bring the needs immediately. Tatx has a professional delivery
-                        app. You can order anything you want from the shop and we will reach the shop to bring the needs
-                        immediately </p>
+                    <h5 class="text-white">يحصل المستخدم على اهتمام كبير من قبل استاذي</h5>
+                    <p class="text-light">يمكن للمستخدم إجراء المصادقة على موقعنا بسهولة عن طريق  التسجيل وتسجيل الدخول . بعد تسجيل الدخول إلى موقع الويب ، سيكون لديه ملف تعريف ببياناته الآمنة الخاصة به في نظامنا ويمكنه تغيير بياناته من خلال الإعدادات. سيشاهد المستخدم بعض المحاضرين وبعض المستخدمين من محافظته وبعض الكورسات للحجز بناءً على اهتماماته. يمكنه استكشاف جميع الكورسات استنادًا إلى اهتماماته وحجز الدورة التي يريدها عن طريق الدفع  PayPalبعد رؤية جميع تفاصيل هذه الكورسات وآراء المستخدمين. بعد حجز الدورة ، سيقوم نظامنا بإخطار المحاضر بأن المستخدم قد انضم إلى الكورس  بإرسال جميع تفاصيل المستخدم. يمكن للمستخدم رؤية جميع الكورسات المحجوزة والاتصال بالمعلم عن طريق الدردشة. في النهاية ، سيتم إبلاغ المستخدم إذا تم نشر دورة تدريبية جديدة من قبل المحاضر تتعلق باهتماماته.</p>
                 </div>
             </div>
         </div>
@@ -189,42 +162,43 @@
         <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </a>hg
     </div>
     <!-- End Carousel Area -->
 
     <!-- Start Intro for Ostazy Area -->
-    <section class="tatx-intro container-fluid py-5" id="about">
+    <section class="tatx-intro container-fluid py-5" id="About">
         <div class="container py-5">
             <div class="row">
                 <div class="order-2 col-md-6 col-12 mt-5 mt-md-0 wow fadeInLeft">
                     <div class="half-img hvr-bob">
-                        <img alt="vector" src="/assets/img/Partner/client/vector-art-3.png">
+                        <img alt="vector" src="/assets/images/System/Outside/Intro/vector-art-3.png">
                     </div>
                 </div>
-                <div class="order-1 order-md-3 col-md-6 col-12 wow fadeInRight">
+                <div class="order-1 order-md-3 col-md-6 col-12 wow fadeInLeft">
                     <div class="heading-area">
-                        <span class="sub-title text-muted hvr-forward animated pulse infinite">Ostazy always with
-                            you</span>
-                        <h2 class="title text-muted hvr-forward">We have done greate services</h2>
-                        <p class="para text-muted hvr-forward">Ostazy is an IT Company that aims to provide services that
-                            help people in all fields and it makes the community easy</p>
+                        <span class="sub-title text-muted hvr-backward animated pulse infinite">استاذي دائما مع المستخدمين والمحاضرين</span>
+                        <h2 class="title text-muted hvr-backward"> </h2>
+                        <p class="para text-muted hvr-backward">هدفنا هو تسهيل العلاقة بين المستخدم والمحاضر
+                            أستاذي هو تطبيق دوره جعل المستخدم قادر على حجز الكورس الذي يريده  في اى مركز والدفع عن طريق PayPal  وذلك بعد الاطلاع على تفاصيل المحاضر ، الكورس ، المركز والاراء حول هذا الكورس.
+                            
+                            </p>
                     </div>
                     <ul class="counter-list list-unstyled">
                         <li class="counter-item hvr-pulse-shrink">
                             <i aria-hidden="true" class="fas fa-users text-muted"></i>
-                            <h6 class="counter-number text-muted"><span class="count">500</span>+</h6>
-                            <p class="sub-title text-muted">Happy Clients</p>
+                            <h6 class="counter-number text-muted"><span class="count">100</span>+</h6>
+                            <p class="sub-title text-muted">مستخدمين سعداء</p>
                         </li>
                         <li class="counter-item hvr-pulse-shrink">
                             <i aria-hidden="true" class="fas fa-list-alt text-muted"></i>
-                            <h6 class="counter-number text-muted"><span class="count">1074</span>+</h6>
-                            <p class="sub-title text-muted">Lines Of Code</p>
+                            <h6 class="counter-number text-muted"><span class="count">3000</span>+</h6>
+                            <p class="sub-title text-muted">أسطر من الكود</p>
                         </li>
                         <li class="counter-item hvr-pulse-shrink">
                             <i aria-hidden="true" class="fas fa-award text-muted"></i>
-                            <h6 class="counter-number text-muted"><span class="count">600</span>+</h6>
-                            <p class="sub-title text-muted">Project Completed</p>
+                            <h6 class="counter-number text-muted"><span class="count">10</span>+</h6>
+                            <p class="sub-title text-muted">مهمام مكتملة</p>
                         </li>
                     </ul>
                 </div>
@@ -234,17 +208,13 @@
     <!-- End Intro for Ostazy Area -->
 
     <!-- Start Features Area -->
-    <section id="features" class="features-section container-fluid py-5">
+    <section id="Features" class="features-section container-fluid py-5">
         <div class="container">
             <div class="row wow fadeInLeft">
                 <div class="col-12">
                     <div class="section-title text-center">
-                        <h2 class="hvr-forward">Creative Features</h2>
-                        <p class="hvr-forward">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incidiunt labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, incidunt aliquam
-                            accusantium temporibus in magni assumenda cupiditate saepe ullam. Doloribus et incidunt,
-                            vero mollitia debitis ratione tenetur. Quo, animi aut?</p>
+                        <h2 class="hvr-backward">مميزات مبتكرة</h2>
+                        <p class="hvr-backward">تطبيق أستاذي هو تبيق ذكي لأنه يعتمد على الكثير من المميزات التي تجعله أفضل تطبيق لإدارة العلاقة بين الطالب والمحاضر. تلك المميزات هي الإحترافية والخبرة والفريق المتعاون وحلول ذكية</p>
                         <div class="bar"></div>
                     </div>
                 </div>
@@ -254,40 +224,40 @@
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="features-content text-center hvr-grow-shadow">
                         <div class="icon">
-                            <i class="flaticon-clock"></i>
+                            <i class="fab fa-airbnb"></i>
                         </div>
-                        <h3>Professionalism</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                        <h3>الإحترافية</h3>
+                        <p>الإحترافية بسبب مطورين خبراء يتسخدمون أدواء حديثة</p>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-3 mt-md-0">
                     <div class="features-content text-center hvr-grow-shadow">
                         <div class="icon">
-                            <i class="flaticon-blueprint"></i>
+                            <i class="fab fa-battle-net"></i>
                         </div>
-                        <h3>Experience</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                        <h3>الخبرة</h3>
+                        <p>الخبرة بسبب أن هناك مطورين خبرتهم فوق اـ 3 أعوام</p>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-lg-3 col-md-6 mt-3 mt-lg-0 col-sm-12 col-12">
                     <div class="features-content text-center hvr-grow-shadow">
                         <div class="icon left-icon">
-                            <i class="flaticon-security"></i>
+                            <i class="fas fa-allergies"></i>
                         </div>
-                        <h3>Integrated team</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                        <h3>فريق متعاون</h3>
+                       <p>فريق متعاون بسبب أن هناك فريق متعاون يسعى إلى إيجاد حلول ذكية</p>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-lg-3 col-md-6 mt-3 mt-lg-0 col-sm-12 col-12">
                     <div class="features-content text-center hvr-grow-shadow">
                         <div class="icon">
-                            <i class="flaticon-update"></i>
+                            <i class="fas fa-burn"></i>
                         </div>
-                        <h3>Smart solutions</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</p>
+                        <h3>حلول ذكية</h3>
+                        <p> حلول ذكية لأن الحلول الذكية تكون في أبسط صورة للمشاكل</p>
                     </div>
                 </div>
             </div>
@@ -296,15 +266,13 @@
     <!-- End Features Area -->
 
     <!-- Start Services Area -->
-    <section class="services-section bg-color py-5" id="services">
+    <section class="services-section bg-color py-5" id="Services">
         <div class="container">
             <div class="row wow fadeInLeft">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2 class="hvr-forward">Ostazy Services</h2>
-                        <p class="hvr-forward">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incidiunt labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                        <h2 class="hvr-backward">أدوار أستاذى</h2>
+                        <p class="hvr-backward">يتكون أستاذى من ثلاث أدوار رئيسية . الثلاث أدوار هم النظام و المستخدم و المحاضر. سيقود النظام العلاقة بين المستخدم و المحاضر.سيقوم المستخدم بحجز الكورس عن طريق النظام و ايضا سيقوم المحاضر بنشر الكورسات للمستخدمين</p>
                         <div class="bar"></div>
                     </div>
                 </div>
@@ -313,33 +281,30 @@
                     <div class=" col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                 <div class="single-services">
                     <div class="icon">
-                        <i class="flaticon-cellphone"></i>
+                        <i class="fab fa-centos"></i>
                     </div>
-                    <h3>Web Programming</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore facilisis.</p>
+                    <h3>دور النظام</h3>
+                    <p>سيقوم النظام بتنظيم العلاقة بين المستخدم و المحاضر بشكل سريع و ايضا يسعى لتحقيق الرضا بينهما</p>
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-12 mt-3 mt-lg-0 col-sm-12 col-12">
                 <div class="single-services">
                     <div class="icon">
-                        <i class="flaticon-shopping-cart"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <h3>Graphic Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore facilisis.</p>
+                    <h3>دور المحاضر</h3>
+                    <p>يقوم المحاضر بنشر الكورسات للمستخدمين بواسطة محرر ذكى و سوف نقوم نحن باخطار المستخدم</p>
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-12 mt-3 mt-lg-0 col-sm-12 col-12">
                 <div class="single-services">
                     <div class="icon">
-                        <i class="flaticon-optimize"></i>
+                        <i class="fa fa-user"></i>
                     </div>
-                    <h3>Video Working</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore facilisis.</p>
+                    <h3>دور المستخدم </h3>
+                    <p>سيقوم المستخدم بحجز الكورس عن طريقة الدفع بطريقة PayPal  بعد رؤية تفاصيل الكورس.</p>
                 </div>
             </div>
         </div>
@@ -347,28 +312,28 @@
 
         <div class="default-shape">
             <div class="shape-1">
-                <img src="assets/img/shape/4.png" alt="image">
+                <img src="/assets/images/System/Outside/Service/4.png" alt="image">
             </div>
 
             <div class="shape-2 rotateme">
-                <img src="assets/img/shape/5.svg" alt="image">
+                <img src="/assets/images/System/Outside/Service/5.svg" alt="image">
             </div>
 
             <div class="shape-3">
-                <img src="assets/img/shape/6.svg" alt="image">
+                <img src="/assets/images/System/Outside/Service/6.svg" alt="image">
             </div>
 
             <div class="shape-4">
-                <img src="assets/img/shape/7.png" alt="image">
+                <img src="/assets/images/System/Outside/Service/7.png" alt="image">
             </div>
 
             <div class="shape-5">
-                <img src="assets/img/shape/8.png" alt="image">
+                <img src="/assets/images/System/Outside/Service/8.png" alt="image">
             </div>
         </div>
 
         <div class="services-shape">
-            <img src="assets/img/cloud.png" alt="image">
+            <img src="/assets/images/System/Outside/Service/cloud.png" alt="image">
         </div>
     </section>
     <!-- End Services Area -->
@@ -376,12 +341,11 @@
     <!-- Start FAQ Area -->
     <section class="faq-section container-fluid py-5" id="FAQ">
         <div class="container">
-            <div class="row">
+            <div class="row wow fadeInLeft">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Frequently <span>Asked</span> Questions</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidiunt
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                        <h2>الأكثر شيوعًأ <span>الأسئلة</span> إجابة</h2>
+                        <p>فيما يلي مجموعة من الأسئلة المتداولة المتعلقة بالنظام والمحاضر والمستخدم. سيكون فريقنا حريصًا على إظهار كل ميزة غير واضحة في التطبيق عن طريق السؤال والإجابة التوضيحية.</p>
                         <div class="bar"></div>
                     </div>
                 </div>
@@ -392,70 +356,76 @@
                     <div class="faq-accordion">
                         <ul class="accordion">
                             <li class="accordion-item">
-                                <a class="accordion-title active" href="javascript:void(0)">
-                                    <i class="bx bx-chevron-down"></i>
-                                    What access do I have on the free plan?
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    1) ما دور تطبيق استاذي على الرغم من وجود مواقع تؤدي نفس الدور مثل Udemy؟
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt.</p>
+                                    <p>لدينا نفس فكرة مواقع الويب الأخرى ، فهي تعزز العلاقة بين المستخدمين والمحاضرين ولكن كل فكرة تعمل بطريقة مختلفة. يساعد تطبيق استاذي المستخدمين على حجز الكورس الذي يريده في اى المركز بواسطة طريقة الدفع بعد الاطلاع على تفاصيل المحاضر ، الكورس ، المركز وتقييمات ومراجعات المستخدمين .</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
-                                    <i class="bx bx-chevron-down"></i>
-                                    What access do I have on a free trial?
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    2) هل تطبيق استاذي مجاني لكل من المحاضرين والمستخدمين؟
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt.</p>
+                                    <p>.نعم ، إنه مجاني للجميع ولا يتم أخذ أي أموال لأي ميزة سواء للمستخدم أو المحاضر 
+                                    </p>
                                 </div>
                             </li>
 
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
-                                    <i class="bx bx-chevron-down"></i>
-                                    Does the price go up as my team gets larger?
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    3) هل البيانات آمنة لجميع المستخدمين؟
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt.</p>
+                                    <p>نعم ، جميع البيانات آمنة لجميع المستخدمين ولا يتم إرسال أي بيانات إلى أي شركة للأعمال التجارية ، ولكننا نستخدم البيانات في تطبيقنا فقط .</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
-                                    <i class="bx bx-chevron-down"></i>
-                                    How can I cancel my subscription?
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    4) ما هو العامل لاثبات أن هذا الكورس جيد؟
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt.</p>
+                                    <p>العامل الذى يثبت أن هذا الكورس جيد هو مراجعات المستخدمين لها. لا يمكن لأى مستخدم اجراء مراجعه او توصية لكورس معين سوا المشاركين فيها.</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
-                                    <i class="bx bx-chevron-down"></i>
-                                    Can I pay via an Invoice?
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    5) هل طريقة PayPal  هى الطريقة الوحيدة  لدفع تكلفة الكورس ؟?
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt.</p>
+                                    <p>نعم.. مؤقتا طريقة الدفع عن طريق PayPal هى الطريقة الوحيدة لشراء الكورس . يمكنك استخدام الفيزا ..الماستركارد....الخ لدفع التكلفة للمحاضر .. لا تخف طريقة الدفع باى بال طريقة آمنة.    </p>
+                                </div>
+                            </li>
+                            <li class="accordion-item">
+                                <a class="accordion-title" href="javascript:void(0)">
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                    6) كيف يمكن للمحاضر استلام الأموال ؟
+                                </a>
+
+                                <div class="accordion-content">
+                                    <p>سيتم تحويل الأموال المدفوعة بأى طريقة على حساب PayPal  الخاص ب أستاذى . بعد اكتمال الكورس سواء بعدد المستخدمين او بدأ موعدها يستطيع المحاضر استلام المال على حساب PayPal  الخاص به . </p>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInRight">
+                <div class="col-lg-6 wow fadeInLeft">
                     <div class="faq-image">
-                        <img src="/assets/Images/istockphoto-1152863036-1024x1024.jpg" alt="image">
+                        <img src="/assets/images/System/Outside/Intro/vector-art-3.png" alt="image">
                     </div>
                 </div>
             </div>
@@ -470,87 +440,57 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Terms Content</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">الشروط والاستخدام</h5>
+                    <button type="button" class="إغلاق" data-dismiss="modal" aria-label="إغلاق">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <ul class="ul-privacy">
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <p>يعتبر استخدام تطبيقنا و اضافة بياناتك الشخصية بمثابة موافقة منك على شروط الاستخدام. نحن نمثل تطبيق أستاذى الموجود فى مصر. انت تمثل مستخدم لهذا التطبيق و اذا لم توافق على شروط الاستخدام فتوقف عن استخدام التطبيق.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل نحن نجمع معلوماتك الشخصية ؟</h5>
+                            <p>نحن نستخدم معلوماتك الشخصية فى وقت الحاجة..على سبيل المثال..عندما تقوم بالحجز فى كورس فى المركز نقوم بإرسال جميع معلوماتك الشخصية إلى المحاضر كى يتمكن من معرفة هويتك.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>كيف نستخدم معلوماتك الشخصية ؟</h5>
+                            <p>نحن نستخدم معلوماتك الشخصية فى وقت الحاجة..على سبيل المثال..عندما تقوم بالحجز فى كورس فى المركز نقوم بإرسال جميع معلوماتك الشخصية إلى المحاضر كى يتمكن من معرفة هويتك.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل معلوماتى الشخصية آمنة؟</h5>
+                            <p>نعم..جميع البيانات آمنة لجميع المستخدمين ولا يتم إرسال اى بيانات الى اى شركة للأعمال . ولكن نستخدم البيانات فى تطبيقنا فقط.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل يمكننى تعديل معلوماتى الشخصية ؟</h5>
+                            <p> نعم.. يمكنك تعديل ملعوماتك الشخصية من الإعدادات فى الوقت الذى تريده.تأكد من ان معلوماتك المعدلة صحيحة و كاملة لأننا نرسل المعلومات الشخصية الى المحاضر عند حجز الكورس.
+                                5 -هل الدفع عن طريق باى بال هو الطريقة الوحيدة لدفع الكورس ؟
+                                - نعم.. مؤقتا طريقة الدفع عن طريق PayPal هى الطريقة الوحيدة لشراء الكورس . يمكنك استخدام Visa .. MasterCard....الخ لدفع التكلفة للمحاضر .. لا تخف طريقة الدفع PayPal طريقة آمنة.
+                                </p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل الدفع عن طريق باى بال هو الطريقة الوحيدة لدفع الكورس ؟</h5>
+                            <p> نعم.. مؤقتا طريقة الدفع عن طريق PayPal هى الطريقة الوحيدة لشراء الكورس . يمكنك استخدام Visa .. MasterCard....الخ لدفع التكلفة للمحاضر .. لا تخف طريقة الدفع PayPal طريقة آمنة.
+                                </p>
+                        </li>
+                        
+                        <li class="li-privacy">
+                            <h5>ما الإجراء الذى يجب على إتخاذه اذا واجهتنى مشكلة أثناء تصفح موقع الويب ؟</h5>
+                            <p>الإجراء الذى يجب عليك اتخاذه هو عن طريق (التواصل معنا) بإعطائنا التفاصيل (البريد الإلكترونى – نوع المشكلة – محتوى المشكلة ).</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>الحق فى تعديل شروط الاستخدام </h5>
+                            <p>بالتأكيد لدينا الحق فى تعديل شروط الاستخدام فى اى وقت حتى نتمكن من اضافة او تحديث أو حذف اى شرط فى التطبيق . وبما أننا لدينا الحق فى القيام بذلك ..فأنت لديك الحق فى ان يتم إعلامك بشأن الاضافات او التحديثات او الحذف لأى شرط من خلال بريدك الالكترونى.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل لديك أى سؤال تود ان تعرف إجابته ؟</h5>
+                            <p>بالتأكيد لديك الحق فى طرح أى سؤال لإزالة الغموض . يمكنك طرح سؤالك على Ostazy@ask.com و سنرسل الاجابة على الفور إلى بريدك الإكترونى. </p>
                         </li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -560,87 +500,57 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Privacy Content</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">محتوى سياسة الخصوصية</h5>
+                    <button type="button" class="إغلاق" data-dismiss="modal" aria-label="إغلاق">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <ul class="ul-privacy">
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <p>يعتبر استخدام تطبيقنا و اضافة بياناتك الشخصية بمثابة موافقة منك على شروط الاستخدام. نحن نمثل تطبيق أستاذى الموجود فى مصر. انت تمثل مستخدم لهذا التطبيق و اذا لم توافق على شروط الاستخدام فتوقف عن استخدام التطبيق.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل نحن نجمع معلوماتك الشخصية ؟</h5>
+                            <p>نحن نستخدم معلوماتك الشخصية فى وقت الحاجة..على سبيل المثال..عندما تقوم بالحجز فى كورس فى المركز نقوم بإرسال جميع معلوماتك الشخصية إلى المحاضر كى يتمكن من معرفة هويتك.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>كيف نستخدم معلوماتك الشخصية ؟</h5>
+                            <p>نحن نستخدم معلوماتك الشخصية فى وقت الحاجة..على سبيل المثال..عندما تقوم بالحجز فى كورس فى المركز نقوم بإرسال جميع معلوماتك الشخصية إلى المحاضر كى يتمكن من معرفة هويتك.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل معلوماتى الشخصية آمنة؟</h5>
+                            <p>نعم..جميع البيانات آمنة لجميع المستخدمين ولا يتم إرسال اى بيانات الى اى شركة للأعمال . ولكن نستخدم البيانات فى تطبيقنا فقط.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل يمكننى تعديل معلوماتى الشخصية ؟</h5>
+                            <p> نعم.. يمكنك تعديل ملعوماتك الشخصية من الإعدادات فى الوقت الذى تريده.تأكد من ان معلوماتك المعدلة صحيحة و كاملة لأننا نرسل المعلومات الشخصية الى المحاضر عند حجز الكورس.
+                                5 -هل الدفع عن طريق باى بال هو الطريقة الوحيدة لدفع الكورس ؟
+                                - نعم.. مؤقتا طريقة الدفع عن طريق PayPal هى الطريقة الوحيدة لشراء الكورس . يمكنك استخدام Visa .. MasterCard....الخ لدفع التكلفة للمحاضر .. لا تخف طريقة الدفع PayPal طريقة آمنة.
+                                </p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل الدفع عن طريق باى بال هو الطريقة الوحيدة لدفع الكورس ؟</h5>
+                            <p> نعم.. مؤقتا طريقة الدفع عن طريق PayPal هى الطريقة الوحيدة لشراء الكورس . يمكنك استخدام Visa .. MasterCard....الخ لدفع التكلفة للمحاضر .. لا تخف طريقة الدفع PayPal طريقة آمنة.
+                                </p>
+                        </li>
+                        
+                        <li class="li-privacy">
+                            <h5>ما الإجراء الذى يجب على إتخاذه اذا واجهتنى مشكلة أثناء تصفح موقع الويب ؟</h5>
+                            <p>الإجراء الذى يجب عليك اتخاذه هو عن طريق (التواصل معنا) بإعطائنا التفاصيل (البريد الإلكترونى – نوع المشكلة – محتوى المشكلة ).</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>الحق فى تعديل شروط الاستخدام </h5>
+                            <p>بالتأكيد لدينا الحق فى تعديل شروط الاستخدام فى اى وقت حتى نتمكن من اضافة او تحديث أو حذف اى شرط فى التطبيق . وبما أننا لدينا الحق فى القيام بذلك ..فأنت لديك الحق فى ان يتم إعلامك بشأن الاضافات او التحديثات او الحذف لأى شرط من خلال بريدك الالكترونى.</p>
                         </li>
                         <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
-                        </li>
-                        <li class="li-privacy">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quidem magni ea ab
-                                doloribus veritatis assumenda at tenetur perspiciatis modi atque quasi deleniti, minima
-                                blanditiis voluptatem eveniet in omnis dolor!</p>
+                            <h5>هل لديك أى سؤال تود ان تعرف إجابته ؟</h5>
+                            <p>بالتأكيد لديك الحق فى طرح أى سؤال لإزالة الغموض . يمكنك طرح سؤالك على Ostazy@ask.com و سنرسل الاجابة على الفور إلى بريدك الإكترونى. </p>
                         </li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -650,57 +560,60 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Login to Ostazy</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">تسجيل الدخول إلى أستاذي</h5>
+                    <button type="button" class="إغلاق" data-dismiss="modal" aria-label="إغلاق">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <%- include('../partials/Basic/errors.ejs') -%>
                     <form action="/user/login" method="POST">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i
                                         class="far fa-envelope-open"></i></span>
                             </div>
-                            <input type="email" name="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" placeholder="Enter your email">
+                            <input required type="email" name="email" class="form-control" id="email"
+                                aria-describedby="emailHelp" placeholder="إكتب بريدك الإلكتروني">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="password" id="password" class="form-control"
-                                aria-describedby="emailHelp" placeholder="Enter your Password">
-                        </div>
-
-
-                        <div class="form-group">
-                            <p class="text-center">By signing up you accept our <a
-                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlot"> terms of use</a>
-                            </p>
+                            <input required type="password" name="password" id="passwordLogin" class="form-control"
+                                aria-describedby="passwordLogin" placeholder="إكتب الرقم السري">
                         </div>
                         <div class="col-md-12 text-center ">
-                            <button type="submit" class=" btn btn-block mybtn btn-success tx-tfm">Login <i
+                            <button type="submit" class=" btn btn-block mybtn btn-success tx-tfm">تسجيل الدخول <i
                                     class="fas fa-sign-in-alt"></i></button>
                         </div>
                         <div class="col-md-12 mb-3 mt-3">
                             <p class="text-center">
-                                <a href="/login/auth/facebook" class="w-100 btn btn-primary facebook"> <span>Login
-                                        with Facebook</span> <i class="fab fa-facebook-f"></i> </a>
+                                <a href="/user/auth/facebook" class="w-100 btn btn-primary facebook"> <span>تسجيل الدخول عبر فيسبوك</span> <i class="fab fa-facebook-f"></i> </a>
                                 </a>
                             </p>
                         </div>
+                        <div class="form-group">
+                            <p class="text-center">قبل تسجل الدخول فأنتَ موافق على <a
+                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlot">شروط الاستخدام</a>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-center">قبل تسجل الدخول فأنتَ موافق على <a
+                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlop">سياسة الخصوصية</a>
+                            </p>
+                        </div>
+                        <!-- 
                         <div class="form-group">
                             <p class="text-center">Don't have account? <a
                                     style="cursor: pointer; color: rgb(34, 111, 253)" id="hlos">Signup here</a></p>
                             <p class="text-center mb-0">Forgot your password? <a href="/user/forgotPassword"
                                     id="forgotPassword">Visit</a></p>
                         </div>
+                        -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -710,8 +623,8 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Create new Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">إنشاء حساب جديد</h5>
+                    <button type="button" class="إغلاق" data-dismiss="modal" aria-label="إغلاق">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -723,7 +636,7 @@
                                 <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                             </div>
                             <input type="text" name="fullname" id="email" class="form-control"
-                                placeholder="Enter the fullname">
+                                placeholder="إكتب إسمك بشكل كامل">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -731,32 +644,32 @@
                                         class="far fa-envelope-open"></i></span>
                             </div>
                             <input type="text" name="email" id="email" class="form-control"
-                                placeholder="Enter the email">
+                                placeholder="إكتب بريدك الإلكتروني">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" name="password" id="password" class="form-control"
-                                placeholder="Enter the password">
+                                placeholder="إكتب الرقم السري">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
-                                placeholder="Confirm the password">
+                                placeholder="تأكيد الرقم السري">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                             </div>
                             <input type="text" name="phone" id="phone" class="form-control"
-                                placeholder="Enter the phone number">
+                                placeholder="إكتب رقم هاتفك">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-outline-danger" data-toggle="popover"
                                     data-placement="top" title="Important Notification"
-                                    data-content="Be sure that the phone number is correct and valid">Notify</button>
+                                    data-content="Be sure that the phone number is correct and valid">إشعار</button>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -765,36 +678,36 @@
                                 <span class="input-group-text" id="basic-addon1"> <i class="far fa-compass"></i></span>
                             </div>
                             <select id="location" name="location" class="custom-select">
-                                <option value="Alexandria">Alexandria</option>
-                                <option value="Aswan">Aswan</option>
-                                <option value="Asyut">Asyut</option>
-                                <option value="Beheira">Beheira</option>
-                                <option value="Beni Suef">Beni Suef</option>
-                                <option value="Cairo">Cairo</option>
-                                <option value="Dakahlia">Dakahlia</option>
-                                <option value="Damietta">Damietta</option>
-                                <option value="Faiyum">Faiyum</option>
-                                <option value="Gharbia">Gharbia</option>
-                                <option value="Giza">Giza</option>
-                                <option value="Ismailia">Ismailia</option>
-                                <option value="Kafr El Sheikh">Kafr El Sheikh</option>
-                                <option value="Luxor">Luxor</option>
-                                <option value="Matruh">Matruh</option>
-                                <option value="Minya">Minya</option>
-                                <option value="Monufia">Monufia</option>
-                                <option value="New Valley">New Valley</option>
-                                <option value="North Sinai">North Sinai</option>
-                                <option value="Port Said">Port Said</option>
-                                <option value="Qalyubia">Qalyubia</option>
-                                <option value="Qena">Qena</option>
-                                <option value="Red Sea">Red Sea</option>
-                                <option value="Sharqia">Sharqia</option>
-                                <option value="Sohag">Sohag</option>
-                                <option value="South Sinai">South Sinai</option>
-                                <option value="Suez">Suez</option>
+                                <option value="Alexandria">الاسكندرية</option>
+                                <option value="Aswan">أسوان</option>
+                                <option value="Asyut">أسيوط</option>
+                                <option value="Beheira">البحيرة</option>
+                                <option value="Beni Suef">بني سويف</option>
+                                <option value="Cairo">القاهرة</option>
+                                <option value="Dakahlia">الدقهلية</option>
+                                <option value="Damietta">دمياط</option>
+                                <option value="Faiyum">الفيوم</option>
+                                <option value="Gharbia">الغربية</option>
+                                <option value="Giza">الجيزة</option>
+                                <option value="Ismailia">الاسماعيلية</option>
+                                <option value="Kafr El Sheikh">كفر الشيخ</option>
+                                <option value="Luxor">الاقصر</option>
+                                <option value="Matruh">مطروح</option>
+                                <option value="Minya">المنيا</option>
+                                <option value="Monufia">المنوفية</option>
+                                <option value="New Valley">الوادي الجديد</option>
+                                <option value="North Sinai">جنوب سيناء</option>
+                                <option value="Port Said">بورسعيد</option>
+                                <option value="Qalyubia">القليوبية</option>
+                                <option value="Qena">قنا</option>
+                                <option value="Red Sea">البحر الاحمر</option>
+                                <option value="Sharqia">الشرقية</option>
+                                <option value="Sohag">سوهاج</option>
+                                <option value="South Sinai">شمال سيناء</option>
+                                <option value="Suez">السويس</option>
                             </select>
                             <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Location</label>
+                                <label class="input-group-text" for="inputGroupSelect02">الموقع</label>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -804,12 +717,12 @@
                                         class="fas fa-mars-stroke"></i></span>
                             </div>
                             <select class="custom-select" name="gender">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Unknown">Unknown</option>
+                                <option value="Male">ذكر</option>
+                                <option value="Female">أنثى</option>
+                                <option value="Unknown">غير موضح</option>
                             </select>
                             <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Gender</label>
+                                <label class="input-group-text" for="inputGroupSelect02">النوع</label>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -817,21 +730,21 @@
                                 <span class="input-group-text" id="basic-addon1"> <i class="fas fa-dice-d20"></i></span>
                             </div>
                             <select class="custom-select" name="role">
-                                <option value="User">User</option>
-                                <option value="Instructor">Instructor</option>
+                                <option value="User">المستخدم</option>
+                                <option value="Instructor">المحاضر</option>
                             </select>
                             <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Role</label>
+                                <label class="input-group-text" for="inputGroupSelect02">الدور</label>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <button type="submit " class="btn btn-primary "> Signup <i
+                            <button type="submit " class="btn btn-primary "> التسجيل <i
                                     class="fas fa-user-plus"></i></button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -841,14 +754,15 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Create new Contact <i class="fas fa-reply"></i></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">إنشاء إتصال جديد <i class="fas fa-reply"></i>
+                    </h5>
+                    <button type="button" class="إغلاق" data-dismiss="modal" aria-label="إغلاق">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="contactUs" id="contactUs">
-                        <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores officiis voluptates repellendus praesentium numquam iusto eveniet quas.</p>
+                        <p>إنشئ إتصال جديد معنا. عن طريق ذلك النموذج سوف تكون قادرًا عن التعبير عن مشكلتك ونحن سوف نسعى إلى حل تلك المشكلة في الحال</p>
                         <div class="form-here" id="form-here">
                             <form class="contactForm" id="contactForm">
                                 <div class="input-group mb-3">
@@ -856,8 +770,8 @@
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="far fa-envelope-open"></i></span>
                                     </div>
-                                    <input required placeholder="Enter your email" type="email"
-                                        class="form-control" id="emailContact" />
+                                    <input required placeholder="إكتب بريدك الإلكتروني*" type="email" class="form-control"
+                                        id="emailContact" />
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -865,12 +779,12 @@
                                                 class="fas fa-exclamation-triangle"></i></span>
                                     </div>
                                     <select class="custom-select text-muted" id="problemContact">
-                                        <option value="Website">Website</option>
-                                        <option value="student">User</option>
-                                        <option value="teacher">Instructor</option>
+                                        <option value="Website">الموقع</option>
+                                        <option value="student">المستخدم</option>
+                                        <option value="teacher">المحاضر</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <label class="input-group-text" for="inputGroupSelect02">Problem</label>
+                                        <label class="input-group-text" for="inputGroupSelect02">مشكلة</label>
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
@@ -878,10 +792,11 @@
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="far fa-comment"></i></span>
                                     </div>
-                                    <textarea required ype="text" class="form-control" id="messageContact" placeholder="Enter your message" maxlength="255"></textarea>
+                                    <textarea required ype="text" class="form-control" id="messageContact"
+                                        placeholder="إكتب رسالتك بشكل توضيحي*" maxlength="255"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Submit <i
+                                    <button type="submit" class="btn btn-success">إرسال <i
                                             class="fas fa-reply"></i></button>
                                 </div>
                             </form>
@@ -889,7 +804,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -898,22 +813,97 @@
     <!-- End terms/privacy Area -->
 
     <!-- Start Footer -->
-    <%- include('../partials/English/Footer') -%>
+    <section class="footer-section container-fluid py-5 text-center" id="footer-section">
+        <div class="container">
+            <div class="row wow fadeInLeft">
+                <div class="col-12">
+                    <div class="footer-section-about">
+                        <h3 class="text-muted hvr-forward">عن تطبيق أستاذي</h3>
+                        <p class="text-muted mt-1 hvr-forward">الهدف من هذا المشروع هو جعل التواصل بين المستخدمين والمحاضرين أسهل بحيث يساعد نظامنا المستخدم على حجز الكورس المناسب في المركز. سيعرض المشروع جميع الكورسات للمستخدم المتعلقة باهتماماته ويمكن للمستخدم استكشاف هذه الكورسات وغيرها من الكورسات إذا أراد. طريقة الدفع المقدمة للمستخدم هي PayPal ، بعد حجز الكورس و الدفع من قبل المستخدم سيقوم النظام بإخطار المحاضر. في النهاية ، لدينا لوحة تحكم خاصة لمعرفة ما يحدث في نظامنا بسرعة.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 wow fadeInRight">
+                <div class="col-12 mb-2">
+                    <div class="footer-follow-text">
+                        <h3 class="text-muted">تابعنا على التالي</h3>
+                    </div>
+                </div>
+                <div class="col-12">
+                   <div class="footer-contact d-flex justify-content-center">
+                        <div class="footer-info-contact hvr-pulse-shrink">
+                            <i class="flaticon-phone-call text-muted"></i>
+                            <h3 class="text-muted">الهاتف</h3>
+                            <span><a href="tel:+2 01203522497" class="text-muted">+2 01203522497</a></span>
+                        </div>
+                        <div class="footer-info-contact mr-4 hvr-pulse-shrink">
+                            <i class="flaticon-envelope text-muted"></i>
+                            <h3 class="text-muted">البريد</h3>
+                            <span><a href="Ostazy@business.com" class="text-muted">Ostazy@business.com</a></span>
+                        </div>
+                        <div class="footer-info-contact mr-4 hvr-pulse-shrink">
+                            <i class="flaticon-pin text-muted"></i>
+                            <h3 class="text-muted">العنوان</h3>
+                            <span class="text-muted">مصر - الإسماعيلية</span>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer Area -->
+    
+    <!-- Start Copy Right Area -->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="copyright-area-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 wow fadeInLeft">
+                        <p class="hvr-forward">
+                            <i class="far fa-copyright"></i> 
+                            جميع الحقوق محفوظة لدى
+                            <a style="color: #EC174C" href="/">
+                                أستاذي
+                            </a> 2020
+                        </p>
+                    </div>
+    
+                    <div class="col-lg-6 col-md-6  wow fadeInRight">
+                        <ul>
+                            <li>
+                                <a data-toggle="modal" data-target="#terms"
+                                        style="cursor: pointer"><span class="hvr-forward">الشروط</span></a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#privacy"
+                                style="cursor: pointer"><span class="hvr-forward">الخصوصية</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End Footer -->
 
     <!-- Start Go Top Section -->
     <div class="go-top">
         <i class="bx bx-chevron-up"></i>
         <i class="bx bx-chevron-up"></i>
+        <i class="fas fa-arrow-circle-up"></i>
     </div>
     <!-- End Go Top Section -->
 
     <!-- Notification -->
-    <div class="notification bg-white text-white shadow-lg p-3" id="notification"></div>
+    <div class="notificationSuccess text-white shadow-lg p-3"></div>
+    <div class="notificationError text-white shadow-lg p-3"></div>
     <!-- Notification -->
 
     <!-- Jquery Slim JS -->
     <script src="/assets/js/jquery.min.js"></script>
+    <!-- jquery-3.5.1 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Popper JS -->
     <script src="/assets/js/popper.min.js"></script>
     <!-- Bootstrap JS -->
@@ -925,43 +915,65 @@
     <!-- Moment JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <!-- Custom JS -->
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/Index.js"></script>
 
     <script>
         $(() => {
             if (("<%= success %>") != '') {
-                $("#notification").html(`
-             <div class="cancelNotification text-white">x</div>
-        <audio autoplay class="d-none">
-            <source src="/assets/sounds/notification.mp3" type="audio/mpeg">
-         </audio>
-        <h4>Notification</h4>
-        <p class="mb-0" style="font-size: 14px"><%= success %></p>
-             `).show(100).delay(5000).hide(100);
+                $(".notificationSuccess")
+                        .html(
+                            `
+                 <div class="cancelNotificationSuccess text-white" id="cancelNotificationSuccess">x</div>
+            <audio autoplay class="d-none">
+                <source src="
+                /assets/sounds/notification.mp3" type="audio/mpeg">
+             </audio>
+            <h4 class="text-white">Notification</h4>
+            <p class="mb-0 text-white" style="font-size: 14px; color: white"><%= success %></p>
+                 `
+                        )
+                        .show(100)
+                        .delay(5000)
+                        .hide(100);
+            }
+            if (("<%= errors %>")) {
+                $("#send").modal("show");
             }
             if (("<%= error %>").split(" ").slice(0, 1).join("") === "Login") {
                 $("#login").modal("show");
-                $("#notification").html(`
-             <div class="cancelNotification text-white"">x</div>
-        <audio autoplay class="d-none">
-            <source src="
-            /assets/sounds/notification.mp3" type="audio/mpeg">
-         </audio>
-        <h4>Notification</h4>
-        <p class="mb-0" style="font-size: 14px">${ ("<%= error %>").split(' ').slice(1).join(' ')}</p>
-             `).show(100).delay(5000).hide(100);
+                $(".notificationError")
+                        .html(
+                            `
+                 <div class="cancelNotificationError text-white" id="cancelNotificationError">x</div>
+            <audio autoplay class="d-none">
+                <source src="
+                /assets/sounds/notification.mp3" type="audio/mpeg">
+             </audio>
+            <h4 class="text-white">Notification</h4>
+            <p class="mb-0 text-white" style="font-size: 14px; color: white">${ "<%= error %>".split(" ").slice(1).join(" ") }</p>
+                 `
+                        )
+                        .show(100)
+                        .delay(5000)
+                        .hide(100);
             }
             if (("<%= error %>").split(" ").slice(0, 1).join("") === "Signup") {
-                $("#login").modal("show");
-                $(".notification").html(`
-             <div class="cancelNotification text-white">x</div>
-        <audio autoplay class="d-none">
-            <source src="
-            /assets/sounds/notification.mp3" type="audio/mpeg">
-         </audio>
-        <h4>Notification</h4>
-        <p class="mb-0" style="font-size: 14px">${ ("<%= error %>").split(' ').slice(1).join(' ')}</p>
-             `).show(100).delay(5000).hide(100);
+                $("#send").modal("show");
+                $(".notificationError")
+                        .html(
+                            `
+                 <div class="cancelNotificationError text-white" id="cancelNotificationError">x</div>
+            <audio autoplay class="d-none">
+                <source src="
+                /assets/sounds/notification.mp3" type="audio/mpeg">
+             </audio>
+            <h4 class="text-white">Notification</h4>
+            <p class="mb-0 text-white" style="font-size: 14px; color: white">${ "<%= error %>".split(" ").slice(1).join(" ") }</p>
+                 `
+                        )
+                        .show(100)
+                        .delay(5000)
+                        .hide(100);
             }
         })
     </script>

@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-     <!-- Main CSS -->
-    <link href="/assets/css/main.css" rel="stylesheet" />
-
-     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logo.png" />
-
-     <!-- Typeahead CSS-->
-    <link rel="stylesheet" href="/assets/css/typeahead.css">
-
-     <!-- Typeahead CSS-->
-    <link href="/assets/css/lightbox.css" rel="stylesheet" />
-
-    <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/css/amsify.suggestags.css" />
-    <title>
-        <%= user.fullname %>
-    </title>
-</head>
-
+    <head>
+        <!-- Required meta tags(utf-8) & (viewport) -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/assets/images/System/Logo/logo.png" />
+        <!-- Typeahead CSS -->
+        <link rel="stylesheet" href="/assets/css/typeahead.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="/assets/css/animate.css" />
+        <!-- Hover CSS -->
+        <link rel="stylesheet" href="/assets/css/hover.css" />
+         <!-- amsify.suggestags.css -->
+        <link rel="stylesheet" href="/assets/css/amsify.suggestags.css" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- Profile CSS -->
+        <link rel="stylesheet" href="/assets/css/profile.css" />
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <title>
+            <%= user.fullname %>
+        </title>
+    </head>
 
 <body style="position: relative">
 
@@ -73,19 +63,16 @@
                 <div class="nav flex-column nav-pills shadow-lg" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: #FFF; border-radius: 15px; padding: 20px">
                     <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
                     <a class="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#v-pills-edit" role="tab" aria-controls="v-pills-edit" aria-selected="false">Information</a>
-                    <% if(user.fromStatus !== "facebook") { %>
-                        <a class="nav-link" id="v-pills-changePassword-tab" data-toggle="pill" href="#v-pills-changePassword" role="tab" aria-controls="v-pills-changePassword" aria-selected="false">Password</a>
-                    <% } %>
-                    <% if(user.mainRole === "Instructor") { %>
-                        <a class="nav-link" id="v-pills-role-tab" data-toggle="pill" href="#v-pills-role" role="tab" aria-controls="v-pills-role" aria-selected="false"><span>
-                            Role</span> <i class="fas fa-dice-d20"></i></a>
+                    <a class="nav-link" id="v-pills-changePassword-tab" data-toggle="pill" href="#v-pills-changePassword" role="tab" aria-controls="v-pills-changePassword" aria-selected="false">Password</a>
+                    <% if(user.role === "Instructor") { %>
+                        <a class="nav-link" id="v-pills-changeSpecialization-tab" data-toggle="pill" href="#v-pills-changeSpecialization" role="tab" aria-controls="v-pills-changeSpecialization" aria-selected="false">Specialization</a>
                     <% } %>
                     <a class="nav-link" id="v-pills-removeAccount-tab" data-toggle="pill" href="#v-pills-removeAccount" role="tab" aria-controls="v-pills-removeAccount" aria-selected="false"><span>
                         Account</span> <i class="far fa-trash-alt"></i></a>
                   </div>
             </div>
             <div class="col-md-9 col-12 mt-3 mt-md-0">
-                <div class="tab-content shadow">
+                <div class="tab-content shadow bg-white" style="border-radius: 15px; padding: 20px">
                     <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <div class="container-fluid">
                             <div class="row">
@@ -109,7 +96,7 @@
                                     <% if(user.role === "Instructor") { %>
                                     <h6>Instructor Dashboard</h6>
                                     <p>Your can visit your special dashboard to make course and publish it</p>
-                                    <a class="btn btn-info btn-sm" href="/user/profile/dashboard">Dashboard</a>
+                                    <a class="btn btn-info btn-sm" href="/dashboard">Dashboard</a>
                                     <% } else { %>
                                     <div class="here">
                                         <h6>Recent Tags</h6>
@@ -327,7 +314,7 @@
                             </div>
                         </form>
                     </div>
-                    <% if(user.fromStatus !== "facebook") { %>
+
                     <div class="tab-pane fade" id="v-pills-changePassword" role="tabpanel" aria-labelledby="v-pills-changePassword-tab">
                         <div class="container-fluid">
                             <div class="row">
@@ -386,33 +373,42 @@
                             </div>
                         </form>
                     </div>
-                    <% } %>
-                    <% if(user.mainRole === "Instructor") { %>
-                    <div class="tab-pane fade" id="changeRole">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4>Change your Role <i class="fas fa-dice-d20"></i></h4>
-                                    <p>After changing your Role to User, You will be able visit the pages that are
-                                        related to User and book the course you want. Don't be affraid, You will be able
-                                        to change your Role to Instructor again in the time you like.</p>
-                                    <div class="d-flex">
-                                        <form class="changeRoleToUser" id="changeRoleToUser" method="POST"
-                                            action="/settings/changeRoleToUser">
-                                            <button type="submit" class="btn btn-lg btn-success">Change Role to User <i
-                                                    class="far fa-user"></i> </button>
-                                        </form>
-                                        <form class="changeRoleToInstructor ml-2" id="changeRoleToInstructor"
-                                            method="POST" action="/settings/changeRoleToInstructor">
-                                            <button type="submit" class="btn btn-lg btn-primary">Change Role to
-                                                Instructor <i class="fas fa-chalkboard-teacher"></i></button>
-                                        </form>
-                                    </div>
 
+                    <% if(user.role === "Instructor") { %>
+                        <div class="tab-pane fade" id="v-pills-changeSpecialization" role="tabpanel" aria-labelledby="v-pills-changeSpecialization-tab">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>Change your Specialization <i class="fab fa-affiliatetheme"></i></h4>
+                                    </div>
                                 </div>
                             </div>
+                            <form class="container-fluid" role="form" method="POST" id="form" action="/settings/changeSpecialization">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <select id="coursename" name="field" class="custom-select">
+                                            <optgroup label="Specialization">
+                                                <option value="Hardware" <%= user.specialized === "Hardware"? 'selected' : ''%> >Hardware</option>
+                                                <option value="Software"<%= user.specialized === "Software"? 'selected' : ''%>>Software</option>
+                                                <option value="Operating Systems"<%= user.specialized === "Operating Systems"? 'selected' : ''%>>Operating Systems</option>
+                                                <option value="Programming"<%= user.specialized === "Programming"? 'selected' : ''%>>Programming</option>
+                                                <option value="Front-end web"<%= user.specialized === "Front-end web"? 'selected' : ''%>>Front-end web</option>
+                                                <option value="Back-end web"<%= user.specialized === "Back-end web"? 'selected' : ''%>>Back-end web</option>
+                                                <option value="Python and DJango"<%= user.specialized === "Python and DJango"? 'selected' : ''%>>Python and DJango</option>
+                                                <option value="Data and Analytics"<%= user.specialized === "Data and Analytics"? 'selected' : ''%>>Data and Analytics</option>
+                                                <option value="Digital Marketing"<%= user.specialized === "Digital Marketing"? 'selected' : ''%>>Digital Marketing</option>
+                                                <option value="Business"<%= user.specialized === "Business"? 'selected' : ''%>>Business</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-0 mt-3">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Change Specialization <i class="fab fa-affiliatetheme"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
                     <% } %>
                     <div class="tab-pane fade" id="v-pills-removeAccount" role="tabpanel" aria-labelledby="v-pills-removeAccount-tab">
                         <div class="container-fluid">
@@ -493,38 +489,9 @@
 
     <%# Typeahead to use Search Engine %>
     <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-    <script src="../assets/js/searchEngine.js"></script>
+    <script src="/assets/js/searchEngine.js"></script>
 
-    <%# For Uploading File and making the videoJS take the full width of its parent %>
-    <script>
-        $(() => {
-            $(".custom-file-input").on("change", function () {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-            $(".video-js").css("width", "100%")
-        })
-    </script>
 
-    <%# Lightbox for the profile image %>
-    <script src="../assets/js/lightbox.js"></script>
-
-    <%# VideoJS as Javascript %>
-    <script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
-
-    <%# SlickJS to make carousel %>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-        $(() => {
-            $('.course').slick({
-                infinite: false,
-                dots: false,
-                speed: 1000,
-                slidesToShow: 5,
-                slidesToScroll: 2
-            });
-        })
-    </script>
 
     <% if(user.role === "User") { %>
     <%# These Scripts are shown only to the User %>
@@ -558,6 +525,25 @@
             }
         })
     </script>
+    <script>
+        $(() => {
+            const visited = localStorage.getItem('visited');
+            if (!visited) {
+                $("#messageToUserButton").click();
+                localStorage.setItem('visited', true);
+            }
+        })
+    </script>
+     <script src="/assets/js/jquery.amsify.suggestags.js"></script>
+     <script>
+         $(() => {
+             $('input[name="tags"]').amsifySuggestags({
+                 suggestions: ["Photoshop", "Adobe Illustrator", "Drawing", "Digital Painting", "InDesign", "Marketing Strategy", "Facebook Marketing", "Google Analytics", "Email Marketing", "Business Strategy", "Cisco CCNA", "CompTIA A+", "AWS Certified Cloud Practitioner", "CompTIA Security+", "CompTIA Network+", "SQL", "MySQL", "Data Modeling", "Data Analysis", "Big Data", "PLC", "Electronics", "Arduino", "Cell Phone Repair", "Microcontroller", "HTML and CSS", "JavaScript and jQuery", "Bootstrap4", "Pug and SASS", "VueJS", "PHP and Laravel", "NodeJS and ExpressJS", "Python and DJango", "ASP.Net backend", "C# backend", "JavaScript", "Java", "Python", "React", "C++", "Finance", "Entrepreneurship", "Communications", "Management", "Sales", "Linux", "Windows Server", "Linux Administration", "Shell Scripting", "Active Directory"],
+                 whiteList: true,
+                 tagLimit: 5
+             });
+         })
+     </script>
     <% } %>
 </body>
 

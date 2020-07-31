@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        default: 'demo'
+        default: 'demo-Change it'
     },
     avatar: {
         type: String,
@@ -65,9 +65,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    mainRole: {
-        type: String
-    },
     bio: {
         type: String
     },  
@@ -82,16 +79,19 @@ const userSchema = new mongoose.Schema({
             message: 'You must provide tags in range [1 - 5]'
         }
     },
+    specialized: {
+        type: String,
+        required: true,
+        default: 'Programming' 
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 })
 userSchema.pre('save', function(next) {
     if (this.role == 'User') {
       this.bio = `Hello ${ this.fullname } User. We would like to be happy with this website. Be sure that your data is correct before booking Course`;
-      this.mainRole = 'User';
     } else {
       this.bio = `Hello ${ this.fullname } Instructor. We would like to be happy with this website. Be sure that your data is correct as there are lots of students may book with you and you can deal with your special dashboard. Publish your first course now`;
-      this.mainRole = 'Instructor';
     }
     next();
 });

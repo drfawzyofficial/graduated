@@ -97,7 +97,6 @@ router.post('/:courseID/executePayment', async (req, res, next) => {
 });
 
 router.get('/:courseID', ensureAuthenticated, (req, res, next) => {
-    if (req.user.role === "User") {
         if (req.params.courseID.match(/^[0-9a-fA-F]{24}$/)) {
             Course.findById({ _id: req.params.courseID }).populate("instructorID").exec((err, course) => {
                 if (err) throw new Error(err.message);
@@ -112,10 +111,6 @@ router.get('/:courseID', ensureAuthenticated, (req, res, next) => {
             req.flash("error", "Something wrong happened");
             res.redirect(`/profile`);
         }
-    } else {
-        req.flash("error", "Change your role to User to be able to view this page");
-        res.redirect("/user/profile");
-    }
 
 })
 module.exports = router;

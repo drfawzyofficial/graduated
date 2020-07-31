@@ -2,56 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Required meta tags(utf-8) & (viewport) -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/System/Logo/logo.png" />
+    <!-- Typeahead CSS -->
+    <link rel="stylesheet" href="/assets/css/typeahead.css">
+    <!-- LightBox CSS -->
+    <link href="/assets/css/lightbox.css" rel="stylesheet" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/hover.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/slick.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/slick-theme.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Profile CSS -->
+    <link rel="stylesheet" href="/assets/css/profile.css" />
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/main.css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logo.png" />
-    <link rel="stylesheet" href="../assets/css/typeahead.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
-    <link href="../assets/css/lightbox.css" rel="stylesheet" />
-    <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css  " />
-    <link rel="stylesheet" type="text/css" href="../assets/css/amsify.suggestags.css" />
     <title>
         <%= user.fullname %>
     </title>
 </head>
 
-<style>
-    .navbar-light .navbar-nav .nav-link {
-    color: rgba(0,0,0,.5);
-    font-size: 30px;
-    transition: 0.1s ease-in-out;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-  background-color: #EAEEF3;
-  border-radius: 15px;
-  box-shadow: 0 0 3px rgb(236, 236, 236);
-}
-
-@media (min-width: 992px) {
-.navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 1rem;
-    padding-left: 1rem;
-}
-}
-.recentUpdate-content {
-    border-radius: 15px;
-    background-color: yellow;
-}
-</style>
 
 
 <body style="position: relative">
@@ -67,19 +46,25 @@
             <p class="d-inline">Your Email: <strong><%= user.email %></strong> <span>is not verified,</span> <span>We
                     have sent a message
                     to your email</span></p>
-            <form class="resend d-inline" id="resend" method="post" action="/user/profile">
+            <form class="resend d-inline" id="resend" method="post" action="/profile/emailVerification">
                 <button type="submit" class="btn btn-danger btn-sm">Resend</button>
             </form>
 
         </div>
         <% } %>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
+                    <h4>Here is your Profile Data. You can edit your profile data from <a href="/settings">Settings</a></h4>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 text-center" data-position="right" data-step="1"
-                data-intro="This is your profile pic, fullname, role, bio and facebook social link. You can uplaod your pic from this place.">
-                <div class="content bg-white shadow-lg p-3 br-15" style="color: #2f2f2f">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 text-center">
+                <div class="leftProfile bg-white shadow-lg p-4 br-15" style="color: #2f2f2f">
                     <a href="/assets/uploads/<%= user.avatar %>" data-lightbox="personalImage"
                         data-title="This photo is related to <%= user.fullname %>">
-                        <img class="shadow" title="<%= user.fullname %>" src="../assets/uploads/<%= user.avatar %>"
+                        <img class="shadow" title="<%= user.fullname %>" src="/assets/uploads/<%= user.avatar %> %>"
                             style="height: 125px; width:125px; border-radius: 50%; border: 1px solid black"
                             alt="avatar" />
                     </a>
@@ -90,10 +75,6 @@
                         <div class="about mt-2 mb-0" style="font-size: 15px; line-height: 1.7">
                             <%- user.bio %>
                         </div>
-                        <p class="about mt-2 mb-0" style="font-size: 15px; line-height: 1.7">
-                            I'm found on <a href="https://www.facebook.com/<%= user.username %>" target="_blank"
-                                class="btn btn-outline-primary btn-sm">Facebook <i class="fab fa-facebook-f"></i></a>
-                        </p>
                     </div>
                     <form class="mt-3" action="/profile/upload" method="post" enctype="multipart/form-data">
                         <div class="input-group mb-3">
@@ -108,8 +89,8 @@
                     </form>
                 </div>
             </div>
-            <div class="col-xl-8 col-lg-8 col-md-6 mt-md-0 mt-3">
-                <div class="tab-content shadow">
+            <div class="col-xl-8 col-lg-8 col-md-6 col-12 mt-md-0 mt-3">
+                <div class="rightProfile p-4 tab-content shadow-lg bg-white">
                     <div class="tab-pane fade show active">
                         <div class="container-fluid">
                             <div class="row">
@@ -161,45 +142,99 @@
             </div>
 
         </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                <h3>Recent Updates</h3>
-            </div>
-            <div class="col-12">
-                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
-                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
-                    <div class="update-content ml-2">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
-                    </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
+                    <h4>A quick look about Instructors, users and courses on our system</h4>
                 </div>
             </div>
-            <div class="col-12 mt-3">
-                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
-                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
-                    <div class="update-content ml-2">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
-                    </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col-12">
+                <h5>There are lots of users from all governance of Egypt in our Ostazy App</h5>
+                <div class="users">
+                    <% users.forEach((user) => { %>
+                        <div class="component px-2">
+                            <div class="elementContent text-center bg-white p-3 shadow-sm">
+                                <div class="forImage text-center">
+                                    <img class="rounded-circle d-inline shadow" src="/assets/uploads/<%= user.avatar %>" title="<%= user.fullname %>" alt="<%= user.fullname %>" style="height: 100px; width: 100px"/>
+                                </div>
+                                <div class="forImage mt-2">
+                                    <h5><%= user.fullname %></h5>
+                                </div>
+                                <div class="forBio">
+                                    <p class="mb-0"><%= user.bio %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
-            <div class="col-12 mt-3">
-                <div class="recentUpdate-content d-flex p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
-                    <div class="update-icon" style="font-size: 20px"><i class="fas fa-pen-nib"></i></div>
-                    <div class="update-content ml-2">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt, qui nam atque iure fugiat aliquid ad natus ut. Recusandae, praesentium ullam laborum quaerat hic vero cumque tenetur reprehenderit accusantium!</p>
-                    </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h5>There are lots of instructors from all governance of Egypt in our Ostazy App</h5>
+                <div class="users">
+                    <% instructors.forEach((user) => { %>
+                        <div class="component px-2">
+                            <div class="elementContent text-center bg-white p-3 shadow-sm">
+                                <div class="forImage text-center">
+                                    <img class="rounded-circle d-inline shadow" src="/assets/uploads/<%= user.avatar %>" title="<%= user.fullname %>" alt="<%= user.fullname %>" style="height: 100px; width: 100px"/>
+                                </div>
+                                <div class="forImage mt-2">
+                                    <h5><%= user.fullname %></h5>
+                                </div>
+                                <div class="forBio">
+                                    <p class="mb-0"><%= user.bio %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h5>There are lots of courses made by lots of instructors in our Ostazy App</h5>
+                <div class="users">
+                    <% courses.forEach((course) => { %>
+                        <div class="component px-2">
+                            <div class="elementContent text-center bg-white shadow-sm pb-3">
+                                <div class="forImage text-center">
+                                    <img class="img-fluid d-inline shadow" src="/assets/centerphotos/<%= course.centerphoto %>" title="<%= course.coursename %>" alt="<%= course.coursename %>"/>
+                                </div>
+                                <div class="forImage mt-2 px-3">
+                                    <h5><%= course.coursename %></h5>
+                                </div>
+                                <div class="forBio px-3">
+                                    <p class="mb-0"><%= course.coursename %> Course is now avialable with Price <%= course.courseprice %> and number of limited users is <%= course.courselimited %> at <%= course.centerlocation %> <%=  course.users.length%></p>
+                                </div>
+                                <div class="completedOrVisited px-3 mt-2">
+                                    <%if(course.users.length === course.courselimited) { %>
+                                        <div class="w-100 h-auto">
+                                           <button type="button" class="btn btn-success w-100">Completed</button>
+                                        </div>
+                                    <% } else { %>
+                                        <div class="w-100 h-auto">
+                                            <a target="_blank" href="/course/<%= course._id %>" type="button" class="btn btn-primary w-100">Visit Course</a>
+                                         </div>
+                                    <%} %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
         </div>
     </div>
 
-
     <% if(user.role === "User") { %>
     <div class="flashContent" id="flashContent" style="position: fixed; left: 15px; bottom: 15px; z-index: 999"></div>
-    <% } %>
-
-
-    <% if(user.role === "User") { %>
-
+    <%# Message to User  #%>
     <button id="messageToUserButton" type="button" class="btn btn-primary" data-toggle="modal"
         data-target="#messageToUser" style="display: none;">
         Launch demo modal
@@ -216,7 +251,7 @@
                 </div>
                 <div class="modal-body">
                     <p>We have set default tags for you. You must know that we select twenty random courses based on
-                        your tags, so You can change the default tags from the Edit Info</p>
+                        your tags, so You can change the default tags Settings</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -225,9 +260,6 @@
         </div>
     </div>
     <% } %>
-
-    <%# FontAwesome Included as JS %>
-    <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
 
 
     <%# Bootstrap4 Package Included as JS %>
@@ -245,45 +277,70 @@
 
     <%# Typeahead to use Search Engine %>
     <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-    <script src="../assets/js/searchEngine.js"></script>
+    <script src="/assets/js/searchEngine.js"></script>
 
-    <%# For Uploading File and making the videoJS take the full width of its parent %>
+    <%# For Uploading File %>
     <script>
         $(() => {
             $(".custom-file-input").on("change", function () {
                 var fileName = $(this).val().split("\\").pop();
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
-            $(".video-js").css("width", "100%")
         })
     </script>
 
-    <%# Lightbox for the profile image %>
-    <script src="../assets/js/lightbox.js"></script>
+    <%# FontAwesome Included as JS %>
+    <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
 
-    <%# VideoJS as Javascript %>
-    <script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+    <%# Lightbox for the profile image %>
+    <script src="/assets/js/lightbox.js"></script>
 
     <%# SlickJS to make carousel %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         $(() => {
-            $('.course').slick({
+            $('.users').slick({
+                dots: true,
                 infinite: false,
-                dots: false,
-                speed: 1000,
-                slidesToShow: 5,
-                slidesToScroll: 2
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        },
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
             });
         })
     </script>
 
-    <%# IntroJS to learn you how to use the website %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
-
     <% if(user.role === "User") { %>
     <%# These Scripts are shown only to the User %>
-    <script src="https://www.atfawry.com/ECommercePlugin/scripts/FawryPay.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         $(() => {
@@ -303,16 +360,6 @@
                 `);
             })
 
-        })
-    </script>
-    <script src="../assets/js/jquery.amsify.suggestags.js"></script>
-    <script>
-        $(() => {
-            $('input[name="tags"]').amsifySuggestags({
-                suggestions: ["Photoshop", "Adobe Illustrator", "Drawing", "Digital Painting", "InDesign", "Marketing Strategy", "Facebook Marketing", "Google Analytics", "Email Marketing", "Business Strategy", "Cisco CCNA", "CompTIA A+", "AWS Certified Cloud Practitioner", "CompTIA Security+", "CompTIA Network+", "SQL", "MySQL", "Data Modeling", "Data Analysis", "Big Data", "PLC", "Electronics", "Arduino", "Cell Phone Repair", "Microcontroller", "HTML and CSS", "JavaScript and jQuery", "Bootstrap4", "Pug and SASS", "VueJS", "PHP and Laravel", "NodeJS and ExpressJS", "Python and DJango", "ASP.Net backend", "C# backend", "JavaScript", "Java", "Python", "React", "C++", "Finance", "Entrepreneurship", "Communications", "Management", "Sales", "Linux", "Windows Server", "Linux Administration", "Shell Scripting", "Active Directory"],
-                whiteList: true,
-                tagLimit: 5
-            });
         })
     </script>
     <script>

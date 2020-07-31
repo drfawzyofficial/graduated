@@ -1,17 +1,17 @@
 // Connection on localhost
-const mongoose = require("mongoose");
-(async() => {
-  try {
-    await mongoose.connect("mongodb://localhost:27017/globalDB", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    });
-    console.log("Connected to mongoDB");
-  } catch (err) {
-    console.error(err.message);
-  }
-})()
+// const mongoose = require("mongoose");
+// (async() => {
+//   try {
+//     await mongoose.connect("mongodb://localhost:27017/globalDB", {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       useFindAndModify: false,
+//     });
+//     console.log("Connected to mongoDB");
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// })()
 // Connection on Server
 // const mongoose = require("mongoose");
 // (async () => {
@@ -30,3 +30,19 @@ const mongoose = require("mongoose");
 //     console.error(err.message);
 //   }
 // })()
+
+// Connection on mongoDB Atlas
+const mongoose = require("mongoose");
+(async () => {
+  try {
+    await mongoose.connect("mongodb+srv://fawzy:0120975049@onlinecoursebooking-vbcbx.gcp.mongodb.net/globalDB"),
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      }
+    console.log("Connected to mongoDB");
+  } catch (err) {
+    console.error(err.message);
+  }
+})()

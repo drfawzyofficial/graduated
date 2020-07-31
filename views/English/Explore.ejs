@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags(utf-8) & (viewport) -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/System/Logo/logo.png" />
+    <!-- Typeahead CSS -->
+    <link rel="stylesheet" href="/assets/css/typeahead.css">
+    <!-- LightBox CSS -->
+    <link href="/assets/css/lightbox.css" rel="stylesheet" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/hover.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/slick.css" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="/assets/css/slick-theme.css" />
+    <!-- simplePagination CSS -->
+    <link href="/assets/css/simplePagination.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Profile CSS -->
+    <link rel="stylesheet" href="/assets/css/profile.css" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <title>
+        <%= user.fullname %>
+    </title>
+</head>
+
+
+
+<body style="position: relative">
+
+    <%- include('../partials/English/Header') -%>
+
+    <div class="container mb-4" style="margin-top: 110px">
+        <%- include('../partials/Basic/flashMessages.ejs') -%>
+        <%- include('../partials/Basic/errors.ejs') -%>
+        <% if(user.accountVerified === false) { %>
+        <div class="message alert alert-danger">
+
+            <p class="d-inline">Your Email: <strong><%= user.email %></strong> <span>is not verified,</span> <span>We
+                    have sent a message
+                    to your email</span></p>
+            <form class="resend d-inline" id="resend" method="post" action="/profile/emailVerification">
+                <button type="submit" class="btn btn-danger btn-sm">Resend</button>
+            </form>
+
+        </div>
+        <% } %>
+        <div class="row">
+            <% if(relatedCourses.length > 0) { %>
+            <div class="col-12">
+                <div class="alert alert-primary mb-0">Related Courses are fond for you</div>
+            </div>
+            <% } else { %>
+            <div class="col-12">
+                <div class="alert alert-danger mb-0">Related Courses are not found for you</div>
+            </div>
+            <% } %>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="paginationContent bg-white p-3 shadow-sm rounded-lg"></div>
+            </div>
+        </div>
+        <div class="row relatedCourses">
+
+        </div>
+
+    </div>
+
+
+    <% if(user.role === "User") { %>
+    <div class="flashContent" id="flashContent" style="position: fixed; left: 13px; bottom: 13px; z-index: 999"></div>
+    <%# Message to User  #%>
+    <button id="messageToUserButton" type="button" class="btn btn-primary" val-toggle="modal"
+        val-target="#messageToUser" style="display: none;">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="messageToUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Important Notification</h5>
+                    <button type="button" class="close" val-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>We have set default tags for you. You must know that we select twenty random courses based on
+                        your tags, so You can change the default tags Settings</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" val-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+
+    <%# Bootstrap4 Package Included as JS %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "
+        crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 "
+        crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js "
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM "
+        crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <%# Typeahead to use Search Engine %>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="/assets/js/searchEngine.js"></script>
+
+    <%# For Uploading File %>
+    <script>
+        $(() => {
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        })
+    </script>
+
+    <%# FontAwesome Included as JS %>
+    <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
+
+    <%# Lightbox for the profile image %>
+    <script src="/assets/js/lightbox.js"></script>
+
+    <%# SlickJS to make carousel %>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(() => {
+            $('.users').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        },
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        })
+    </script>
+
+    <% if(user.role === "User") { %>
+    <%# These Scripts are shown only to the User %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        $(() => {
+            var socket = io()
+            socket.emit("join", "<%= user.id %>");
+            socket.on("courseval", val => {
+                $("#flashContent").html(`
+                    <div class="flashMessage" class="alert alert-danger alert-dismissible fade show" role="alert" role="alert" style="width: 275px; font-size: 14px;">
+                        <audio autoplay class="d-none">
+                            <source src="../assets/sounds/notification.mp3" type="audio/mpeg">
+                         </audio>
+                        <strong>Important Notification!</strong><br> ${dataname} Course is created now. You can visit the course link on <a target="_blank" href="/course/${dataID}">Visit</a> </span>
+                        <button type="button" class="close" val-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                 </div>
+                `);
+            })
+
+        })
+    </script>
+    <script>
+        $(() => {
+            const visited = localStorage.getItem('visited');
+            if (!visited) {
+                $("#messageToUserButton").click();
+                localStorage.setItem('visited', true);
+            }
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="/assets/js/jquery.simplePagination.js"></script>
+    <script>
+        $.ajax({
+            url: "/explore/process?pageNo=1",
+            type: "GET",
+            dataType: "json",
+            success: (data) => {
+                $.each(data, (index, data) => {
+                    $(".relatedCourses").append(`
+                    <div class="col-lg-4 col-md-6 col-12 mt-4">
+                    <div class="courseContent p-4 bg-white shadow" style="border-radius: 20px">
+                        <div class="top-courseContent d-flex">
+                            <div class="forImage text-center">
+                                <div class="img"><img src="/assets/centerphotos/${ data.centerphoto}" style="height: 80px; width: 80px; border-radius: 50%" title="Beauty" alt="Beauty"/></div>
+                            </div>
+                            <div class="forContent pl-2" style="width: calc(100% - 80px)"><h4>${ data.coursename}Course</h4> <p class="mb-0" style="font-size: 13px">${data.coursename} Course is now avialable with Price ${data.courseprice} and number of limited users is ${data.courselimited} at ${data.centerlocation} ${data.users.length} </p>
+                            </div>
+                        </div>
+                        <div class="bottom-courseContent d-flex flex-row flex-wrap justify-content-center mt-2">
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Price: ${ data.courseprice}$</span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Lomited: ${ data.courselimited} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Start: ${ moment(data.coursestart).format("MMM Do YY")} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">End: ${ moment(data.courseend).format("MMM Do YY")} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Location: ${ data.centerlocation}</span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Place: ${ data.centerplace}</span>
+                        </div>
+                        <div class="forLink mt-2">
+                            <a target="_blank" href="/course/${ data._id}" class="btn btn-primary mt-2 w-100">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                                `)
+                })
+            }
+        });
+    </script>
+    <script>
+        $(() => {
+            $(".paginationContent").pagination({
+                pages: "<%= pageCount %>",
+                cssStyle: 'light-theme',
+                onPageClick: (pageNumber, event) => {
+                    $.ajax({
+                        url: "/explore/process?pageNo=" + pageNumber,
+                        type: "GET",
+                        dataType: "json",
+                        success: (data) => {
+                            $(".relatedCourses").empty();
+                            $.each(data, (index, data) => {
+                                $(".relatedCourses").append(`
+                                <div class="col-lg-4 col-md-6 col-12 mt-4">
+                    <div class="courseContent p-4 bg-white shadow" style="border-radius: 20px">
+                        <div class="top-courseContent d-flex">
+                            <div class="forImage text-center">
+                                <div class="img"><img src="/assets/centerphotos/${ data.centerphoto}" style="height: 80px; width: 80px; border-radius: 50%" title="Beauty" alt="Beauty"/></div>
+                            </div>
+                            <div class="forContent pl-2" style="width: calc(100% - 80px)"><h4>${ data.coursename}Course</h4> <p class="mb-0" style="font-size: 13px">${data.coursename} Course is now avialable with Price ${data.courseprice} and number of limited users is ${data.courselimited} at ${data.centerlocation} ${data.users.length} </p>
+                            </div>
+                        </div>
+                        <div class="bottom-courseContent d-flex flex-row flex-wrap justify-content-center mt-2">
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Price: ${ data.courseprice}$</span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Lomited: ${ data.courselimited} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Start: ${ moment(data.coursestart).format("MMM Do YY")} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">End: ${ moment(data.courseend).format("MMM Do YY")} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Location: ${ data.centerlocation}</span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Place: ${ data.centerplace}</span>
+                        </div>
+                        <div class="forLink mt-2">
+                            <a target="_blank" href="/course/${ data._id}" class="btn btn-primary mt-2 w-100">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                                `)
+                            })
+                        }
+                    });
+                }
+            });
+        })
+    </script>
+
+    <% } %>
+</body>
+
+</html>

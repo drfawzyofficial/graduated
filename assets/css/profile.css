@@ -1,3 +1,82 @@
 body {
     background-color: #EAEEF3;
 }
+html,body {
+    width: 100%;
+    height: auto;
+    background-color: #F2F2F2;
+    font-family: 'fontAwesome', sans-serif;
+}
+.nav-tabs {
+    border: none;
+    background-color: #FFFF;
+    box-shadow: 0 0 5px #DDD;
+    border-radius: 4px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0.8rem 0.8rem;
+    color: #888;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #5d72da;
+    color: #F2F2F2;
+}
+
+.form-control, select, textarea {
+    height: 50px;
+}
+
+hr {
+    border-top: 0;
+    border: 2px dashed #cecece;
+    margin: 0;
+    margin-top: 2rem;
+}
+
+.show-notifications #icon-bell {
+    fill: #7f8c8d;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, .5);
+    font-size: 30px;
+    transition: 0.1s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    background-color: #EAEEF3;
+    border-radius: 15px;
+    box-shadow: 0 0 3px rgb(236, 236, 236);
+}
+
+.speLink {
+    background-color: #EAEEF3;
+    border-radius: 15px;
+    box-shadow: 0 0 3px rgb(236, 236, 236);
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}
+
+.recentUpdate-content {
+    border-radius: 15px;
+    background-color: yellow;
+}
+
+
+.leftProfile, .rightProfile {
+    border-radius: 25px !important;
+}
+
+.container .row .col-12 .users .elementContent {
+    border-radius: 15px;
+}
