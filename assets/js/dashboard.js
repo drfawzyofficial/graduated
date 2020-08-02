@@ -1,5 +1,5 @@
 $(() => {
-    function success() {
+    function success(data) {
         $(".notificationSuccess")
             .html(
                 `
@@ -9,14 +9,14 @@ $(() => {
 /assets/sounds/notification.mp3" type="audio/mpeg">
 </audio>
 <h4 class="text-white">Notification</h4>
-<p class="mb-0 text-white" style="font-size: 14px">${ data.msgUser}</p>
+<p class="mb-0 text-white" style="font-size: 14px">${ data.msgUser }</p>
  `
             )
             .show(100)
             .delay(5000)
             .hide(100);
     }
-    function error() {
+    function error(data) {
         $(".notificationError")
             .html(
                 `
@@ -26,7 +26,7 @@ $(() => {
 /assets/sounds/notification.mp3" type="audio/mpeg">
 </audio>
 <h4 class="text-white">Notification</h4>
-<p class="mb-0 text-white" style="font-size: 14px; color: white">${ data.msgUser}</p>
+<p class="mb-0 text-white" style="font-size: 14px; color: white">${ data.msgUser }</p>
  `
             )
             .show(100)
@@ -58,9 +58,9 @@ $(() => {
             .then((data) => {
                 console.log(data)
                 if (data.statusCode != 200) {
-                    error()
+                    error(data)
                 } else {
-                    success();
+                    success(data);
                 }
             })
             .catch((error) => {
@@ -82,15 +82,19 @@ $(() => {
         fetch(`/seso/control/removeCourse`, requestOptions)
         .then(handleResponse)
         .then((data) => {
-            console.log(data)
             if (data.statusCode != 200) {
-                error()
+                error(data)
             } else {
-                success();
+                success(data);
+                $(event.target).parent().parent().parent().parent().hide(250)
             }
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+    })
+
+    $(".editCourse").on("submit",function(event){
+        $(event.target).find('.hiddenArea').val($(event.target).find(".ql-editor").html())
     })
 })

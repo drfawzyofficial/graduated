@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<title>Instructor Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
      <!-- Typeahead CSS -->
      <link rel="stylesheet" href="/assets/css/typeahead.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -160,13 +160,6 @@
 								<span class="badge badge-count">6</span>
 							</a>
 						</li>
-						<li class="nav-item <%= content === "chat"? 'active' : ''%>">
-							<a href="/seso/chat">
-								<i class="la la-bell"></i>
-								<p>Chatting</p>
-								<span class="badge badge-success">3</span>
-							</a>
-						</li>
 						<li class="nav-item <%= content === "balance"? 'active' : ''%>">
 							<a href="/seso/balance">
 								<i class="la la-font"></i>
@@ -187,13 +180,11 @@
                 <%- include('../partials/English/Dashboard/dashboard') -%>
             <% } else if(content === "publish") { %>
                 <%- include('../partials/English/Dashboard/publish') -%>
-            <% } else if(content === "control") { %>
+			<% } else if(content === "control") { %>
                 <%- include('../partials/English/Dashboard/control') -%>
             <% } else if(content === "requests") { %>
                 <%- include('../partials/English/Dashboard/requests') -%>
-            <% } else if(content === "chat") { %>
-                <%- include('../partials/English/Dashboard/chat') -%>
-            <% } else if(content === "balance") { %>
+			<%  } else if(content === "balance") { %>
                 <%- include('../partials/English/Dashboard/balance') -%>
             <% } %>
 		</div>  
@@ -262,13 +253,6 @@
 	 })
  </script>
  <script src="/assets/js/dashboard.js"></script>
- <script>
-	 $(() => {
-		function myFunction(course) {
-        alert('there are lots of things now');
-        console.log(course);
-    }
-	 })
- </script>
+
 
 </html>

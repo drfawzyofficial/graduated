@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 let reviewschema = new mongoose.Schema({
-    instructorID: {
+    courseID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
@@ -17,7 +17,7 @@ let reviewschema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    myDate: {
+    Date: {
         type: Date,
         default: Date.now()
     }

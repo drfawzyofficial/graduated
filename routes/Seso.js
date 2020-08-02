@@ -120,7 +120,7 @@ router.post('/control/removeCourse', async (req, res, next) => {
                 msgUser: 'Something went wrong'
             });
         }
-        const course = Course.findOne({ _id: courseID });
+        const course = await Course.findOne({ _id: courseID });
         if(!course) {
             return res.status(404).json({
                 statusCode: 404,
@@ -128,9 +128,7 @@ router.post('/control/removeCourse', async (req, res, next) => {
                 msgUser: 'Something went wrong'
             });
         }
-        console.log(course)
-        console.log(`${ course.instructorID } - ${ req.user.id }`)
-        if(course.instructorID !== req.user.id) {
+        if(course.instructorID != req.user.id) {
             return res.status(400).json({
                 statusCode: 400,
                 msgDev: 'Try to delete another course',
@@ -138,8 +136,7 @@ router.post('/control/removeCourse', async (req, res, next) => {
             });
         }
         
-
-        if(course.users.length > 0 && course.courseend != Date.now()) {
+        if(course.users.length > 0 && moment(course.courseend).valueOf() > Date.now()) {
             return res.status(400).json({
                 statusCode: 400,
                 msgDev: 'Number of enrolled users is greater than 0',
@@ -147,17 +144,13 @@ router.post('/control/removeCourse', async (req, res, next) => {
             });
         }
 
-        if(course.users.length === 0 || course.users.length > 0 && course.courseend == Date.now()) {
-            const removedCourse = await Course.findByIdAndRemove({ _id: course._id });
-            return res.status(200).json({
-                statusCode: 200,
-                removedCourse: removedCourse,
-                msgDev: 'Course has been removed from mongoDB Course Collection',
-                msgUser: 'Course has been deleted successfully'
-            });
-        }
-        
-
+        const removedCourse = await Course.findByIdAndRemove({ _id: course._id });
+        return res.status(200).json({
+            statusCode: 200,
+            removedCourse: removedCourse,
+            msgDev: 'Course has been removed from mongoDB Course Collection',
+            msgUser: 'Course has been deleted successfully'
+        });
        
 
     } catch (err) {
@@ -168,6 +161,135 @@ router.post('/control/removeCourse', async (req, res, next) => {
             msgDev: 'Internal Server Error',
             msgUser: 'Something went wrong'
         });
+    }
+});
+
+// Here is for uploading photo for the center
+const storagePhotoForCenter = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'assets/centerphotos')
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + `${path.extname(file.originalname)}`);
+    }
+})
+
+const uploadPhotoForCenter = multer({
+    storage: storagePhotoForCenter,
+    limits: { fileSize: 1024 * 1024 },
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpeg') callback(null, true)
+        else return callback(new Error('Only images with png, jpg, gif or jpeg are allowed'))
+    }
+}).single('centerphoto');
+router.post("/control/uploadCenterPhoto", (req, res, next) => {
+    uploadPhotoForCenter(req, res, (err) => {
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('/seso/control');
+        } else {
+            if (req.file === undefined) {
+                req.flash('error', 'No file is selected');
+                res.redirect('/seso/control');
+            } else {
+                Course.updateOne({ _id: req.body.courseID }, { centerphoto: req.file.filename }, (err) => {
+                    if (err) throw new Error('Error');
+                    else {
+                        req.flash('success', 'The photo is updated successfully');
+                        res.redirect('/seso/control');
+                    }
+                })
+            }
+        }
+    })
+});
+// Here is for uploading video for the course
+const storageVideoForCourse = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'assets/coursevideos')
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + `${path.extname(file.originalname)}`);
+    }
+})
+
+const uploadVideoForCourse = multer({
+    storage: storageVideoForCourse,
+    limits: { fileSize: 15 * 1024 * 1024 },
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext === '.mp4' || ext === '.mpg' || ext === '.gif' || ext === '.webm') callback(null, true)
+        else return callback(new Error('Only videos with mp4, mpg, gif or webm are allowed'))
+    }
+}).single('coursevideo');
+router.post("/control/uploadCourseVideo", (req, res, next) => {
+    uploadVideoForCourse(req, res, (err) => {
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('/seso/control');
+        } else {
+            if (req.file === undefined) {
+                req.flash('error', 'No file is selected');
+                res.redirect('/seso/control');
+            } else {
+                Course.updateOne({ _id: req.params.id }, { coursevideo: req.file.filename }, (err) => {
+                    if (err) throw new Error('Error');
+                    else {
+                        req.flash('success', 'The video is updated successfully');
+                        res.redirect('/seso/control');
+                    }
+                })
+            }
+        }
+    })
+});
+
+router.post('/control/editCourse', async (req, res, next) => {
+    try {
+        
+        const { courseID, coursename, coursecontent, courseprice, limitedUsers, coursestart, courseend, centerlocation, centerplace } = req.body;
+        if (!courseID || !coursename || !coursecontent || !courseprice || !limitedUsers || !coursestart || !courseend || !centerlocation || !centerplace) {
+            req.flash('error', 'All Inputs must be filled');
+            res.redirect('/seso/control');
+
+        }
+
+        if (!courseID.match(/^[0-9a-fA-F]{24}$/)) {
+            req.flash('error', 'Something went wrong');
+            res.redirect('/seso/control');
+        }
+
+        const course = await Course.findOne({ _id: courseID });
+        if(!course) {
+            req.flash('error', 'Course is not found');
+            res.redirect('/seso/control');
+        }
+        
+        if(course.instructorID != req.user.id) {
+            req.flash('error', 'Course is not related to you');
+            res.redirect('/seso/control');
+        }
+        
+
+        if(course.users.length > 0 && moment(course.courseend).valueOf() > Date.now()) {
+            req.flash('error', 'Cannot edit course due to enrolled users');
+            res.redirect('/seso/control');
+        }
+
+        Course.findByIdAndUpdate({ _id: courseID }, { coursename: coursename, coursebio: coursecontent, courseprice: courseprice, courselimited: limitedUsers, coursestart: coursestart,  courseend: courseend, centerlocation: centerlocation, centerplace: centerplace  }, (err) => {
+            if (err) throw new Error('Error');
+            else {
+                req.flash('success', 'Course has been updated successfully');
+                res.redirect('/seso/control');
+            }
+        })
+      
+    } catch (err) {
+        console.log(`Compelted Error `, err);
+        console.log(`Error Message is ${err.message}`);
+        req.flash('error', err.message);
+        res.redirect('/seso/control');
     }
 });
 
