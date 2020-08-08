@@ -48,6 +48,11 @@ let courseSchema = new mongoose.Schema({
     centerphoto: {
         type: String,
         default: 'coursephoto.jpg'
+    },
+    paymentStatus: {
+        type: String,
+        required: true,
+        default: 'start'
     }
 });
 let Course = mongoose.model('Course', courseSchema);

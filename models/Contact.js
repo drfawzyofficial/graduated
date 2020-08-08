@@ -4,18 +4,6 @@ let contactSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fullname: {
-        type: String,
-        required: true
-    },
-    gender: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
     problem: {
         type: String,
         required: true,
