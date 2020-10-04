@@ -32,14 +32,6 @@
                    </a>
                </li>
                <%  } %>
-               <% if(user.role === "Instructor") { %>
-                <li class="nav-item"> 
-               <a class="nav-link <%= (page === "Competitors")? 'speLink' : '' %>" href="/competitors" 
-                   title="Competitors">
-                   <span class="sr-only">(Competitors)</span> <i class="fab fa-accusoft"></i>
-               </a>
-                </li>
-               <%  } %>
 
                <% if(user.role === "User") { %>
                 <li class="nav-item">
@@ -52,31 +44,24 @@
                         <span class="sr-only">(Courses)</span> <i class="fas fa-book"></i>
                     </a>
                 </li>
-               <%  } %>
-               
-               
-                
-                <% if(user.role === "User") { %>
-                     <li class="nav-item"> 
-                    <a class="nav-link <%= (page === "bookedCourses")? 'speLink' : '' %>" href="/bookedcourses" data-toggle="tooltip" data-placement="bottom"
+                <li class="nav-item"> 
+                    <a class="nav-link <%= (page === "Book")? 'speLink' : '' %>" href="/book" data-toggle="tooltip" data-placement="bottom"
                         title="Booked Courses">
                         <span class="sr-only">(bookedCourses)</span> <i class="fas fa-cart-plus"></i>
                     </a>
                 </li>
-                <%  } %> 
+                <li class="nav-item">
+                    <a class="nav-link <%= (page === "Notification")? 'speLink' : '' %>" href="/notifications" title="Notifications">
+                        <span class="sr-only">(Notifications)</span> <i class="fa fa-bell" aria-hidden="true"></i>
+                    </a>
+                </li>
+               <%  } %>
                 
                 <li class="nav-item">
                     <a class="nav-link <%= (page === 'Settings')? 'speLink' : '' %>" href="/settings" title="Settings">
                         <span class="sr-only">(Settings)</span> <i class="fas fa-cogs"></i>
                     </a>
                 </li>
-                <% if(user.role === "User") { %>
-                    <li class="nav-item">
-                        <a class="nav-link <%= (page === "Notifications")? 'speLink' : '' %>" href="/notifications" title="Notifications">
-                            <span class="sr-only">(Notifications)</span> <i class="fa fa-bell" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                <% } %>
                 <li class="nav-item">
                     <a class="nav-link <%= (page === 'Logout')? 'speLink' : '' %>" href="/profile/logout" data-toggle="tooltip" data-placement="bottom"
                         title="Logout">

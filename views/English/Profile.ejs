@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="<%= user.role === 'Business'? "bgColorNow" : "posNow"%>" >
 
 <head>
     <!-- Required meta tags(utf-8) & (viewport) -->
@@ -31,9 +31,21 @@
     </title>
 </head>
 
+<style>
+    .bgColorNow {
+        background-color: rgb(224 238 255) !important
+    }
+    .posNow {
+        position: relative !important
+    }
+</style>
 
 
-<body style="position: relative">
+<body class="<%= user.role === 'Business'? "bgColorNow" : "posNow"%>">
+
+    <% if(user.role !== "Business") { %>
+
+    
 
     <%- include('../partials/English/Header') -%>
 
@@ -167,7 +179,7 @@
                                     <h5><%= user.fullname %></h5>
                                 </div>
                                 <div class="forBio">
-                                    <p class="mb-0"><%= user.bio %></p>
+                                    <p class="mb-0"><%= user.bio.split(" ").slice(0, 30).join(" ") %>...</p>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +201,7 @@
                                     <h5><%= user.fullname %></h5>
                                 </div>
                                 <div class="forBio">
-                                    <p class="mb-0"><%= user.bio %></p>
+                                    <p class="mb-0"><%= user.bio.split(" ").slice(0, 30).join(" ") %>...</p>
                                 </div>
                             </div>
                         </div>
@@ -205,13 +217,13 @@
                         <div class="component px-2">
                             <div class="elementContent text-center bg-white shadow-sm pb-3">
                                 <div class="forImage text-center">
-                                    <img class="img-fluid d-inline shadow" src="/assets/centerphotos/<%= course.centerphoto %>" title="<%= course.coursename %>" alt="<%= course.coursename %>"/>
+                                    <img class="d-inline shadow img-fluid" src="/assets/centerphotos/<%= course.centerphoto %>" title="<%= course.coursename %>" alt="<%= course.coursename %>" style="height: 200px"/>
                                 </div>
                                 <div class="forImage mt-2 px-3">
                                     <h5><%= course.coursename %></h5>
                                 </div>
                                 <div class="forBio px-3">
-                                    <p class="mb-0"><%= course.coursename %> Course is now avialable with Price <%= course.courseprice %> and number of limited users is <%= course.courselimited %> at <%= course.centerlocation %> <%=  course.users.length%></p>
+                                    <p class="mb-0"><%= course.coursename %> Course is now avialable with Price <%= course.courseprice %>$ and There are <%= course.users.length %> users from <%= course.courselimited %> at <%= course.centerlocation %></p>
                                 </div>
                                 <div class="completedOrVisited px-3 mt-2">
                                     <%if(course.users.length === course.courselimited) { %>
@@ -260,6 +272,75 @@
         </div>
     </div>
     <% } %>
+
+      <!-- Notification -->
+      <div class="notificationSuccess text-white shadow-lg p-3"></div>
+      <div class="notificationError text-white shadow-lg p-3"></div>
+      <!-- Notification -->
+
+      <% } else { %>
+        <div class="businessSection container-fluid py-5" id="businessSection" style="background-color: rgb(224 238 255)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="businessContent-left d-flex" id="businessContent-left">
+                            <div class="forImage">
+                                <img class="shadow" src="/assets/uploads/<%= user.avatar %>" style="height: 150px; width: 150px; border-radius: 50%;" title="Business Avatar" alt="Business Avatar"/>
+                            </div>
+                            <div class="forContent pl-2" style="width: calc(100% - 150px)">
+                                <h4>Business Account <a href="/profile/logout" class="btn btn-secondary">Logout</a></h4>
+                                <p><%= user.bio %><%= user.bio %><%= user.bio %><%= user.bio %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <h3 class="text-center">All Transactions made by Instructors</h3>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive-md">
+                        <table class="table  table-light shadow rounded-lg">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Instructor name</th>
+                                <th scope="col">Instructor Email</th>
+                                <th scope="col">Course name</th>
+                                <th scope="col">Course Profit</th>
+                                <th scope="col">Transferred Money</th>
+                                <th scope="col">Completed Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% transactions.forEach((transaction, index) => { %>
+                                <tr>
+                                    <th scope="row"><%= index + 1 %></th>
+                                    <td><%= transaction.courseID.instructorID.fullname %></td>
+                                    <td><%= transaction.courseID.instructorID.email %></td>
+                                    <td><%= transaction.courseID.coursename %></td>
+                                    <td><%= transaction.courseID.courseprice * transaction.courseID.users.length   %>$</td>
+                                    <td><%= (70 / 100) * transaction.courseID.courseprice * transaction.courseID.users.length   %>$</td>
+                                    <td>
+                                        <button class="completedTransaction  btn btn-success btn btn-sm"data-courseid="<%= transaction.courseID._id %>">Complete</button>
+                                    </td>
+                                  </tr>
+                              <% }) %>
+
+                               
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <% } %>
+
+      <!-- Notification -->
+    <div class="notificationSuccess text-white shadow-lg p-3"></div>
+    <div class="notificationError text-white shadow-lg p-3"></div>
+    <!-- Notification -->
 
 
     <%# Bootstrap4 Package Included as JS %>
@@ -347,17 +428,22 @@
             var socket = io()
             socket.emit("join", "<%= user.id %>");
             socket.on("courseData", data => {
-                $("#flashContent").html(`
-                    <div class="flashMessage" class="alert alert-danger alert-dismissible fade show" role="alert" role="alert" style="width: 275px; font-size: 14px;">
-                        <audio autoplay class="d-none">
-                            <source src="../assets/sounds/notification.mp3" type="audio/mpeg">
-                         </audio>
-                        <strong>Important Notification!</strong><br> ${data.coursename} Course is created now. You can visit the course link on <a target="_blank" href="/course/${data.courseID}">Visit</a> </span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                 </div>
-                `);
+                $(".notificationSuccess")
+            .html(
+                `
+ <div class="cancelNotificationSuccess text-white" id="cancelNotificationSuccess">x</div>
+<audio autoplay class="d-none">
+<source src="
+/assets/sounds/notification.mp3" type="audio/mpeg">
+</audio>
+<h4 class="text-white">Notification</h4>
+<p class="mb-0 text-white" style="font-size: 14px">${ data.coursename } is created now. You can visit the course link on <a target="_blank" href="/course/${ data.courseID }">Visit</a></p>
+ `
+            )
+            .show(100)
+            .delay(5000)
+            .hide(100);
+                
             })
 
         })
@@ -371,6 +457,9 @@
             }
         })
     </script>
+    <% } %>
+    <% if(user.role === "Business") { %>
+        <script src="/assets/js/business.js"></script>
     <% } %>
 </body>
 

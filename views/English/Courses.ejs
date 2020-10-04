@@ -54,68 +54,167 @@
 
         </div>
         <% } %>
-        <div class="row">
-            <div class="col-12">
+        <div class="row mt-3">
+            <div class="col-12 ">
                 <div class="p-2 shadow-sm rounded-lg border content" style="background-color: #fff0c6">
                     <h3>Search about courses based on name and price</h3>
-                    <form class="d-flex myForm" id="myForm" action="/courses/filter" method="GET">
-                        <div class="input-group w-25">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-burn"></i></span>
+                    <form class="myForm container-fluid" id="myForm" action="/courses/filter" method="GET">
+                        <div class="row">
+                            <div class="col-lg-3 col-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-burn"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="coursename">
+                                        <optgroup label="Graphic Design">
+                                            <option value="Photoshop">Photoshop</option>
+                                            <option value="Adobe Illustrator">Adobe Illustrator</option>
+                                            <option value="Drawing">Drawing</option>
+                                            <option value="Digital Painting">Digital Painting</option>
+                                            <option value="InDesign">InDesign</option>
+                                        </optgroup>
+                                        <optgroup label="Digital Marketing">
+                                            <option value="Marketing Strategy">Marketing Strategy</option>
+                                            <option value="Facebook Marketing">Facebook Marketing</option>
+                                            <option value="Google Analytics">Google Analytics</option>
+                                            <option value="Email Marketing">Email Marketing</option>
+                                            <option value="Business Strategy">Business Strategy</option>
+                                        </optgroup>
+                                        <optgroup label="IT Certification">
+                                            <option value="Cisco CCNA">Cisco CCNA</option>
+                                            <option value="CompTIA A+">CompTIA A+</option>
+                                            <option value="AWS Certified Cloud Practitioner">AWS Certified
+                                                Cloud Practitioner</option>
+                                            <option value="CompTIA Security+">CompTIA Security+</option>
+                                            <option value="CompTIA Network+">CompTIA Network+</option>
+                                        </optgroup>
+                                        <optgroup label="Data and Analytics">
+                                            <option value="SQL">SQL</option>
+                                            <option value="MySQL">MySQL</option>
+                                            <option value="Data Modeling">Data Modeling</option>
+                                            <option value="Data Analysis">Data Analysis</option>
+                                            <option value="Big Data">Big Data</option>
+                                        </optgroup>
+                                        <optgroup label="Hardware">
+                                            <option value="PLC">PLC</option>
+                                            <option value="Electronics">Electronics</option>
+                                            <option value="Arduino">Arduino</option>
+                                            <option value="Cell Phone Repair">Cell Phone Repair</option>
+                                            <option value="Microcontroller">Microcontroller</option>
+                                        </optgroup>
+                                        <optgroup label="Front-end web">
+                                            <option value="HTML and CSS">HTML and CSS</option>
+                                            <option value="JavaScript and jQuery">JavaScript and jQuery
+                                            </option>
+                                            <option value="Bootstrap4">Bootstrap4</option>
+                                            <option value="Pug and SASS">Pug and SASS</option>
+                                            <option value="VueJS">VueJS</option>
+                                        </optgroup>
+                                        <optgroup label="Back-end web">
+                                            <option value="PHP and Laravel">PHP and Laravel</option>
+                                            <option value="NodeJS and ExpressJS">NodeJS and ExpressJS
+                                            </option>
+                                            <option value="Python and DJango">Python and DJango</option>
+                                            <option value="ASP.Net backend">ASP.Net backend</option>
+                                            <option value="C# backend">C# backend</option>
+                                        </optgroup>
+                                        <optgroup label="Programming Languages">
+                                            <option value="JavaScript">JavaScript</option>
+                                            <option value="Java">Java</option>
+                                            <option value="Python">Python</option>
+                                            <option value="React">React</option>
+                                            <option value="C++">C++</option>
+                                        </optgroup>
+                                        <optgroup label="Business">
+                                            <option value="Finance">Finance</option>
+                                            <option value="Entrepreneurship">Entrepreneurship</option>
+                                            <option value="Communications">Communications</option>
+                                            <option value="Management">Management</option>
+                                            <option value="Sales">Sales</option>
+                                        </optgroup>
+                                        <optgroup label="Operating Systems">
+                                            <option value="Linux">Linux</option>
+                                            <option value="Windows Server">Windows Server</option>
+                                            <option value="Linux Administration">Linux Administration
+                                            </option>
+                                            <option value="Shell Scripting">Shell Scripting</option>
+                                            <option value="Active Directory">Active Directory</option>
+                                        </optgroup>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="inputGroupSelect02">Course</label>
+                                    </div>
+                                </div>
                             </div>
-                            <select class="custom-select" name="coursename">
-                                <option value="all">All
-                                </option>
-                                <option value="English">English
-                                </option>
-                                <option value="Maths">
-                                    Maths
-                                </option>
-                                <option value="Arabic">
-                                    Arabic
-                                </option>
-                                <option value="Linux">
-                                    Linux
-                                </option>
-                            </select>
-                            <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Course</label>
+                            <div class="col-lg-3 col-12 mt-2 mt-lg-0">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="courseprice">
+                                        <% for(var i = 1; i <= 100; i++) { %>
+                                            <option value="<%= i %>">
+                                                <%= i %>
+                                            </option>
+                                        <% } %>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="inputGroupSelect02">Price</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ml-2 input-group w-25">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                            <div class="col-lg-3 col-12 col-12 mt-2 mt-lg-0">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="centerlocation">
+                                        
+                                            <option value="Alexandria">Alexandria</option>
+                                            <option value="Aswan">Aswan</option>
+                                            <option value="Asyut">Asyut</option>
+                                            <option value="Beheira">Beheira</option>
+                                            <option value="Beni Suef">Beni Suef</option>
+                                            <option value="Cairo">Cairo</option>
+                                            <option value="Dakahlia">Dakahlia</option>
+                                            <option value="Damietta">Damietta</option>
+                                            <option value="Faiyum">Faiyum</option>
+                                            <option value="Gharbia">Gharbia</option>
+                                            <option value="Giza">Giza</option>
+                                            <option value="Ismailia">Ismailia</option>
+                                            <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                                            <option value="Luxor">Luxor</option>
+                                            <option value="Matruh">Matruh</option>
+                                            <option value="Minya">Minya</option>
+                                            <option value="Monufia">Monufia</option>
+                                            <option value="New Valley">New Valley</option>
+                                            <option value="North Sinai">North Sinai</option>
+                                            <option value="Port Said">Port Said</option>
+                                            <option value="Qalyubia">Qalyubia</option>
+                                            <option value="Qena">Qena</option>
+                                            <option value="Red Sea">Red Sea</option>
+                                            <option value="Sharqia">Sharqia</option>
+                                            <option value="Sohag">Sohag</option>
+                                            <option value="South Sinai">South Sinai</option>
+                                            <option value="Suez">Suez</option>
+                                        
+                                    </select>
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="inputGroupSelect02">Price</label>
+                                    </div>
+                                </div>
                             </div>
-                            <select class="custom-select" name="courseprice">
-                                <option value="50">50$
-                                </option>
-                                <option value="100">
-                                    100$
-                                </option>
-                            </select>
-                            <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Price</label>
-                            </div>
-                        </div>
-                        <div class="ml-2 input-group w-25">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                            </div>
-                            <select class="custom-select" name="centerlocation">
-                                <option value="Ismailia">Ismailia
-                                </option>
-                                <option value="100">
-                                    100$
-                                </option>
-                            </select>
-                            <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect02">Price</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="ml-2 btn btn-warning">
+                            <div class="col-lg-3 col-12 mt-2 mt-lg-0">
+                                    
+                        <button type="submit" class="btn btn-warning  mt-2 mt-lg-0">
                             <span>Search now</span>
                             <span><i class="fas fa-search"></i></span>
                         </button>
+                            </div>
+                        </div>
+                        
+                        
+                    
                     </form>
                 </div>
             </div>
@@ -127,15 +226,23 @@
                 </div>
             <w } %>
         </div> -->
-        <div class="row">
-            <div class="col-12">
-                <div class="paginationContent bg-white p-3 shadow-sm rounded-lg"></div>
+        <% if(pageCount > 0) { %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="paginationContent bg-white p-3 shadow-sm rounded-lg"></div>
+                </div>
             </div>
-        </div>
-        <div class="row Courses">
-
-        </div>
-
+            <div class="row Courses">
+                
+            </div>
+        <% } else {  %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger mb-0">There are no courses that are matched this query</div>
+                </div>
+            </div>
+        <% } %>
+        
     </div>
 
 
@@ -168,6 +275,11 @@
     </div>
     <% } %>
 
+      <!-- Notification -->
+      <div class="notificationSuccess text-white shadow-lg p-3"></div>
+      <div class="notificationError text-white shadow-lg p-3"></div>
+      <!-- Notification -->
+
 
     <%# Bootstrap4 Package Included as JS %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "
@@ -198,6 +310,34 @@
 
     <%# FontAwesome Included as JS %>
     <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        $(() => {
+            var socket = io()
+            socket.emit("join", "<%= user.id %>");
+            socket.on("courseData", data => {
+                $(".notificationSuccess")
+            .html(
+                `
+ <div class="cancelNotificationSuccess text-white" id="cancelNotificationSuccess">x</div>
+<audio autoplay class="d-none">
+<source src="
+/assets/sounds/notification.mp3" type="audio/mpeg">
+</audio>
+<h4 class="text-white">Notification</h4>
+<p class="mb-0 text-white" style="font-size: 14px">${ data.coursename } is created now. You can visit the course link on <a target="_blank" href="/course/${ data.courseID }">Visit</a></p>
+ `
+            )
+            .show(100)
+            .delay(5000)
+            .hide(100);
+                
+            })
+
+        })
+    </script>
+
 
     <%# Lightbox for the profile image %>
     <script src="/assets/js/lightbox.js"></script>
@@ -299,7 +439,7 @@
                         </div>
                         <div class="bottom-courseContent d-flex flex-row flex-wrap justify-content-center mt-2">
                             <span class="badge badge-light m-1 border" style="font-size: 13px">Price: ${ data.courseprice}$</span>
-                            <span class="badge badge-light m-1 border" style="font-size: 13px">Lomited: ${ data.courselimited} </span>
+                            <span class="badge badge-light m-1 border" style="font-size: 13px">Limited: ${ data.courselimited} </span>
                             <span class="badge badge-light m-1 border" style="font-size: 13px">Start: ${ moment(data.coursestart).format("MMM Do YY")} </span>
                             <span class="badge badge-light m-1 border" style="font-size: 13px">End: ${ moment(data.courseend).format("MMM Do YY")} </span>
                             <span class="badge badge-light m-1 border" style="font-size: 13px">Location: ${ data.centerlocation}</span>

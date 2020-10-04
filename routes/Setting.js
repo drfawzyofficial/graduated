@@ -3,7 +3,10 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { ensureAuthenticated } = require('../config/auth');
 const User = require('../models/User');
+const Course = require('../models/Course');
+const Book = require('../models/Book');
 const { check, validationResult } = require('express-validator');
+const Review = require('../models/Review');
 router.get('/', ensureAuthenticated, (req, res, next) => {
     if (req.cookies.lang === "ar") {
         res.render('Arabic/Setting', { page: 'Settings' });
@@ -13,12 +16,31 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
 });
 router.post('/removeAccount', ensureAuthenticated, async (req, res, next) => {
     try {
+
+        var course, bookedCourse;
+
+        if(req.user.role === "Instructor") { 
+            course = await Course.findOne({ instructorID: req.user.id });
+        }
+
+        if(req.user.role === "User") {
+            bookedCourse = await Book.findOne({ userID: req.user.id });
+        }
+
+        if(course || bookedCourse) {
+            req.flash("error", "You cannot remove your account because you have course/courses");
+            return res.redirect("/settings");
+        }
+        await Review.deleteMany({ userID: req.user.id });
         let removedUser = await User.findByIdAndRemove({ _id: req.user.id });
         console.log(`${removedUser} has been removed successfully`);
         req.flash("success", "Home Your Account has been removed successfully");
         res.redirect("/");
+        
     } catch (err) {
         console.error(err.message);
+        req.flash("error", "Home Something went wrong");
+        res.redirect("/");
     }
 });
 

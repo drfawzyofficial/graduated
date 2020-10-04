@@ -89,12 +89,6 @@ const Contact = require('./routes/Contact')
 app.use('/contact', Contact)
 /*@ here we include contactRouter @*/
 
-/*@ here we include contactRouter @*/
-const Seso = require('./routes/Seso')
-app.use('/seso', Seso)
-/*@ here we include contactRouter @*/
-
-
 /*@ here we include userRouter @*/
 const User = require('./routes/User')
 app.use('/user', User)
@@ -115,10 +109,20 @@ const Courses = require('./routes/Courses')
 app.use('/courses', Courses)
 /*@ here we include courseRouter @*/
 
+/*@ here we include bookRouter @*/
+const Book = require('./routes/Book')
+app.use('/book', Book)
+/*@ here we include bookRouter @*/
+
 /*@ here we include courseRouter @*/
 const Course = require('./routes/Course')
 app.use('/course', Course)
 /*@ here we include courseRouter @*/
+
+/*@ here we include chatRouter @*/
+const Chat = require('./routes/Chat')
+app.use(`/chat`, Chat)
+/*@ here we include chatRouter @*/
 
 /*@ here we include roleRouter @*/
 const Setting = require('./routes/Setting')
@@ -126,24 +130,14 @@ app.use('/settings', Setting)
 /*@ here we include courseRouter @*/
 
 /*@ here we include coursesRouter @*/
-// const Courses = require('./routes/Courses')
-// app.use('/courses', Courses)
+const Notification = require('./routes/Notification')
+app.use('/notifications', Notification)
 /*@ here we include coursesRouter @*/
 
 /*@ here we include roleRouter @*/
 const Dashboard = require('./routes/Dashboard')
 app.use('/dashboard', Dashboard)
 /*@ here we include courseRouter @*/
-
-/*@ here we include chatRouter @*/
-const chatRouter = require('./routes/chatRouter')
-app.use(`/chat`, chatRouter)
-/*@ here we include chatRouter @*/
-
-/*@ here we include chatRouter @*/
-const chatRouterA = require('./routes/chatroute')
-app.use(`/fetchData`, chatRouterA)
-/*@ here we include chatRouter @*/
 
 /*@ Handle Error-404 @*/
 app.get('*', (req, res, next) => {
@@ -152,63 +146,78 @@ app.get('*', (req, res, next) => {
 })
 /*@ Handle Error-404 @*/
 
-//setup event listener
-// const User = require('./models/user')
-// const Course = require('./models/Course')
-// const Chat = require('./models/chat')
-// const UsersService = require('./UsersService')
-// const userService = new UsersService()
-// io.on('connection', socket => {
-//     socket.on('join', data => {
-//       userService.addUser({ socketID: socket.id, userID: data })
-//       console.log('After Connected')
-//       console.log(userService.getAllUsers())
-//     })
-//     socket.on('disconnect', () => {
-//       userService.removeUser(socket.id)
-//       console.log('After Disconnected')
-//       console.log(userService.getAllUsers())
-//     })
-//     socket.on('sendMessage', async data => {
-//       if(data.message.trim().length === 0) {
-//         socket.emit('emptyMessage', 'Message cannot be empty')
-//       } else {
-//       let user = await User.findById({ _id: data.senderID })
-//       io.sockets.emit('received', { user: user, message: data.message })
-//       new Chat({ 
-//         message: data.message, 
-//         courseID: data.courseID, 
-//         senderID: data.senderID 
-//       }).save((err, result) => {
-//         if(err) console.log(err.message)
-//         else console.log(`${result} has been saved to mongoDB successfully`)
-//       })
-//     }
-//     })
+// setup event listener
+const User_model = require('./models/User')
+const Course_model = require('./models/Course')
+const Chat_model = require('./models/Chat')
+const UsersService = require('./UsersService')
+const userService = new UsersService()
+app.set('userService', userService);
+io.on('connection', socket => {
+    
+    socket.on('join', (data) => {
+        userService.addUser({ socketID: socket.id, userID: data })
+        console.log("After Connected");
+        console.log(userService.getAllUsers());
+    })
+    socket.on('disconnect', () => {
+        userService.removeUser(socket.id);
+        console.log("After Disconnected");
+        console.log(userService.getAllUsers());
+    })
 
+    // Join to the Room
+    socket.on('joinRoom', async (data) => {
+        try {
+            console.log(`Room ID is ${ data.roomID }`)
+            socket.join(data.roomID);
+        } catch(err) {
+            socket.emit('error', {
+                statusCode: 500,
+                msgDev: err.message,
+                msgUser: 'Something went wrong'
+            })
+        }
+    })
 
-   
-  
-    //Someone is typing
-    // socket.on('typing', data => {
-    //   socket.broadcast.emit('notifyTyping', {
-    //     user: data.user,
-    //     message: data.message
-    //   })
-    // })
-  
-    //when soemone stops typing
-  //   socket.on('stopTyping', () => {
-  //     socket.broadcast.emit('notifyStopTyping')
-  //   })
-  
-  //   socket.on('chat message', function(msg) {  
-  //     socket.broadcast.emit('received', { message: msg })
-  //   })
-  // })
-// })
+    socket.on('chatMessage', async (data) => {
+        try {
+            const { roomID, userID, message } = data;
+            if(!roomID || !userID || !message) {
+                socket.emit('error', {
+                    statusCode: 400,
+                    msgDev: 'One of the sent data is empty',
+                    msgUser: 'One of the sent data is empty'
+                })
+            }
+            const course = await Course_model.findById({ _id: roomID });
+            const user = await User_model.findById({ _id: userID });
+
+            if(!course || !user) {
+                socket.emit('error', {
+                    statusCode: 404,
+                    msgDev: 'The Course or user is not found on our system',
+                    msgUser: 'Something went wrong'
+                })
+            }
+            if(course.users.includes(user._id) || course.instructorID.equals(user._id)) {
+                const messageContent = await new Chat_model({ roomID: course._id, userID: user._id, message: message  }).save()
+                await Chat_model.populate(messageContent, { path:"userID" });
+                io.to(messageContent.roomID).emit('chatMessage', messageContent)
+            }
+        } catch(err) {
+            socket.emit('error', {
+                statusCode: 500,
+                msgDev: err.message,
+                msgUser: 'Something went wrong'
+            })
+        }
+    });
+
+})
 const port = process.env.PORT || 3000;
 http.listen(port, () => {
     console.log('Running on Port: 3000')
 })
+
 

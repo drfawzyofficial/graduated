@@ -29,14 +29,82 @@
                                             <option value="InDesign">InDesign</option>
                                         </optgroup>
                                     <% } else if(user.specialized === "Digital Marketing") { %>
-                                        <optgroup label="IT Certification">
-                                            <option value="Photoshop">Photoshop</option>
-                                            <option value="Adobe Illustrator">Adobe Illustrator</option>
-                                            <option value="Drawing">Drawing</option>
-                                            <option value="Digital Painting">Digital Painting</option>
-                                            <option value="InDesign">InDesign</option>
+                                        <optgroup label="Digital Marketing">
+                                            <option value="Marketing Strategy">Marketing Strategy</option>
+                                            <option value="Facebook Marketing">Facebook Marketing</option>
+                                            <option value="Google Analytics">Google Analytics</option>
+                                            <option value="Email Marketing">Email Marketing</option>
+                                            <option value="Business Strategy">Business Strategy</option>
                                         </optgroup>
-                                    <% }  %>
+                                    <% }  else if(user.specialized === "IT Certification") { %>
+                                        <optgroup label="IT Certification">
+                                            <option value="Cisco CCNA">Cisco CCNA</option>
+                                            <option value="CompTIA A+">CompTIA A+</option>
+                                            <option value="AWS Certified Cloud Practitioner">AWS Certified
+                                                Cloud Practitioner</option>
+                                            <option value="CompTIA Security+">CompTIA Security+</option>
+                                            <option value="CompTIA Network+">CompTIA Network+</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Data and Analytics") { %>
+                                        <optgroup label="Data and Analytics">
+                                            <option value="SQL">SQL</option>
+                                            <option value="MySQL">MySQL</option>
+                                            <option value="Data Modeling">Data Modeling</option>
+                                            <option value="Data Analysis">Data Analysis</option>
+                                            <option value="Big Data">Big Data</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Hardware") { %>
+                                        <optgroup label="Hardware">
+                                            <option value="PLC">PLC</option>
+                                            <option value="Electronics">Electronics</option>
+                                            <option value="Arduino">Arduino</option>
+                                            <option value="Cell Phone Repair">Cell Phone Repair</option>
+                                            <option value="Microcontroller">Microcontroller</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Software") { %>
+                                        <optgroup label="Software">
+                                            <option value="PLC">PLC</option>
+                                            <option value="Electronics">Electronics</option>
+                                            <option value="Arduino">Arduino</option>
+                                            <option value="Cell Phone Repair">Cell Phone Repair</option>
+                                            <option value="Microcontroller">Microcontroller</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Front-end web") { %>
+                                        <optgroup label="Front-end web">
+                                            <option value="HTML and CSS">HTML and CSS</option>
+                                            <option value="JavaScript and jQuery">JavaScript and jQuery
+                                            </option>
+                                            <option value="Bootstrap4">Bootstrap4</option>
+                                            <option value="Pug and SASS">Pug and SASS</option>
+                                            <option value="VueJS">VueJS</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Back-end web") { %>
+                                        <optgroup label="Back-end web">
+                                            <option value="PHP and Laravel">PHP and Laravel</option>
+                                            <option value="NodeJS and ExpressJS">NodeJS and ExpressJS
+                                            </option>
+                                            <option value="Python and DJango">Python and DJango</option>
+                                            <option value="ASP.Net backend">ASP.Net backend</option>
+                                            <option value="C# backend">C# backend</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Business") { %>
+                                        <optgroup label="Business">
+                                            <option value="Finance">Finance</option>
+                                            <option value="Entrepreneurship">Entrepreneurship</option>
+                                            <option value="Communications">Communications</option>
+                                            <option value="Management">Management</option>
+                                            <option value="Sales">Sales</option>
+                                        </optgroup>
+                                    <% } else if(user.specialized === "Operating Systems") { %>
+                                        <optgroup label="Operating Systems">
+                                            <option value="Linux">Linux</option>
+                                            <option value="Windows Server">Windows Server</option>
+                                            <option value="Linux Administration">Linux Administration
+                                            </option>
+                                            <option value="Shell Scripting">Shell Scripting</option>
+                                            <option value="Active Directory">Active Directory</option>
+                                        </optgroup>
+                                    <% } %>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -101,11 +169,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="coursestart">Course Start</label>
-                                <input required type="text" name="coursestart" id="coursestart" class="form-control" placeholder="Enter Course Start"/>
+                                <input required type="text" name="coursestart" class="coursestart" class="form-control" placeholder="Enter Course Start"/>
                             </div>
                             <div class="form-group">
                                 <label for="courseend">Course End</label>
-                                <input required type="text" name="courseend" id="courseend"
+                                <input required type="text" name="courseend" class="courseend"
                                 class="form-control" placeholder="Enter Course End">
                             </div>
 

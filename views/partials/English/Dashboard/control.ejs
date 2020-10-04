@@ -17,25 +17,23 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title"><%= course.coursename %> Course Controlling</h4>
-                            <p class="card-category"><%= course.coursename %> Course is now avialable with Price
-                                <%= course.courseprice %> and number of limited users is <%= course.courselimited %> at
-                                <%= course.centerlocation %> <%=  course.users.length%></p>
+                            <p class="card-category"><%= course.coursename %> Course is now avialable with Price <%= course.courseprice %>$ and There are <%= course.users.length %> users from <%= course.courselimited %> at <%= course.centerlocation %></p>
                         </div>
                         <div class="card-body d-flex justify-content-start flex-wrap">
                             <span class="badge badge-count m-1"><%= course.users.length %>/<%- course.courselimited %>
                                 users</span>
-                            <span class="badge badge-default m-1"><%= course.courseprice %> price</span>
+                            <span class="badge badge-count m-1">$ <%= course.courseprice %> price</span>
                             <span
-                                class="badge badge-primary m-1"><%= moment(course.coursestart).format("MMM Do YY");    %>
+                                class="badge badge-count m-1"><%= moment(course.coursestart).format("MMM Do YY");    %>
                                 Start Date</span>
-                            <span class="badge badge-info m-1"><%= moment(course.courseend).format("MMM Do YY");    %>
+                            <span class="badge badge-count m-1"><%= moment(course.courseend).format("MMM Do YY");    %>
                                 End
                                 Date</span>
 
-                            <span class="badge badge-warning m-1"><%= course.centerlocation %> location</span>
-                            <span class="badge badge-danger m-1"><%= course.centerplace %> Address</span>
+                            <span class="badge badge-count m-1"><%= course.centerlocation %> location</span>
+                            <span class="badge badge-count m-1"><%= course.centerplace %> Address</span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body py-0">
                             <p class="demo">
 
                                 <a type="button" class="btn btn-primary" href="/course/<%= course._id %>"
@@ -105,7 +103,7 @@
                                             <div class="upload-photo">
                                                 <h6>Update Course Photo</h6>
                                             <form class="uploadCenterPhoto"
-                                                    action="/seso/control/uploadCenterPhoto" method="POST"
+                                                    action="/dashboard/control/uploadCenterPhoto" method="POST"
                                                     enctype="multipart/form-data">
                                                     <input type="hidden" name="courseID" value="<%= course._id %>" />
                                                     <div class="input-group mb-3">
@@ -125,7 +123,7 @@
                                             <div class="upload-video mt-3">
                                                 <h6>Update Course Video</h6>
                                                 <form class="uploadCourseVideo"
-                                                action="/seso/control/uploadCourseVideo" method="post"
+                                                action="/dashboard/control/uploadCourseVideo" method="post"
                                                 enctype="multipart/form-data">
                                                 <input type="hidden" name="courseID" value="<%= course._id %>" />
                                                 <div class="input-group">
@@ -143,7 +141,7 @@
                                             </form>
                                             </div>
                                             
-                                            <form class="editCourse" id="editCourse" action="/seso/control/editCourse" method="POST" name="editCourse">
+                                            <form class="editCourse" id="editCourse" action="/dashboard/control/editCourse" method="POST" name="editCourse">
                                             <input type="hidden" name="courseID" value="<%= course._id %>" />
                                             <div class="form-group">
                                                 <label for="coursename">Course name</label>
@@ -177,7 +175,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="editor">Course Content</label>
-                                                <div id="toolbar-container">
+                                                <div id="toolbar-container<%= course._id %>">
                                                     <span class="ql-formats">
                                                         <select class="ql-size">
                                                             <option value="10px">Small</option>
@@ -226,7 +224,9 @@
                                                     </span>
                                                 </div>
                                                 <textarea name="coursecontent" style="display:none" class="hiddenArea"></textarea>
-                                                <div id="editor"></div>
+                                                <div id="editor<%= course._id %>" class="editor">
+                                                    <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Write the Course Content..."><%- course.coursebio %></div>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="courseprice">Course Price</label>
@@ -240,13 +240,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="coursestart">Course Start</label>
-                                                <input required type="text" name="coursestart" id="coursestart"
-                                                    class="form-control" placeholder="Enter Course Start" />
+                                                <input required type="text" name="coursestart"
+                                                    class="coursestart form-control" placeholder="Enter Course Start"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="courseend">Course End</label>
-                                                <input required type="text" name="courseend" id="courseend"
-                                                    class="form-control" placeholder="Enter Course End">
+                                                <input required type="text" name="courseend" 
+                                                    class="courseend form-control" placeholder="Enter Course End"/>
                                             </div>
 
                                             <div class="form-group">

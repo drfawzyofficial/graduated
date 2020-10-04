@@ -25,8 +25,7 @@
 <body class="body" id="body">
 
     <!-- Start Navbar -->
-    <header id="headerContent"
-        class="container-fluid headerContent appear-header <%= (page === 'Ostazy'? 'pageTatx pageConst': 'bg-white o_shadow') %>">
+    <header id="headerContent" class="container-fluid headerContent">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
@@ -81,11 +80,11 @@
                             <a type="button" class="nav-link" data-toggle="modal" data-target="#login"
                                 style="cursor: pointer">Login</a>
                         </li>
-                        <li class="nav-item mt-2 mt-lg-0">
+                        <!-- <li class="nav-item mt-2 mt-lg-0">
                             <form method="POST" action="/ar">
                                 <button type="submit" class="nav-link">العربية <i class="fas fa-globe"></i></button>
                             </form>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -133,7 +132,7 @@
                 <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/System.jpeg" alt="First slide">
                 <div class="carousel-caption">
                     <h5 class="text-white">Ostazy is always with Users and Instructors</h5>
-                    <p class="text-light">The aim of this project is to make the communication between Users and Instructors  easier such that Our System will help the user book the appropriate course at Center. We will show all the courses to the user related to his tags and the user can explore these courses and other courses if he wants.The provided payment method to the user is Paypal, After booking the course buy it, we’ll notify the instructor. At the end, We’ve a special dashboard to know what happens in our system in rapidly.</p>
+                    <p class="text-light">The aim of this project is to make the communication between Users and Instructors easier such that Our System will help the user book the appropriate course at Center.</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -141,7 +140,7 @@
                 <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/Lecturer.png" alt="Second slide">
                 <div class="carousel-caption">
                     <h5 class="text-white">Instructor is appreciated by Ostazy </h5>
-                    <p class="text-light">The Instructor is considered as User but the difference between them is the Privileges such that the instructor has special dashboard to see the statistics related to his courses and chat  with the users about  the course. The important goal for the Instructor is that Our System provide Huge Form to make the instructor  able to provide the details of the course such  as Name, Price, Limited Numbers Of Users, Appointments, Course Content, Video about the course and Image about the center. After publishing the course for Example, JavaScript, Our System will notify all the users with #tag (JavaScript) that JS Course has been published with more than one method for notification. </p>
+                    <p class="text-light">The Instructor is considered as User but the difference between them is the Privileges such that the instructor has special dashboard to see the statistics related to his courses and chat with the users about the course. </p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -149,7 +148,7 @@
                 <img class="d-block w-100" src="/assets/images/System/Outside/Carousel/User.jpg" alt="Third slide">
                 <div class="carousel-caption">
                     <h5 class="text-white">User is appreciated by Ostazy</h5>
-                    <p class="text-light">The User can make authentication simply with our website through  Sign-Up and Login forms. After Logging to the website, He’ll have profile with his special secure data in our system and he can change it by visiting the settings. The user will see some Instructors, some users, some users from his governance and some courses to book based on his tags. He can explore all the courses based on his tags and book the course he wants with Paypal Payment after seeing the all details of this course and Users’ Opinions. After booking the course, Our system will notify the instructor that the user has joined the course with sending all the user’s details. The user can see all the booked courses and contact with the instructor by Chat. At the end The user will be notified if a new course related to his tags is published by the Instructor.</p>
+                    <p class="text-light">The User can make authentication simply with our website through  Sign-Up and Login forms. After Logging to the website, He’ll have profile with his special secure data in our system and he can change it by visiting the settings.</p>
                 </div>
             </div>
         </div>
@@ -575,21 +574,12 @@
                         </div>
                         <div class="col-md-12 mb-3 mt-3">
                             <p class="text-center">
-                                <a href="/user/auth/facebook" class="w-100 btn btn-primary facebook"> <span>Login
+                                <a href="/user/auth/facebook" class="w-100 btn btn-primary facebook"> <span>Login as User
                                         with Facebook</span> <i class="fab fa-facebook-f"></i> </a>
                                 </a>
                             </p>
                         </div>
-                        <div class="form-group">
-                            <p class="text-center">By signing in you accept our <a
-                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlot"> terms of use</a>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <p class="text-center">By signing in you accept our <a
-                                    style="cursor: pointer; color: rgb(34, 111, 253)" id="hlop"> Privacy Policy</a>
-                            </p>
-                        </div>
+
                         
                         <div class="form-group">
                             <p class="text-center">Don't have account? <a
@@ -897,6 +887,10 @@
     <div class="notificationSuccess text-white shadow-lg p-3"></div>
     <div class="notificationError text-white shadow-lg p-3"></div>
     <!-- Notification -->
+
+     <%# FontAwesome Included as JS %>
+     <script src="https://kit.fontawesome.com/8c190c8b3a.js"></script>
+
 
     <!-- Jquery Slim JS -->
     <script src="/assets/js/jquery.min.js"></script>

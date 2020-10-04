@@ -22,23 +22,21 @@ router.get('/', ensureAuthenticated, async (req, res, next) => {
 
 router.get('/process', async (req, res, next) => {
     const { pageNo, coursename, courseprice, centerlocation } = req.query;
-    console.log(coursename);
     var conditions;
     if (coursename === 'undefined' || courseprice === 'undefined' || centerlocation === 'undefined')
         conditions = {};
     else conditions = { coursename: coursename, courseprice: Number(courseprice), centerlocation: centerlocation }
     const courses = await Course.find(conditions).limit(9).skip((Number(pageNo) - 1) * 9).lean().exec();
+    console.log(courses);
     res.json(courses);
 })
 
 router.get('/filter', async (req, res, next) => {
-    console.log(req.body);
     const { coursename, courseprice, centerlocation } = req.query;
     const conditions = { coursename: coursename, courseprice: Number(courseprice), centerlocation: centerlocation }
     const courses = await Course.find(conditions);
     const pageCount = Math.ceil(courses.length / 9)
-    res.render('English/Courses', { page: 'Courses', errors: req.flash('errors'), moment: moment, pageCount: pageCount, coursename: 'Linux', courseprice: 50, centerlocation: 'Ismailia' })
-    res.json(courses.slice(0, 9));
+    res.render('English/Courses', { page: 'Courses', errors: req.flash('errors'), moment: moment, pageCount: pageCount, coursename: coursename, courseprice: Number(courseprice), centerlocation: centerlocation })
 });
 
 

@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Course = require('../models/Course');
 const Review = require('../models/Review');
+const Book = require('../models/Book');
 const moment = require("moment");
 const request = require('request');
 const { ensureAuthenticated } = require('../config/auth');
 const { Mongoose } = require('mongoose');
 const CLIENT = 'ARj2xdiO5T8mO_nQPPzQ5NOjxkbxPl8F8V8oHV_wsNVsUnV8leSbkOVD2UA6G73mMw68IuiM58oRoBlT';
-const SECRET = 'EOWYrp8-jmOOGL8UqWtVuDWXjdFujBwOaLY6sBC5tbksmHgQ8nmg-PXKfAym2zyfJPS1eK_CEq1w9eqD';
+const SECRET = 'ECaSRhh_I3zMWSLROpktYspF6npAnm6j8XZjrVWcihHn0AHFK0e_ARJhTpXzVmGS0aknwZcD-53zXJog';
 const PAYPAL_API = 'https://api.sandbox.paypal.com';
 router.get('/:courseID', ensureAuthenticated, async (req, res, next) => {
     try {
@@ -102,6 +103,14 @@ router.post('/createPayment', async (req, res, next) => {
             statusCode: 400,
             msgDev: 'The User is found in the users list',
             msgUser: 'You are a member of this course'
+        });
+    }
+
+    if(req.user.role === "Instructor") {
+        return res.status(400).json({
+            statusCode: 400,
+            msgDev: 'The role is Instructor',
+            msgUser: 'The Instructor cannot buy any course on our System'
         });
     }
 
@@ -216,6 +225,7 @@ router.post('/executePayment', async (req, res, next) => {
                 });
             }
             await Course.findByIdAndUpdate({ _id: courseID }, { $push: { users: req.user.id } });
+            await new Book({ userID: req.user.id, courseID: courseID }).save();
             return res.status(200).json({
                 statusCode: 200,
                 msgDev: 'The transaction is completed successfully',

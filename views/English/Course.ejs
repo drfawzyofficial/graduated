@@ -18,6 +18,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- Katex CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/katex.min.css"
+    integrity="sha384-8QOKbPtTFvh/lMY0qPVbXj9hDh+v8US0pD//FcoYFst2lCIf0BmT58+Heqj0IGyx" crossorigin="anonymous">
     <!-- Profile CSS -->
     <link rel="stylesheet" href="/assets/css/profile.css" />
     <!-- Google Fonts -->
@@ -87,9 +90,7 @@
                 <div class="col-md-8">
                     <div class="content text-white">
                         <h3>Course named as <%= course.coursename %></h3>
-                        <p style="font-size: 25px" class="mb-0"><%= course.coursename %> Course is now avialable with
-                            Price <%= course.courseprice %> and number of limited users is <%= course.courselimited %>
-                            at <%= course.centerlocation %> <%=  course.users.length%> </p>
+                        <p style="font-size: 25px" class="mb-0"><%= course.coursename %> Course is now avialable with Price <%= course.courseprice %>$ and There are <%= course.users.length %> users from <%= course.courselimited %> at <%= course.centerlocation %></p>
                         <div class="d-flex mt-3">
                             <span class="courseprice badge badge-warning p-2 d-flex align-items-center">Course Price is
                                 <%= course.courseprice %>$</span>
@@ -98,13 +99,49 @@
                             <span class="courselimited badge badge-warning p-2 d-flex align-items-center ml-3">Course
                                 limited is <%= course.courselimited %></span>
                         </div>
-                        <div class="d-flex mt-3">
+                        <div class="d-flex flex-wrap mt-3">
                             <span class="courseprice badge badge-danger p-2 d-flex align-items-center">Address
+                                <%= course.centerlocation %></span>
+                            <span class="courseprice badge badge-danger p-2 ml-3 d-flex align-items-center">Address
                                 <%= course.centerplace %></span>
                             <span class="users badge badge-danger p-2 d-flex align-items-center ml-3">Start
                                 <%= moment(course.coursestart).format('DD-MMM-YYYY') %></span>
-                            <span class="users badge badge-danger p-2 d-flex align-items-center ml-2">End
+                            <span class="users badge badge-danger p-2 d-flex align-items-center ml-lg-2 mt-lg-0 mt-2 ml-0">End
                                 <%= moment(course.courseend).format('DD-MMM-YYYY')  %></span>
+                        </div>
+                        <div class="d-flex mt-3">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                            data-target="#courseContent">
+                            <span class="word">Content</span>
+                            <span class="icon"><i class="fas fa-pen-nib"></i></span>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="courseContent" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-muted" id="exampleModalLabel"><%= course.coursename %>
+                                            Course Content</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="ql-snow">
+                                            <div class="ql-editor text-muted">
+                                                <%- course.coursebio %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <div class="d-flex mt-3">
                             <div class="mr-2">Pay with</div>
@@ -136,18 +173,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="f-content bg-white p-3 shadow rounded-lg">
+                    <div class="f-content bg-white p-3 shadow rounded-lg text-center">
                         <h2><strong><span>About the instructor</span></strong></h2>
-                        <div class="d-flex justify-content-between mt-3">
-                            <div class="left-content text-center" style="width: 250px">
+                        
+                            <div class="left-content text-center" style="width: 100%">
                                 <div class="forImage">
                                     <img class="shadow"
                                         style="height: 150px; width: 150px; border-radius: 100%; border: 2px solid #888"
-                                        src="../assets/uploads/<%= course.instructorID.avatar %>" />
+                                        src="/assets/uploads/<%= course.instructorID.avatar %>" />
                                 </div>
                                 <div class="forFullname mt-1 text-center">
                                     <h5><strong><%= course.instructorID.fullname %></strong></h5>
                                 </div>
+                                <p class="lead" style="font-size: 16px"><%= course.instructorID.bio %></p>
                                 <div class="forLocation mt-1">
                                     <span
                                         style="display: block; padding: 7px 15px; background-color:#ceebfd; border: 1px solid #81c8f5; color: #36779e; font-size: 14px; border-radius: 4px">Location
@@ -155,11 +193,7 @@
                                             aria-hidden="true"></i></span>
                                 </div>
                             </div>
-                            <div class="right-content pl-2" style="width: calc(100% - 250px)">
-                                <div class="forBio">
-                                    <p class="lead"><%= course.instructorID.bio %></p>
-                                </div>
-                                <hr style="margin-top: 0">
+                            <div class="right-content" style="width: 100%">
                                 <div class="forInquries mt-2">
                                     <ul class="list-group">
                                         <li class="list-group-item"><i class="fas fa-male text-info mx-2"></i>Phone
@@ -171,73 +205,13 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                       
                     </div>
-                    <div class="f-content mt-3  bg-white p-3 shadow rounded-lg">
-                        <h2><strong><span>About the Center Place</span></strong></h2>
-                        <div class="d-flex">
-                            <div class="forImage">
-                                <img style="width: 250px; height: 200px"
-                                    src="../assets/centerphotos/<%= course.centerphoto %>" />
-                            </div>
-                            <div class="bg-light forContent d-flex align-items-center pl-2"
-                                style="width: calc(100% - 250px)">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam rem facere, ducimus
-                                    dignissimos eligendi nihil temporibus sequi sed! Minus, nesciunt assumenda.
-                                    Corrupti, distinctio unde repellendus alias enim molestiae itaque obcaecati?</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="f-content mt-3  bg-white p-3 shadow rounded-lg">
-                        <h2><strong><span>About the Course Content</span></strong></h2>
-                        <div class="d-flex">
-                            <div class="forImage d-flex align-items-center">
-                                <img style="width: 250px; height: 200px"
-                                    src="/assets/centerphotos/<%= course.centerphoto %>" />
-                            </div>
-                            <div class="bg-light forContent d-flex align-items-center pl-2"
-                                style="width: calc(100% - 250px)">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, amet soluta sequi
-                                    omnis inventore placeat repellendus odio vitae officia nihil, explicabo quaerat
-                                    ipsum repellat est ex minus, quos dignissimos? Ut.</p>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                    data-target="#courseContent">
-                                    <span class="word">Content</span>
-                                    <span class="icon"><i class="fas fa-pen-nib"></i></span>
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="courseContent" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><%= course.coursename %>
-                                                    Course Content</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="ql-snow">
-                                                    <div class="ql-editor">
-                                                        <%- course.coursebio %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                   
                     <div class="f-content mt-3 bg-white p-3 shadow rounded-lg">
                         <% if(course.users.includes(user.id)) { %>
-                        <h2><strong><span>Give Feedback to this Course</span></strong></h2>
+                        <h4><strong><span>Give Feedback to this Course</span></strong></h4  >
                         <form class="feedback" id="feedback" style="position: relative;">
                             <input type="hidden" id="courseID" value="<%= course._id %>"/>
                             <div class="input-group mb-3">
@@ -301,6 +275,32 @@
         <script src="/assets/js/emotion-ratings.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+        <script>
+            $(() => {
+                var socket = io()
+                socket.emit("join", "<%= user.id %>");
+                socket.on("courseData", data => {
+                    $(".notificationSuccess")
+                .html(
+                    `
+     <div class="cancelNotificationSuccess text-white" id="cancelNotificationSuccess">x</div>
+    <audio autoplay class="d-none">
+    <source src="
+    /assets/sounds/notification.mp3" type="audio/mpeg">
+    </audio>
+    <h4 class="text-white">Notification</h4>
+    <p class="mb-0 text-white" style="font-size: 14px">${ data.coursename } is created now. You can visit the course link on <a target="_blank" href="/course/${ data.courseID }">Visit</a></p>
+     `
+                )
+                .show(100)
+                .delay(5000)
+                .hide(100);
+                    
+                })
+    
+            })
+        </script>
         <script>
             $(() => {
 
@@ -309,22 +309,9 @@
                     bgEmotion: "star",
                     count: 5,
                     color: 'red',
-                    emotionSize: 40,
+                    emotionSize: 20,
                     inputName: "rating",
                 });
-                var socket = io()
-                socket.emit("join", "<%= user.id %>");
-                socket.on("courseData", data => {
-                    $("#flashMessage").html(`
-                <audio autoplay class="d-none">
-                    <source src="../assets/sounds/notification.mp3" type="audio/mpeg">
-                </audio>
-                <strong>Important Notification!</strong><br> ${data.coursename} Course is created now. You can visit the course link on <a target="_blank" href="/course/${data.courseID}">Visit</a> </span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                `).fadeIn(250).delay(5000).fadeOut(250);
-                })
 
             })
         </script>

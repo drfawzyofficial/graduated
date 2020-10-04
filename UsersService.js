@@ -1,6 +1,6 @@
 class UsersService {
     constructor() {
-        this.users =[] ;
+        this.users = [] ;
     }
 
     getAllUsers() {

@@ -3,13 +3,15 @@ const router = express.Router();
 const path = require('path');
 const User = require('../models/User');
 const Course = require('../models/Course');
-// const Review = require('../models/Review');
+const Transaction = require('../models/Transaction');
 const { check, validationResult } = require('express-validator');
 const { ensureAuthenticated } = require('../config/auth');
 const multer = require('multer');
 const moment = require("moment");
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const Chat = require('../models/Chat');
+const Book = require('../models/Book');
 
 router.get('/search', function (req, res) {
     Course.find({ coursename: { $regex: '.*' + req.query.key + '.*' } }).limit(5).exec((err, courses) => {
@@ -21,15 +23,17 @@ router.get('/', ensureAuthenticated, async (req, res, next) => {
     const users = await User.aggregate([ { $match: { _id: {$ne: mongoose.Types.ObjectId(req.user.id)}, role: "User" } }, { $sample: { size:  20 } } ]);
     const instructors = await User.aggregate([ { $match: { _id: {$ne: mongoose.Types.ObjectId(req.user.id) }, role: "Instructor" } }, { $sample: { size:  20 } } ])
     const courses = await Course.aggregate([  { $sample: { size:  20 } } ]);
+    const transactions = await Transaction.find().populate("courseID");
+    await Transaction.populate(transactions, { path: 'courseID.instructorID', model: 'User' });
     // const courses = await Course.find({ }).populate("instructorID");
     // let arrOfCourses = [];
     // for (let i = 0; i < courses.length; i = i + 2) {
     //     arrOfCourses.push(courses.slice(i, i + 2));
     // }
     if(req.cookies.lang === "ar") {
-        res.render('Arabic/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses });
+        res.render('Arabic/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses, transactions: transactions });
     } else {
-        res.render('English/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses });
+        res.render('English/Profile',{ page: 'Profile', errors: req.flash('errors'), moment: moment, users: users, instructors: instructors, courses: courses, transactions: transactions });
     }
 });
 router.get('/reviews/:instructorID', async (req, res, next) => {
@@ -133,11 +137,11 @@ router.post('/emailVerification', (req, res, next) => {
         to: `${ req.user.email }`,
         subject: 'Email Verification',
         html: `
-         <h3> How are you ${ req.user.fullname }? We hope that you are good </h3>
-            <p>
-            <span> To verify your email follow this link:  </span>
-            <a href="http://localhost:3000/profile/verifyEmail/${ req.user.id }" target="_blank"> Verify now </a>
-           </p>
+        <h3> How are you ${ req.user.fullname }? We hope that you are good </h3>
+        <p>
+        <span> To verify your email follow this link:  </span>
+        <a href="http://localhost:3000/profile/verifyEmail/${ req.user.id }" target="_blank"> Verify now </a>
+       </p>
         `
     };
 
@@ -213,6 +217,29 @@ router.post('/upload', (req, res) => {
         }
     })
 });
+
+router.post('/completedProcess', async (req, res, next) => {
+    try {
+        const courseID = req.body.courseID;
+        await Transaction.findOneAndDelete({ courseID: courseID });
+        await Course.findByIdAndUpdate({ _id: courseID }, { users: [], paymentStatus: 'start' });
+        await Chat.deleteMany({ roomID: courseID });
+        await Book.deleteMany({ courseID: courseID });
+        return res.status(200).json({
+            statusCode: 200,
+            msgDev: 'The Process is executed successfully',
+            msgUser: 'The Process is executed successfully'
+        });
+    } catch(err) {
+        console.log(`Compelted Error `, err);
+        console.log(`Error Message is ${err.message}`);
+        res.status(500).json({
+            statusCode: 500,
+            msgDev: 'Internal Server Error',
+            msgUser: 'Something went wrong'
+        });
+    }
+})
 
 router.get('/logout', (req, res, next) => {
     User.findByIdAndUpdate({ _id: req.user.id }, { accountActive: false })

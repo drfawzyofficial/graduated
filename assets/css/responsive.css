@@ -1,4 +1,7 @@
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991) {
+  #headerContent {
+    background-color: #FFF !important;
+  }
   .contact-status {
     width: 250px;
   }

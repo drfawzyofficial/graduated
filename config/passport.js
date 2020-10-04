@@ -112,8 +112,8 @@ passport.use('local.login', new localStrategy({
 
 // Login with facebook
 passport.use(new FacebookStrategy({
-    clientID: '209137143868957',
-    clientSecret: '76f561850e3c1a8ff1e476a6b9f8e492',
+    clientID: '291027032240919',
+    clientSecret: 'cb70a3d87b5c6d7975b8cc32067c52ff',
     callbackURL: "/user/auth/facebook",
     profileFields: ['displayName', 'email'],
     passReqToCallback: true
@@ -165,7 +165,7 @@ passport.use(new FacebookStrategy({
                                  <h3> How are you ${newUser.fullname}? We hope that you are good </h3>
                                     <p>
                                     <span> To verify your email follow this link:  </span>
-                                    <a href="https://onlinecoursebooking.herokuapp.com//user/verify/${newUser.id}/${newUser.email}/${newUser.accountToken}" target="_blank"> Verify now </a>
+                                    <a href="http://localhost:3000/profile/verifyEmail/${newUser.id}" target="_blank"> Verify now </a>
                                    </p>
                                 `
                             };

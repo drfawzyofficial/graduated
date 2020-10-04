@@ -55,33 +55,21 @@ $(() => {
 
     $(window).on("scroll", () => {
         if ($(this).scrollTop() > 220) {
-            $(".headerContent")
-                .removeClass("pageTatx")
-                .addClass("bg-white o_shadow animated fadeInDown");
+            $(".headerContent").addClass("bg-white o_shadow animated fadeInDown");
+            $("#headerContent .nav-link").css("color", "#555")
         } else {
-            $(".headerContent")
-                .removeClass("bg-white o_shadow animated fadeInDown")
-                .addClass("pageTatx");
+            $(".headerContent").removeClass("bg-white o_shadow animated fadeInDown");
+            $("#headerContent .nav-link").css("color", "#fff")
         }
     });
 
-    $("#hlot").click(() => {
-        $("#login").modal("hide");
-        $("#terms").modal("show");
-        $("#body").addClass("modal-open");
-    });
-
+  
     $("#hlos").click(() => {
         $("#login").modal("hide");
         $("#send").modal("show");
         $("#body").addClass("modal-open");
     });
 
-    $("#hlop").click(() => {
-        $("#login").modal("hide");
-        $("#privacy").modal("show");
-        $("#body").addClass("modal-open");
-    });
     $("#hlof").click(() => {
         $("#login").modal("hide");
         $("#forgot").modal("show");

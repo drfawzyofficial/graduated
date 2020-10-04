@@ -1,0 +1,31 @@
+<div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <h4 class="page-title">All the Competition Courses for you</h4>
+            <div class="row">
+                <% compCourses.forEach((course) => { %>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="card text-center" style="border-radius: 15px">
+                        <div class="card-header">
+                            <img src="/assets/centerphotos/<%= course.centerphoto %>" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #888"/>
+                            <h4 class="card-title"><%= course.coursename %></h4>
+                            <p class="card-category">
+                                <%= course.coursename %> Course has <%= course.users.length %> users from
+                                <%= course.courselimited %></p>
+                                <!-- Button trigger modal -->
+    <a type="button" class="btn btn-primary" href="/course/<%= course._id %>" target="_blank">
+        Course Link
+    </a>
+  
+  
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <% }) %>
+
+            </div>
+        </div>
+    </div>
+</div>
